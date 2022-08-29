@@ -1,5 +1,6 @@
 {
-  "noundef"
-  "globals": {
-  }
+  "env": {
+    "browser": true
+  },
+  "rules": { "globals": { "createCanvas": "readonly" }, "no-undef": "error" }
 }
