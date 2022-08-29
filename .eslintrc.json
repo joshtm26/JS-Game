@@ -1,0 +1,7 @@
+{
+  "globals": {
+    "createCanvas": "readonly",
+    "mouseX": "readonly",
+    "mouseY": "readonly"
+  }
+}
