@@ -17,11 +17,18 @@ function setup() {
   createCanvas(800, 600);
   angleMode(DEGREES);
  
+  let startX = 50;
+  let startY = 50;
+  const lineMove = 5;
+  const randomness = 50;
+  for(let x = 50; x < 350; x = x + lineMove) {
+    let endX = x + lineMove;
+    let endY = 50 + random(-randomness, randomness);
+    line(startX, startY, endX, endY);
+    startX = endX;
+    startY = endY;
+  }
 
-  const randomness = 20;
-
-    quadraticVertex(x + random(randomness), y + random(randomness), x, y);
-  
   let starCount = 0;
   while (starCount < 100) {
     let starX = random(width);
