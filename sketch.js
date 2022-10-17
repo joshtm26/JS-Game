@@ -17,7 +17,10 @@ function setup() {
   createCanvas(800, 600);
   angleMode(DEGREES);
  
-  
+
+  const randomness = 20;
+
+    quadraticVertex(x + random(randomness), y + random(randomness), x, y);
   
   let starCount = 0;
   while (starCount < 100) {
@@ -31,7 +34,7 @@ function setup() {
 }
 
 function draw() {
-  background(0);
+ // background(0);
   
   //comet
   noStroke();
