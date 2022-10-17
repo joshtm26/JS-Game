@@ -21,9 +21,9 @@ function setup() {
 }
 
 function draw() {
-  background(0);
+  //background(0);
   
-  //push();
+  noLoop();
   let starCount = 0;
   while (starCount < 300) {
     let starX = random(width);
@@ -33,8 +33,7 @@ function draw() {
     circle(starX, starY, 3);
     starCount = starCount + 1;
   } 
-  noLoop();
-  //pop();
+  loop();
   
   //comet
   noStroke();
