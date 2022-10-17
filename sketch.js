@@ -16,20 +16,25 @@ let count = 0;
 function setup() {
   createCanvas(800, 600);
   angleMode(DEGREES);
+ 
   
-  let starCount = 0;
-  while (starCount < 100) {
-    let starX = random(width);
-    let starY = random(height);
-    fill(255);
-    noStroke();
-    circle(starX, starY, 5);
-    starCount = starCount + 1;
-  } 
 }
 
 function draw() {
   background(0);
+  
+  //push();
+  let starCount = 0;
+  while (starCount < 300) {
+    let starX = random(width);
+    let starY = random(height);
+    fill(255);
+    noStroke();
+    circle(starX, starY, 3);
+    starCount = starCount + 1;
+  } 
+  noLoop();
+  //pop();
   
   //comet
   noStroke();
@@ -128,5 +133,7 @@ function draw() {
     venusSpeed = venusSpeed * 0.9;
     earthSpeed = earthSpeed * 0.9;
     marsSpeed = marsSpeed * 0.9;
+    
+    noLoop();
   }
 }
