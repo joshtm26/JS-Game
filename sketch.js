@@ -16,7 +16,7 @@ let count = 0;
 function setup() {
   createCanvas(800, 600);
   angleMode(DEGREES);
-  
+ 
   let starCount = 0;
   while (starCount < 100) {
     let starX = random(width);
@@ -30,7 +30,7 @@ function setup() {
 }
 
 function draw() {
-  background(0);
+  //background(0);
   
   //comet
   noStroke();
