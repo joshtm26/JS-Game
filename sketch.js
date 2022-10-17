@@ -19,7 +19,7 @@ function setup() {
  
   let startX = 50;
   let startY = 50;
-  const lineMove = 75;
+  const lineMove = 50;
   const randomness = 150;
   for(let x = 50; x < 750; x = x + lineMove) {
     let endX = x + lineMove;
