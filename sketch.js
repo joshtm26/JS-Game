@@ -16,19 +16,7 @@ let count = 0;
 function setup() {
   createCanvas(800, 600);
   angleMode(DEGREES);
- 
-  let startX = 50;
-  let startY = 50;
-  const lineMove = 50;
-  const randomness = 150;
-  for(let x = 50; x < 750; x = x + lineMove) {
-    let endX = x + lineMove;
-    let endY = 50 + random(-randomness, randomness);
-    line(startX, startY, endX, endY);
-    startX = endX;
-    startY = endY;
-  }
-
+  
   let starCount = 0;
   while (starCount < 100) {
     let starX = random(width);
@@ -41,7 +29,7 @@ function setup() {
 }
 
 function draw() {
- // background(0);
+  background(0);
   
   //comet
   noStroke();
