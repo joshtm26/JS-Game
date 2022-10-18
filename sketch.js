@@ -16,14 +16,14 @@ let cometX = 100;
 let cometY = 100;
 let count = 0;
 
-var stars = [];
+let stars = [];
 
 function setup() {
   createCanvas(800, 600);
   angleMode(DEGREES);
 
-  for (var i = 0; i < 700; i++) {
-    var star = {
+  for (let i = 0; i < 700; i++) {
+    let star = {
       x: random(width),
       y: random(height),
       r: random(3),
@@ -35,7 +35,7 @@ function setup() {
 function draw() {
   background(5, 0, 43);
 
-  for (var i = 0; i < stars.length; i++) {
+  for (let i = 0; i < stars.length; i++) {
     fill(255);
     noStroke();
     circle(stars[i].x, stars[i].y, stars[i].r);
