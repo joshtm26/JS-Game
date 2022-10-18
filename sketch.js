@@ -1,7 +1,6 @@
 //NOTICE
 //you can press the up and down arrows to speed up and slow down the orbit speeds
 
-//i got the array to work and draw the random pattern of stars on top of the background
 
 let mercSpeed = 0.5;
 let venusSpeed = 0.35;
