@@ -12,35 +12,29 @@ let marsAngle = 0;
 let cometX = 100;
 let cometY = 100;
 let count = 0;
-let stars = [];
+let starCount = 0;
 
 function setup() {
   createCanvas(800, 600);
   angleMode(DEGREES);
     
-  for (let i = 0; i < width; i++) {
-    let amount = map(i, 0, width, 0, PI);
-    stars[i] = abs(cos(amount));
-  }
-  noLoop();
-}
-
+  let stars = [
+    
+    while (starCount < 300) {
+    let starX = random(width);
+    let starY = random(height);
+    fill(255);
+    noStroke();
+    circle(starX, starY, 3);
+    starCount = starCount + 1;
+  } 
+  
+  ];
 }
 
 function draw() {
   background(5, 0, 43);
-  
-//   noLoop();
-//   let starCount = 0;
-//   while (starCount < 300) {
-//     let starX = random(width);
-//     let starY = random(height);
-//     fill(255);
-//     noStroke();
-//     stars circle(starX, starY, 3);
-//     starCount = starCount + 1;
-//   } 
-  
+  stars;
   
   //comet
   noStroke();
