@@ -21,15 +21,15 @@ var stars = [];
 function setup() {
   createCanvas(800, 600);
   angleMode(DEGREES);
-  
-  for (var i = 0; i < 300; i++) {
+
+  for (var i = 0; i < 700; i++) {
     var star = {
       x: random(width),
-      y: random(height)
+      y: random(height),
+      r: random(3),
     };
     stars.push(star);
   }
-  
 }
 
 function draw() {
@@ -38,9 +38,9 @@ function draw() {
   for (var i = 0; i < stars.length; i++) {
     fill(255);
     noStroke();
-    circle(stars[i].x, stars[i].y, 3);
+    circle(stars[i].x, stars[i].y, stars[i].r);
   }
-  
+
   //comet
   noStroke();
   fill(158, 225, 255, 100);
