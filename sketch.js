@@ -12,30 +12,33 @@ let marsAngle = 0;
 let cometX = 100;
 let cometY = 100;
 let count = 0;
-let starCount = 0;
 
 function setup() {
   createCanvas(800, 600);
   angleMode(DEGREES);
-    
-  let stars = [
-    
-    while (starCount < 300) {
-    let starX = random(width);
-    let starY = random(height);
+  
+  for (var i = 0; i < 300; i++) {
     fill(255);
     noStroke();
+    var starX = random(width);
+    var starY = random(height);
     circle(starX, starY, 3);
-    starCount = starCount + 1;
-  } 
-  
-  ];
+  }
 }
 
 function draw() {
   background(5, 0, 43);
-  stars;
-  
+
+  //   let starCount = 0;
+  //   while (starCount < 300) {
+  //     let starX = random(width);
+  //     let starY = random(height);
+  //     fill(255);
+  //     noStroke();
+  //     circle(starX, starY, 3);
+  //     starCount = starCount + 1;
+  //   }
+
   //comet
   noStroke();
   fill(158, 225, 255, 100);
@@ -68,7 +71,6 @@ function draw() {
   fill(175);
   circle(400 + cos(mercAngle) * 107.5, 300 + sin(mercAngle) * 35, 22);
 
-
   //venus
   stroke(255);
   noFill();
@@ -92,7 +94,7 @@ function draw() {
   earthAngle = earthAngle + earthSpeed;
   pop();
   noStroke();
-  fill(66, 140, 255); 
+  fill(66, 140, 255);
   circle(400 + cos(earthAngle) * 250, 300 + sin(earthAngle) * 107, 40);
   fill(76, 214, 51);
   circle(403 + cos(earthAngle) * 250, 290 + sin(earthAngle) * 107, 17);
@@ -100,7 +102,7 @@ function draw() {
   circle(400 + cos(earthAngle) * 250, 303 + sin(earthAngle) * 107, 12);
   circle(405 + cos(earthAngle) * 250, 306 + sin(earthAngle) * 107, 10);
   circle(401 + cos(earthAngle) * 250, 313 + sin(earthAngle) * 107, 12);
-  
+
   //mars
   stroke(255);
   noFill();
@@ -133,7 +135,5 @@ function draw() {
     venusSpeed = venusSpeed * 0.9;
     earthSpeed = earthSpeed * 0.9;
     marsSpeed = marsSpeed * 0.9;
-    
-  
   }
 }
