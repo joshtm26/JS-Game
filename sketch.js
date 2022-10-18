@@ -2,7 +2,6 @@
 //you can press the up and down arrows to speed up and slow down the orbit speeds
 
 //i got the array to work and draw the random pattern of stars on top of the background
-//this video was very helpful in doing so https://www.youtube.com/watch?v=XATr_jdh-44&ab_channel=TheCodingTrain
 
 let mercSpeed = 0.5;
 let venusSpeed = 0.35;
@@ -22,7 +21,7 @@ function setup() {
   createCanvas(800, 600);
   angleMode(DEGREES);
 
-  for (let i = 0; i < 700; i++) {
+  for (let i = 0; i < 800; i++) {
     let star = {
       x: random(width),
       y: random(height),
