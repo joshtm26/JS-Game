@@ -1,6 +1,9 @@
 //NOTICE
 //you can press the up and down arrows to speed up and slow down the orbit speeds
 
+//i got the array to work and draw the random pattern of stars on top of the background
+//this video was very helpful in doing so https://www.youtube.com/watch?v=XATr_jdh-44&ab_channel=TheCodingTrain
+
 let mercSpeed = 0.5;
 let venusSpeed = 0.35;
 let earthSpeed = 0.3;
@@ -13,32 +16,31 @@ let cometX = 100;
 let cometY = 100;
 let count = 0;
 
+var stars = [];
+
 function setup() {
   createCanvas(800, 600);
   angleMode(DEGREES);
   
   for (var i = 0; i < 300; i++) {
-    fill(255);
-    noStroke();
-    var starX = random(width);
-    var starY = random(height);
-    circle(starX, starY, 3);
+    var star = {
+      x: random(width),
+      y: random(height)
+    };
+    stars.push(star);
   }
+  
 }
 
 function draw() {
   background(5, 0, 43);
 
-  //   let starCount = 0;
-  //   while (starCount < 300) {
-  //     let starX = random(width);
-  //     let starY = random(height);
-  //     fill(255);
-  //     noStroke();
-  //     circle(starX, starY, 3);
-  //     starCount = starCount + 1;
-  //   }
-
+  for (var i = 0; i < stars.length; i++) {
+    fill(255);
+    noStroke();
+    circle(stars[i].x, stars[i].y, 3);
+  }
+  
   //comet
   noStroke();
   fill(158, 225, 255, 100);
