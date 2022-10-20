@@ -1,7 +1,6 @@
 //NOTICE
 //you can press the up and down arrows to speed up and slow down the orbit speeds
 
-
 let mercSpeed = 0.5;
 let venusSpeed = 0.35;
 let earthSpeed = 0.3;
