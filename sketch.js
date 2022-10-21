@@ -19,13 +19,14 @@ function draw() {
   circle(100, 150, 50);
   line(100, 150, 90, 270);
   
+  
 
 }
 
-function leftDude() {
+function lDude() {
   
 }
 
-function rightDude() {
+function rDude() {
   
 }
