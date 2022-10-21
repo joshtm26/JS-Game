@@ -1,3 +1,9 @@
+//TO INCLUDE
+//animations for idle, movement, and attacking
+//back and forth dashing/stepping
+//2 attacks: a poke and a swipe
+//2 players one keyboard
+
 function setup() {
   createCanvas(800, 400);
   angleMode(DEGREES);
