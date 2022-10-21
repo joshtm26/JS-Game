@@ -1,8 +1,10 @@
 //TO INCLUDE
-//animations for idle, movement, and attacking
+//animations for movement, attacking, and maybe idle
 //back and forth dashing/stepping
-//2 attacks: a poke and a swipe
 //2 players one keyboard
+//2 attacks: a slower poke/longer swipe and quick forward down swing
+//ending lag for the actions
+
 
 function setup() {
   createCanvas(800, 400);
