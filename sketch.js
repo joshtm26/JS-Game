@@ -13,7 +13,7 @@ function setup() {
 }
 
 function draw() {
-  background(230);
+  background(200);
   fill(0);
   stroke(0);
   strokeWeight(10);
@@ -41,7 +41,10 @@ function draw() {
   //left guy's sword
   noStroke();
   //handle
-  quad(200, 240, 210, 250, 210, 225, 220, 220);
+  quad(140, 247, 148, 249, 158, 212, 150, 210);
+  //blade
+  fill(240);
+  quad();
   
   
 
