@@ -17,9 +17,12 @@ function draw() {
   fill(0);
   stroke(0);
   strokeWeight(10);
+  //ground
   rect(0, 350, 800, 50);
+  
+  //left guy
   //head
-  circle(100, 150, 50);
+  circle(105, 160, 50);
   //torso
   line(100, 150, 90, 260);
   //left leg
@@ -29,8 +32,16 @@ function draw() {
   line(90, 260, 115, 305);
   line(115, 305, 110, 350);
   //left arm
-  line(96, 202, 112, 240);
-  line(112, 240, );
+  line(96, 210, 112, 240);
+  line(112, 240, 140, 250);
+  //right arm
+  line(96, 202, 120, 230);
+  line(120, 230, 145, 235);
+  
+  //left guy's sword
+  noStroke();
+  //handle
+  quad(200, 240, 210, 250, 210, 225, 220, 220);
   
   
 
