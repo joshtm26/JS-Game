@@ -41,10 +41,10 @@ function draw() {
   //left guy's sword
   noStroke();
   //handle
-  quad(140, 247, 148, 249, 158, 212, 150, 210);
+  quad(135, 260, 143, 262, 153, 225, 145, 223);
   //blade
   fill(240);
-  quad();
+  quad(153, 225, 145, 223, 100, 100, 110, 110);
   
   
 
