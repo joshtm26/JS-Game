@@ -77,7 +77,6 @@ function draw() {
   fill(240);
   quad(647, 225, 655, 223, 623, 103, 618, 115);
   
-
 }
 
 function lDude() {
@@ -85,5 +84,13 @@ function lDude() {
 }
 
 function rDude() {
+  
+}
+
+function lSword() {
+  
+}
+
+function rSword() {
   
 }
