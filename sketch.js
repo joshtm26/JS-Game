@@ -1,9 +1,11 @@
-//TO INCLUDE
+//TO DO
 //animations for movement, attacking, and maybe idle
 //back and forth dashing/stepping
 //2 players one keyboard
 //2 attacks: a slower poke/longer swipe and quick forward down swing
 //ending lag for the actions
+//make the weapons look better 
+//maybe make it not stick people if i have lots of extra time
 
 
 function setup() {
@@ -44,7 +46,23 @@ function draw() {
   quad(135, 260, 143, 262, 153, 225, 145, 223);
   //blade
   fill(240);
-  quad(153, 225, 145, 223, 178, 100, 184, 110);
+  quad(153, 225, 145, 223, 177, 103, 182, 115);
+  
+  //right guy
+  fill(0);
+  stroke(0);
+  //head
+  circle(695, 160, 50);
+  //torso
+  line(700, 150, 710, 260);
+  //left leg
+  line(710, 260, 720, 305);
+  line(720, 305, );
+  //right leg
+  
+  //left arm
+  
+  //right arm
   
   
 
