@@ -48,6 +48,7 @@ function draw() {
   fill(240);
   quad(153, 225, 145, 223, 177, 103, 182, 115);
   
+  
   //right guy
   fill(0);
   stroke(0);
@@ -65,7 +66,16 @@ function draw() {
   line(704, 210, 688, 240);
   line(688, 240, 660, 250);
   //right arm
-  line(704, 598, );
+  line(704, 202, 680, 230);
+  line(680, 230, 655, 235);
+  
+  //right guy's sword
+  noStroke();
+  //handle
+  quad(665, 260, 657, 262, 647, 225, 655, 223);
+  //blade
+  fill(240);
+  quad(647, 225, 655, 223, 623, 103, 618, 115);
   
 
 }
