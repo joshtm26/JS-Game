@@ -3,12 +3,12 @@
 //back and forth dashing/stepping
 //reset positions and display text for winner when sword hits player
 //2 attacks: a slower poke or longer swipe and quick forward down swing
-//animations for movement, attacking, and maybe idle
+//animations for movement, attacking, and idle
 //ending lag for the actions somehow
 //make the weapons look better (two different weapons?)
 //add sounds to the actions
-//make a background maybe
-//maybe make it not stick people
+//make a background 
+//make it not stick people
 
 let bg;
 let ldx = 0;
@@ -42,12 +42,12 @@ function draw() {
   if (keyIsDown(65) && ldx >= -60) {
     ldx = ldx - 5;
   }
-  //D 68
-  if (keyIsDown(68) && ldx >= -70) {
+  //D
+  if (keyIsDown(68) && ldx <= rdx + 470) {
     ldx = ldx + 5;
   }
   //Left arrow
-  if (keyIsDown(LEFT_ARROW) && rdx <= 70) {
+  if (keyIsDown(LEFT_ARROW) && rdx >= ldx - 470) {
     rdx = rdx - 5;
   }
   //Right arrow
