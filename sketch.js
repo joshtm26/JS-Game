@@ -5,12 +5,12 @@
 //2 attacks: a slower poke/longer swipe and quick forward down swing
 //ending lag for the actions somehow
 //make the weapons look better 
-//make a background
+//make a background maybe
 //maybe make it not stick people if i have lots of extra time
 
 let img;
 function preload() {
-  img = loadImage('assets/stage.jpg');
+  img = loadImage('stage.jpg');
 }
 
 function setup() {
