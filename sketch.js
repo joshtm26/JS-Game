@@ -28,27 +28,25 @@ function draw() {
   fill(0);
   stroke(0);
   strokeWeight(10);
-  //rect(0, 350, 800, 50);
 
   lDude();
   rDude();
 
-  //A moves left dude to the left
-  aKeyPressed = keyIsDown(65);
-  if (aKeyPressed && ldx  0) {
+  //A
+  if (keyIsDown(65) && ldx >= -80) {
     ldx = ldx - 5;
   }
-  //D moves left dude to the right
-  if (keyIsDown(68) && lDudeX > 0) {
-    ldx + 5;
+  //D
+  if (keyIsDown(68) && ldx >= -80) {
+    ldx = ldx + 5;
   }
-  //Left arrow key moves right dude to the left
-  if (keyIsDown(37) && rDudeX > 0) {
-    rdx - 5;
+  //Left arrow
+  if (keyIsDown(LEFT_ARROW) && rdx <= ) {
+    rdx = rdx - 5;
   }
-  //Right arrow key moves right guy to the right
-  if (keyIsDown(39) && rDudeX > 0) {
-    rdx + 5;
+  //Right arrow
+  if (keyIsDown(RIGHT_ARROW) && rdx > 0) {
+    rdx = rdx + 5;
   }
   //W/S and Up/Down arrows are going to be the two attacks
 }
@@ -85,26 +83,26 @@ function rDude() {
   fill(0);
   stroke(0);
   //head
-  circle(695, 160, 50);
+  circle(rdx + 695, 160, 50);
   //torso
-  line(700, 150, 710, 260);
+  line(rdx + 700, 150, rdx + 710, 260);
   //left leg
-  line(710, 260, 720, 305);
-  line(720, 305, 740, 350);
+  line(rdx + 710, 260, rdx + 720, 305);
+  line(rdx + 720, 305, rdx + 740, 350);
   //right leg
-  line(710, 260, 685, 305);
-  line(685, 305, 690, 350);
+  line(rdx + 710, 260, rdx + 685, 305);
+  line(rdx + 685, 305, rdx + 690, 350);
   //left arm
-  line(704, 210, 688, 240);
-  line(688, 240, 660, 250);
+  line(rdx + 704, 210, rdx + 688, 240);
+  line(rdx + 688, 240, rdx + 660, 250);
   //right arm
-  line(704, 202, 680, 230);
-  line(680, 230, 655, 235);
+  line(rdx + 704, 202, rdx + 680, 230);
+  line(rdx + 680, 230, rdx + 655, 235);
   
   //sword
   fill(0);
   noStroke();
-  quad(665, 260, 657, 262, 647, 225, 655, 223);
+  quad(rdx + 665, 260, rdx + 657, 262, rdx + 647, 225, rdx + 655, 223);
   fill(240);
-  quad(647, 225, 655, 223, 623, 103, 618, 115);
+  quad(rdx + 647, 225, rdx + 655, 223, rdx + 623, 103, rdx + 618, 115);
 }
