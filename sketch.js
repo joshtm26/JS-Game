@@ -22,7 +22,35 @@ function draw() {
   //ground
   rect(0, 350, 800, 50);
   
-  //left guy
+  
+  lDude(200, 200);
+  
+  rDude(600, 200);
+  
+  //left guy's sword
+  fill(0);
+  noStroke();
+  //handle
+  quad(135, 260, 143, 262, 153, 225, 145, 223);
+  //blade
+  fill(240);
+  quad(153, 225, 145, 223, 177, 103, 182, 115);
+  
+  
+  //right guy's sword
+  fill(0);
+  noStroke();
+  //handle
+  quad(665, 260, 657, 262, 647, 225, 655, 223);
+  //blade
+  fill(240);
+  quad(647, 225, 655, 223, 623, 103, 618, 115);
+  
+}
+
+function lDude(x, y) {
+  fill(0);
+  stroke(0);
   //head
   circle(105, 160, 50);
   //torso
@@ -39,17 +67,9 @@ function draw() {
   //right arm
   line(96, 202, 120, 230);
   line(120, 230, 145, 235);
-  
-  //left guy's sword
-  noStroke();
-  //handle
-  quad(135, 260, 143, 262, 153, 225, 145, 223);
-  //blade
-  fill(240);
-  quad(153, 225, 145, 223, 177, 103, 182, 115);
-  
-  
-  //right guy
+}
+
+function rDude() {
   fill(0);
   stroke(0);
   //head
@@ -68,23 +88,6 @@ function draw() {
   //right arm
   line(704, 202, 680, 230);
   line(680, 230, 655, 235);
-  
-  //right guy's sword
-  noStroke();
-  //handle
-  quad(665, 260, 657, 262, 647, 225, 655, 223);
-  //blade
-  fill(240);
-  quad(647, 225, 655, 223, 623, 103, 618, 115);
-  
-}
-
-function lDude() {
-  
-}
-
-function rDude() {
-  
 }
 
 function lSword() {
