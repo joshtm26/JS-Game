@@ -9,33 +9,27 @@
 //make a background maybe
 //maybe make it not stick people if i have lots of extra time
 
-let img;
+let bg;
 
 function preload() {
-  img = loadImage("stage.jpg");
+  bg = loadImage("assets/stage.jpg");
 }
 
 function setup() {
   createCanvas(800, 400);
   angleMode(DEGREES);
-
-  const lDudeX = 100;
-  const lDudeY = 160;
-  const rDudeX = 700;
-  const rDudeY = 640;
 }
 
 function draw() {
   background(200);
-  image(img, 0, 0, width, height, 0, 0, img.width, img.height, COVER);
+  image(bg, 0, 0, width, height, 0, 0, img.width, img.height, COVER);
 
   fill(0);
   stroke(0);
   strokeWeight(10);
-  rect(0, 350, 800, 50);
+  //rect(0, 350, 800, 50);
 
   lDude();
-
   rDude();
 
   //A moves left dude to the left
@@ -80,9 +74,7 @@ function lDude(lDudeX, lDudeY) {
   //sword
   fill(0);
   noStroke();
-  //handle
   quad(135, 260, 143, 262, 153, 225, 145, 223);
-  //blade
   fill(240);
   quad(153, 225, 145, 223, 177, 103, 182, 115);
 }
@@ -110,9 +102,7 @@ function rDude(rDudeX, rDudeY) {
   //sword
   fill(0);
   noStroke();
-  //handle
   quad(665, 260, 657, 262, 647, 225, 655, 223);
-  //blade
   fill(240);
   quad(647, 225, 655, 223, 623, 103, 618, 115);
 }
