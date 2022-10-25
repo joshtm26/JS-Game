@@ -10,15 +10,16 @@
 //maybe make it not stick people if i have lots of extra time
 
 let img;
-
-function preload() {
-  img = loadImage("assets/stage.jpg");
-}
+let ldx = 0;
+let rdx = 0;
+// function preload() {
+//   img = loadImage("assets/stage.jpg");
+// }
 
 function setup() {
   createCanvas(800, 400);
   angleMode(DEGREES);
-  image(img, 0, 0, width, height, 0, 0, img.width, img.height, COVER);
+  //image(img, 0, 0, width, height, 0, 0, img.width, img.height, COVER);
 }
 
 function draw() {
@@ -33,53 +34,53 @@ function draw() {
   rDude();
 
   //A moves left dude to the left
-  if (keyIsDown(65) && lDudeX > 0) {
-    lDudeX - 5;
+  if (keyIsDown(LEFT_ARROW) && ldx > 0) {
+    ldx=- ldx--;
   }
   //D moves left dude to the right
   if (keyIsDown(68) && lDudeX > 0) {
-    lDudeX + 5;
+    ldx + 5;
   }
   //Left arrow key moves right dude to the left
   if (keyIsDown(37) && rDudeX > 0) {
-    rDudeX - 5;
+    rdx - 5;
   }
   //Right arrow key moves right guy to the right
   if (keyIsDown(39) && rDudeX > 0) {
-    rDudeX + 5;
+    rdx + 5;
   }
   //W/S and Up/Down arrows are going to be the two attacks
 }
 
-function lDude(lDudeX, lDudeY) {
+function lDude() {
   fill(0);
   stroke(0);
   //head
-  circle(105, 160, 50);
+  circle(ldx + 105, 160, 50);
   //torso
-  line(100, 150, 90, 260);
+  line(ldx + 100, 150, ldx + 90, 260);
   //left leg
-  line(90, 260, 80, 305);
-  line(80, 305, 60, 350);
+  line(ldx + 90, 260, ldx + 80, 305);
+  line(ldx + 80, 305, ldx + 60, 350);
   //right leg
-  line(90, 260, 115, 305);
-  line(115, 305, 110, 350);
+  line(ldx + 90, 260, ldx + 115, 305);
+  line(ldx + 115, 305, ldx + 110, 350);
   //left arm
-  line(96, 210, 112, 240);
-  line(112, 240, 140, 250);
+  line(ldx + 96, 210, ldx + 112, 240);
+  line(ldx + 112, 240, ldx + 140, 250);
   //right arm
-  line(96, 202, 120, 230);
-  line(120, 230, 145, 235);
+  line(ldx + 96, 202, ldx + 120, 230);
+  line(ldx + 120, 230, ldx + 145, 235);
   
   //sword
   fill(0);
   noStroke();
-  quad(135, 260, 143, 262, 153, 225, 145, 223);
+  quad(ldx + 135, 260, ldx + 143, 262, ldx + 153, 225, ldx + 145, 223);
   fill(240);
-  quad(153, 225, 145, 223, 177, 103, 182, 115);
+  quad(ldx + 153, 225, ldx + 145, 223, ldx + 177, 103, ldx + 182, 115);
 }
 
-function rDude(rDudeX, rDudeY) {
+function rDude() {
   fill(0);
   stroke(0);
   //head
