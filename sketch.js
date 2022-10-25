@@ -9,20 +9,20 @@
 //make a background maybe
 //maybe make it not stick people if i have lots of extra time
 
-let bg;
+let img;
 
 function preload() {
-  bg = loadImage("assets/stage.jpg");
+  img = loadImage("assets/stage.jpg");
 }
 
 function setup() {
   createCanvas(800, 400);
   angleMode(DEGREES);
+  image(img, 0, 0, width, height, 0, 0, img.width, img.height, COVER);
 }
 
 function draw() {
   background(200);
-  image(bg, 0, 0, width, height, 0, 0, img.width, img.height, COVER);
 
   fill(0);
   stroke(0);
