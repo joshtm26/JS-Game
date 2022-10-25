@@ -6,9 +6,12 @@
 //animations for movement, attacking, and idle
 //ending lag for the actions somehow
 //make the weapons look better (two different weapons?)
+
+//IF I HAVE TIME
+
 //add sounds to the actions
-//make a background 
 //make it not stick people
+//make my own background 
 
 let bg;
 let ldx = 0;
@@ -16,23 +19,19 @@ let ldy = 0;
 let rdx = 0;
 let rdy = 0;
 
-// function preload() {
-//   bg = loadImage("assets/stage.jpg");
-// }
+function preload() {
+  bg = loadImage("assets/stage.jpg");
+}
 
 function setup() {
   createCanvas(800, 400);
   angleMode(DEGREES);
-  //image(bg, 0, 0, width, height, 0, 0, bg.width, bg.height, COVER);
+  image(bg, 0, 0, width, height, 0, 0, bg.width, bg.height, COVER);
 }
 
 function draw() {
   background(200);
-
-  fill(0);
-  stroke(0);
-  strokeWeight(10);
-
+  
   lDude();
   lSword();
   rDude();
@@ -60,6 +59,7 @@ function draw() {
 function lDude() {
   fill(0);
   stroke(0);
+  strokeWeight(10);
   circle(ldx + 105, ldy + 160, 50);
   line(ldx + 100, ldy + 150, ldx + 90, ldy + 260);
   //legs
@@ -85,6 +85,7 @@ function lSword() {
 function rDude() {
   fill(0);
   stroke(0);
+  strokeWeight(10);
   circle(rdx + 695, 160, 50);
   line(rdx + 700, 150, rdx + 710, 260);
   //legs
