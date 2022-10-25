@@ -31,7 +31,9 @@ function draw() {
   strokeWeight(10);
 
   lDude();
+  lSword();
   rDude();
+  rSword();
 
   //A
   if (keyIsDown(65) && ldx >= -60) {
@@ -67,13 +69,14 @@ function lDude() {
   line(ldx + 112, 240, ldx + 140, 250);
   line(ldx + 96, 202, ldx + 120, 230);
   line(ldx + 120, 230, ldx + 145, 235);
+}
 
-  //sword
+function lSword() {
   fill(0);
   noStroke();
-  quad(ldx + 135, 260, ldx + 143, 262, ldx + 153, 225, ldx + 145, 223);
+  quad(lsx + 135, 260, lsx + 143, 262, lsx + 153, 225, lsx + 145, 223);
   fill(240);
-  quad(ldx + 153, 225, ldx + 145, 223, ldx + 177, 103, ldx + 182, 115);
+  quad(lsx + 153, 225, lsx + 145, 223, lsx + 177, 103, lsx + 182, 115);
 }
 
 function rDude() {
@@ -91,8 +94,9 @@ function rDude() {
   line(rdx + 688, 240, rdx + 660, 250);
   line(rdx + 704, 202, rdx + 680, 230);
   line(rdx + 680, 230, rdx + 655, 235);
+}
 
-  //sword
+function rSword() {
   fill(0);
   noStroke();
   quad(rdx + 665, 260, rdx + 657, 262, rdx + 647, 225, rdx + 655, 223);
