@@ -1,7 +1,7 @@
 //TO DO
 
 //back and forth dashing/stepping
-//2 attacks: a slower poke/longer swipe and quick forward down swing
+//2 attacks: a slower poke or longer swipe and quick forward down swing
 //animations for movement, attacking, and maybe idle
 //ending lag for the actions somehow
 //make the weapons look better (two different weapons?)
@@ -34,19 +34,19 @@ function draw() {
   rDude();
 
   //A
-  if (keyIsDown(65) && ldx >= -80) {
+  if (keyIsDown(65) && ldx >= -60) {
     ldx = ldx - 5;
   }
   //D
-  if (keyIsDown(68) && ldx >= -80) {
+  if (keyIsDown(68) && ldx >= -70) {
     ldx = ldx + 5;
   }
   //Left arrow
-  if (keyIsDown(LEFT_ARROW) && rdx <= 80) {
+  if (keyIsDown(LEFT_ARROW) && rdx <= 70) {
     rdx = rdx - 5;
   }
   //Right arrow
-  if (keyIsDown(RIGHT_ARROW) && rdx <= 80) {
+  if (keyIsDown(RIGHT_ARROW) && rdx <= 60) {
     rdx = rdx + 5;
   }
   //W/S and Up/Down arrows are going to be the two attacks
