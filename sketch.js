@@ -5,20 +5,20 @@
 //2 attacks: a slower poke/longer swipe and quick forward down swing
 //animations for movement, attacking, and maybe idle
 //ending lag for the actions somehow
-//make the weapons look better 
+//make the weapons look better
 //make a background maybe
 //maybe make it not stick people if i have lots of extra time
 
 let img;
 
 function preload() {
-  img = loadImage('stage.jpg');
+  img = loadImage("stage.jpg");
 }
 
 function setup() {
   createCanvas(800, 400);
   angleMode(DEGREES);
-  
+
   const lDudeX = 100;
   const lDudeY = 160;
   const rDudeX = 700;
@@ -27,21 +27,17 @@ function setup() {
 
 function draw() {
   background(200);
-  image(img, 0, 0);
-  
+  image(img, 0, 0, width, height, 0, 0, img.width, img.height, COVER);
+
   fill(0);
   stroke(0);
   strokeWeight(10);
   rect(0, 350, 800, 50);
-  
+
   lDude();
-  
+
   rDude();
-  
-  lSword();
-  
-  rSword();
-  
+
   //A moves left dude to the left
   if (keyIsDown(65) && lDudeX > 0) {
     lDudeX - 5;
@@ -59,7 +55,6 @@ function draw() {
     rDudeX + 5;
   }
   //W/S and Up/Down arrows are going to be the two attacks
-  
 }
 
 function lDude(lDudeX, lDudeY) {
@@ -81,6 +76,15 @@ function lDude(lDudeX, lDudeY) {
   //right arm
   line(96, 202, 120, 230);
   line(120, 230, 145, 235);
+  
+  //sword
+  fill(0);
+  noStroke();
+  //handle
+  quad(135, 260, 143, 262, 153, 225, 145, 223);
+  //blade
+  fill(240);
+  quad(153, 225, 145, 223, 177, 103, 182, 115);
 }
 
 function rDude(rDudeX, rDudeY) {
@@ -102,19 +106,8 @@ function rDude(rDudeX, rDudeY) {
   //right arm
   line(704, 202, 680, 230);
   line(680, 230, 655, 235);
-}
-
-function lSword() {
-  fill(0);
-  noStroke();
-  //handle
-  quad(135, 260, 143, 262, 153, 225, 145, 223);
-  //blade
-  fill(240);
-  quad(153, 225, 145, 223, 177, 103, 182, 115);
-}
-
-function rSword() {
+  
+  //sword
   fill(0);
   noStroke();
   //handle
