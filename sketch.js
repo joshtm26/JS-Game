@@ -7,7 +7,7 @@
 //ending lag for the actions somehow
 //make the weapons look better (two different weapons?)
 
-//IF I HAVE TIME
+//MAYBE IF I HAVE TIME
 
 //add sounds to the actions
 //make it not stick people
@@ -20,17 +20,17 @@ let rdx = 0;
 let rdy = 0;
 
 function preload() {
-  bg = loadImage("assets/stage.jpg");
+  bg = loadImage("https://cdn.glitch.global/628d59df-2d08-48f2-9b4b-ebaaf965e908/stage.jpg?v=1666663172531");
 }
 
 function setup() {
   createCanvas(800, 400);
   angleMode(DEGREES);
-  image(bg, 0, 0, width, height, 0, 0, bg.width, bg.height, COVER);
+  image(bg, 0, 0);
 }
 
 function draw() {
-  background(200);
+  background(bg);
   
   lDude();
   lSword();
