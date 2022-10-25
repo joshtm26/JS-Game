@@ -8,6 +8,10 @@
 //make a background
 //maybe make it not stick people if i have lots of extra time
 
+let img;
+function preload() {
+  img = loadImage('assets/stage.jpg');
+}
 
 function setup() {
   createCanvas(800, 400);
@@ -16,6 +20,8 @@ function setup() {
   let lDudeY = 160;
   let rDudeX = 700;
   let rDudeY = 640;
+  
+  image(img, 0, 0, width, height, 0, 0, img.width, img.height, COVER);
 }
 
 function draw() {
