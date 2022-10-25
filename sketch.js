@@ -3,8 +3,9 @@
 //back and forth dashing/stepping
 //2 players one keyboard
 //2 attacks: a slower poke/longer swipe and quick forward down swing
-//ending lag for the actions
+//ending lag for the actions somehow
 //make the weapons look better 
+//make a background
 //maybe make it not stick people if i have lots of extra time
 
 
@@ -20,7 +21,7 @@ function draw() {
   stroke(0);
   strokeWeight(10);
   rect(0, 350, 800, 50);
- 
+  
   lDude();
   
   rDude();
@@ -29,9 +30,17 @@ function draw() {
   
   rSword();
   
+  if (keyIsDown(65) && lDudeX > 0) {
+    leftPaddleY -= 5;
+  }
+  
+  if (keyIsDown(68) && rDudeY > paddleHeight / 2) {
+    leftPaddleY -= 5;
+  }
+  
 }
 
-function lDude(x, y) {
+function lDude() {
   fill(0);
   stroke(0);
   //head
