@@ -74,7 +74,7 @@ function lDude(lDudeX, lDudeY) {
   line(120, 230, 145, 235);
 }
 
-function rDude() {
+function rDude(rDudeX, rDudeY) {
   fill(0);
   stroke(0);
   //head
