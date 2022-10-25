@@ -12,7 +12,10 @@
 function setup() {
   createCanvas(800, 400);
   angleMode(DEGREES);
-  
+  let lDudeX = 100;
+  let lDudeY = 160;
+  let rDudeX = 700;
+  let rDudeY = 640;
 }
 
 function draw() {
@@ -30,17 +33,27 @@ function draw() {
   
   rSword();
   
+  //A moves left dude to the left
   if (keyIsDown(65) && lDudeX > 0) {
-    leftPaddleY -= 5;
+    lDudeX - 5;
   }
-  
-  if (keyIsDown(68) && rDudeY > paddleHeight / 2) {
-    leftPaddleY -= 5;
+  //D moves left dude to the right
+  if (keyIsDown(68) && lDudeX > 0) {
+    lDudeX + 5;
   }
+  //Left arrow key moves right dude to the left
+  if (keyIsDown(37) && rDudeX > 0) {
+    rDudeX - 5;
+  }
+  //Right arrow key moves right guy to the right
+  if (keyIsDown(39) && rDudeX > 0) {
+    rDudeX + 5;
+  }
+  //W/S and Up/Down arrows are going to be the two attacks
   
 }
 
-function lDude() {
+function lDude(lDudeX, lDudeY) {
   fill(0);
   stroke(0);
   //head
