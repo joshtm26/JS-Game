@@ -11,7 +11,7 @@
 function setup() {
   createCanvas(800, 400);
   angleMode(DEGREES);
-
+  
 }
 
 function draw() {
@@ -19,32 +19,15 @@ function draw() {
   fill(0);
   stroke(0);
   strokeWeight(10);
-  //ground
   rect(0, 350, 800, 50);
+ 
+  lDude();
   
+  rDude();
   
-  lDude(200, 200);
+  lSword();
   
-  rDude(600, 200);
-  
-  //left guy's sword
-  fill(0);
-  noStroke();
-  //handle
-  quad(135, 260, 143, 262, 153, 225, 145, 223);
-  //blade
-  fill(240);
-  quad(153, 225, 145, 223, 177, 103, 182, 115);
-  
-  
-  //right guy's sword
-  fill(0);
-  noStroke();
-  //handle
-  quad(665, 260, 657, 262, 647, 225, 655, 223);
-  //blade
-  fill(240);
-  quad(647, 225, 655, 223, 623, 103, 618, 115);
+  rSword();
   
 }
 
@@ -91,9 +74,21 @@ function rDude() {
 }
 
 function lSword() {
-  
+  fill(0);
+  noStroke();
+  //handle
+  quad(135, 260, 143, 262, 153, 225, 145, 223);
+  //blade
+  fill(240);
+  quad(153, 225, 145, 223, 177, 103, 182, 115);
 }
 
 function rSword() {
-  
+  fill(0);
+  noStroke();
+  //handle
+  quad(665, 260, 657, 262, 647, 225, 655, 223);
+  //blade
+  fill(240);
+  quad(647, 225, 655, 223, 623, 103, 618, 115);
 }
