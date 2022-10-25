@@ -1,14 +1,16 @@
 //TO DO
-//animations for movement, attacking, and maybe idle
+
 //back and forth dashing/stepping
 //2 players one keyboard
 //2 attacks: a slower poke/longer swipe and quick forward down swing
+//animations for movement, attacking, and maybe idle
 //ending lag for the actions somehow
 //make the weapons look better 
 //make a background maybe
 //maybe make it not stick people if i have lots of extra time
 
 let img;
+
 function preload() {
   img = loadImage('stage.jpg');
 }
@@ -16,16 +18,17 @@ function preload() {
 function setup() {
   createCanvas(800, 400);
   angleMode(DEGREES);
-  let lDudeX = 100;
-  let lDudeY = 160;
-  let rDudeX = 700;
-  let rDudeY = 640;
   
-  image(img, 0, 0, width);
+  const lDudeX = 100;
+  const lDudeY = 160;
+  const rDudeX = 700;
+  const rDudeY = 640;
 }
 
 function draw() {
   background(200);
+  image(img, 0, 0);
+  
   fill(0);
   stroke(0);
   strokeWeight(10);
