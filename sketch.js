@@ -34,8 +34,9 @@ function draw() {
   rDude();
 
   //A moves left dude to the left
-  if (keyIsDown(LEFT_ARROW) && ldx > 0) {
-    ldx=- ldx--;
+  aKeyPressed = keyIsDown(65);
+  if (aKeyPressed && ldx  0) {
+    ldx = ldx - 5;
   }
   //D moves left dude to the right
   if (keyIsDown(68) && lDudeX > 0) {
