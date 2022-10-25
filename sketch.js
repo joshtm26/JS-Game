@@ -21,7 +21,7 @@ function setup() {
   let rDudeX = 700;
   let rDudeY = 640;
   
-  image(img, 0, 0, width, height, 0, 0, img.width, img.height, COVER);
+  image(img, 0, 0, width);
 }
 
 function draw() {
