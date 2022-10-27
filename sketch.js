@@ -34,7 +34,7 @@ function draw() {
   
   push();
   scale(.9);
-  translate(45, 10)
+  translate(45, 50)
   
   lDude();
   lSword();
@@ -94,10 +94,10 @@ function rDude() {
   circle(rdx + 695, 160, 50);
   line(rdx + 700, 150, rdx + 710, 260);
   //legs
-  line(rdx + 710, 260, rdx + 720, 305);
-  line(rdx + 720, 305, rdx + 740, 350);
-  line(rdx + 710, 260, rdx + 685, 305);
-  line(rdx + 685, 305, rdx + 690, 350);
+  line(rdx + 710, 260 + rdy, rdx + 720, 305 + rdy);
+  line(rdx + 720, 305 + rdy, rdx + 740, 350 + rdy);
+  line(rdx + 710, 260 + rdy, rdx + 685, 305, rdy);
+  line(rdx + 685, 305 + rdy, rdx + 690, 350 + rdy);
   //arms
   line(rdx + 704, 210, rdx + 688, 240);
   line(rdx + 688, 240, rdx + 660, 250);
@@ -108,7 +108,7 @@ function rDude() {
 function rSword() {
   fill(0);
   noStroke();
-  quad(rdx + 665, 260, rdx + 657, 262, rdx + 647, 225, rdx + 655, 223);
+  quad(rdx + 665, 260 + rdy, rdx + 657, 262 + rdy, rdx + 647, 225 + rdy, rdx + 655, 223 + rdy);
   fill(240);
-  quad(rdx + 647, 225, rdx + 655, 223, rdx + 623, 103, rdx + 618, 115);
+  quad(rdx + 647, 225 + rdy, rdx + 655, 223 + rdy, rdx + 623, 103 + rdy, rdx + 618, 115 + rdy);
 }
