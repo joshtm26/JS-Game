@@ -7,10 +7,11 @@
 //animations for movement, attacking, and idle
 //make the weapons look better (two different weapons?)
 //shadows for the characters
+//keep track of score in the top left and right corners
+//add sounds and background music (tekken 3 jin theme?)
 
 //MAYBE IF I HAVE TIME
 
-//add sounds and background music
 //make it not stick people
 //make my own background 
 
