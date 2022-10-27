@@ -61,6 +61,15 @@ function draw() {
     rdx = rdx + 5;
   }
   //W/S and Up/Down arrows are going to be the two attacks
+  
+  //W
+  if (keyPressed(87) && ){
+    
+  }
+  //S ()
+  if (keyPressed(83) && ){
+      
+  }
 }
 
 function lDude() {
