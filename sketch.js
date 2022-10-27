@@ -1,15 +1,16 @@
 //TO DO
 
 //back and forth dashing/stepping
-//reset positions and display text for winner when sword hits player
 //2 attacks: a slower poke or longer swipe and quick forward down swing
+//ending lag for the actions
+//reset positions and display text for winner when sword hits player
 //animations for movement, attacking, and idle
-//ending lag for the actions somehow
 //make the weapons look better (two different weapons?)
+//shadows for the characters
 
 //MAYBE IF I HAVE TIME
 
-//add sounds to the actions
+//add sounds and background music
 //make it not stick people
 //make my own background 
 
