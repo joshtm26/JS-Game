@@ -20,7 +20,7 @@ let rdx = 0;
 let rdy = 0;
 
 function preload() {
-  bg = loadImage("https://cdn.glitch.global/628d59df-2d08-48f2-9b4b-ebaaf965e908/stage.jpg?v=1666663172531");
+  bg = loadImage("https://cdn.glitch.global/628d59df-2d08-48f2-9b4b-ebaaf965e908/alley%20stage.gif?v=1666840125125");
 }
 
 function setup() {
@@ -32,13 +32,18 @@ function setup() {
 function draw() {
   background(bg);
   
+  push();
+  scale(.9);
+  translate(45, 10)
+  
   lDude();
   lSword();
   rDude();
   rSword();
-
+  pop();
+  
   //A
-  if (keyIsDown(65) && ldx >= -60) {
+  if (keyIsDown(65) && ldx >= -100) {
     ldx = ldx - 5;
   }
   //D
@@ -50,7 +55,7 @@ function draw() {
     rdx = rdx - 5;
   }
   //Right arrow
-  if (keyIsDown(RIGHT_ARROW) && rdx <= 60) {
+  if (keyIsDown(RIGHT_ARROW) && rdx <= 100) {
     rdx = rdx + 5;
   }
   //W/S and Up/Down arrows are going to be the two attacks
