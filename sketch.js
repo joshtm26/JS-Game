@@ -36,7 +36,7 @@ function draw() {
   
   push();
   scale(.9);
-  translate(45, 50)
+  translate(45, 60)
   
   lDude();
   lSword();
