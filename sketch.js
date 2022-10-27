@@ -60,16 +60,13 @@ function draw() {
   if (keyIsDown(RIGHT_ARROW) && rdx <= 100) {
     rdx = rdx + 5;
   }
-  //W/S and Up/Down arrows are going to be the two attacks
   
+  //W/S and Up/Down arrows are going to be the two attacks
   //W
-  if (keyPressed(87) && ){
-    
-  }
-  //S ()
-  if (keyPressed(83) && ){
-      
-  }
+  wKeyPressed();
+  
+  //S (83)
+  
 }
 
 function lDude() {
@@ -122,4 +119,11 @@ function rSword() {
   quad(rdx + 665, 260 + rdy, rdx + 657, 262 + rdy, rdx + 647, 225 + rdy, rdx + 655, 223 + rdy);
   fill(240);
   quad(rdx + 647, 225 + rdy, rdx + 655, 223 + rdy, rdx + 623, 103 + rdy, rdx + 618, 115 + rdy);
+}
+
+function wKeyPressed() {
+   //W
+  if (keyIsDown(65) == false && keyIsDown(68) == false && keyCode == 87) {
+    print('hi');
+  }
 }
