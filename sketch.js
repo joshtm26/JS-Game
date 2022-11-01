@@ -32,20 +32,23 @@ function preload() {
   bg = loadImage(
     "https://cdn.glitch.global/628d59df-2d08-48f2-9b4b-ebaaf965e908/alley%20stage.gif?v=1666840125125"
   );
+  bgm = createAudio(
+    "https://cdn.glitch.global/972c0e28-86ae-4368-9296-f573ccb7ae82/Tekken%203%20Jin%20theme%20arcade%20ver.mp3?v=1667269184277"
+  );
 }
 
 function setup() {
   createCanvas(800, 400);
   angleMode(DEGREES);
-  image(bg, 0, 0);
-  bgm = createAudio(
-    "https://cdn.glitch.global/972c0e28-86ae-4368-9296-f573ccb7ae82/Tekken%203%20Jin%20theme%20arcade%20ver.mp3?v=1667269184277"
-  );
   bgm.play();
 }
 
 function draw() {
   background(bg);
+  background(200);
+  fill(255);
+  rect(0, 350, 800, 50);
+  
   count = count + 1;
 
   push();
@@ -102,7 +105,8 @@ function keyReleased() {
       dPress = 0;
     }
     if (dPress == 1) {
-      ldx += 80;
+      //ldx += 80;
+      ldx 
     }
   }
   //a dash
