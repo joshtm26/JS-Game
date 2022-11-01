@@ -78,7 +78,7 @@ function draw() {
 
   //W/S and Up/Down arrows are going to be the two attacks
   wKeyPressed();
-  sKeyPressed();
+  upKeyPressed();
 }
 
 function wKeyPressed() {
@@ -87,8 +87,8 @@ function wKeyPressed() {
   }
 }
 
-function sKeyPressed() {
-  if (keyIsDown(65) == false && keyIsDown(68) == false && keyCode == 83) {
+function upKeyPressed() {
+  if (keyIsDown(65) == false && keyIsDown(68) == false && keyCode == UP_ARROW) {
     print("hi");
   }
 }
