@@ -14,6 +14,7 @@
 
 //make it not stick people
 //make my own background
+//zoom in and make camera follow them
 
 let music;
 let bg;
@@ -23,6 +24,9 @@ let rdx = 0;
 let rdy = 0;
 let count = 0;
 let dPress = 0;
+let aPress = 0;
+let lPress = 0;
+let rPress = 0;
 
 function preload() {
   bg = loadImage(
@@ -90,14 +94,48 @@ function sKeyPressed() {
 }
 
 function keyReleased() {
+  //d dash
   if (keyCode == 68) {
     dPress += 1;
-    if (count >= 10) {
+    if (count >= 12) {
       count = 0;
       dPress = 0;
     }
     if (dPress == 1) {
-      ldx += 100;
+      ldx += 80;
+    }
+  }
+  //a dash
+  if (keyCode == 65) {
+    aPress += 1;
+    if (count >= 12) {
+      count = 0;
+      aPress = 0;
+    }
+    if (aPress == 1) {
+      ldx -= 80;
+    }
+  }
+  //left dash
+  if (keyCode == LEFT_ARROW) {
+    lPress += 1;
+    if (count >= 12) {
+      count = 0;
+      lPress = 0;
+    }
+    if (lPress == 1) {
+      rdx -= 80;
+    }
+  }
+  //right dash
+  if (keyCode == RIGHT_ARROW) {
+    rPress += 1;
+    if (count >= 12) {
+      count = 0;
+      rPress = 0;
+    }
+    if (rPress == 1) {
+      rdx += 80;
     }
   }
 }
