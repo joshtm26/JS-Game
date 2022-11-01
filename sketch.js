@@ -8,7 +8,7 @@
 //make the weapons look better (two different weapons?)
 //shadows for the characters
 //keep track of score in the top left and right corners
-//add sounds and background music (tekken 3 jin theme?)
+//add sounds to the actions
 
 //MAYBE IF I HAVE TIME
 
@@ -41,6 +41,7 @@ function draw() {
   translate(45, 60)
   
   lDude();
+  lDudeArms();
   lSword();
   rDude();
   rSword();
@@ -64,11 +65,11 @@ function draw() {
   }
   
   //W/S and Up/Down arrows are going to be the two attacks
+  
   //W
-  wKeyPressed();
-  
-  //S (83)
-  
+  if (keyIsDown(65) == false && keyIsDown(68) == false && keyCode == 87) {
+    print('hi');
+  }
 }
 
 function lDude() {
@@ -82,7 +83,12 @@ function lDude() {
   line(ldx + 80, ldy + 305, ldx + 60, ldy + 350);
   line(ldx + 90, ldy + 260, ldx + 115, ldy + 305);
   line(ldx + 115, ldy + 305, ldx + 110, ldy + 350);
-  //arms
+}
+
+function lDudeArms() {
+  fill(0);
+  stroke(0);
+  strokeWeight(10);
   line(ldx + 96, ldy + 210, ldx + 112, ldy + 240);
   line(ldx + 112, ldy + 240, ldx + 140, ldy + 250);
   line(ldx + 96, ldy + 202, ldx + 120, ldy + 230);
@@ -123,9 +129,9 @@ function rSword() {
   quad(rdx + 647, 225 + rdy, rdx + 655, 223 + rdy, rdx + 623, 103 + rdy, rdx + 618, 115 + rdy);
 }
 
-function wKeyPressed() {
-   //W
-  if (keyIsDown(65) == false && keyIsDown(68) == false && keyCode == 87) {
+function lSwipe() {
+  //S
+  if (keyIsDown(65) == false && keyIsDown(68) == false && keyCode == 83) {
     print('hi');
   }
 }
