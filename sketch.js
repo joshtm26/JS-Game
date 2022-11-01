@@ -1,5 +1,9 @@
 //TO DO
 
+//Create objects for my each of my guys
+//properties: pos
+//methods: walk, dash, attack1, attack2
+
 //back and forth dashing/stepping
 //2 attacks: a slower poke or longer swipe and quick forward down swing
 //ending lag for the actions
@@ -50,7 +54,7 @@ function draw() {
   background(200);
   fill(255);
   rect(0, 350, 800, 50);
-  
+
   count = count + 1;
 
   push();
