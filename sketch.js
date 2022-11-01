@@ -105,8 +105,7 @@ function keyReleased() {
       dPress = 0;
     }
     if (dPress == 1) {
-      //ldx += 80;
-      ldx 
+      ldx += 80;
     }
   }
   //a dash
