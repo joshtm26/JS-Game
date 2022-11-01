@@ -15,6 +15,7 @@
 //make it not stick people
 //make my own background 
 
+let music;
 let bg;
 let ldx = 0;
 let ldy = 0;
@@ -29,6 +30,7 @@ function setup() {
   createCanvas(800, 400);
   angleMode(DEGREES);
   image(bg, 0, 0);
+  music = createAudio("https://cdn.glitch.global/972c0e28-86ae-4368-9296-f573ccb7ae82/Tekken%203%20Jin%20theme%20arcade%20ver.mp3?v=1667269184277");
 }
 
 function draw() {
