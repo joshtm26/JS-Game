@@ -20,6 +20,7 @@
 //make my own background
 //zoom in and make camera follow them
 
+
 let bgm;
 let bg;
 
