@@ -18,9 +18,11 @@
 
 let bgm;
 let bg;
+
 let ldx = 0;
 let ldy = 0;
 let rdx = 0;
+
 let rdy = 0;
 let count = 0;
 let dPress = 0;
@@ -44,7 +46,7 @@ function setup() {
 }
 
 function draw() {
-  background(bg);
+  //background(bg);
   background(200);
   fill(255);
   rect(0, 350, 800, 50);
@@ -97,6 +99,7 @@ function upKeyPressed() {
 }
 
 function keyReleased() {
+  //If the key is pressed twice within 12 frames you perform a dash
   //d dash
   if (keyCode == 68) {
     dPress += 1;
