@@ -20,21 +20,14 @@
 //make my own background
 //zoom in and make camera follow them
 
-class LeftGuy {
-  posX = 200;
-  posY = 200;
-  
-  
-}
-
 let bgm;
 let bg;
 
 let ldx = 0;
 let ldy = 0;
 let rdx = 0;
-
 let rdy = 0;
+
 let count = 0;
 let dPress = 0;
 let aPress = 0;
