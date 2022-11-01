@@ -21,6 +21,8 @@ let ldx = 0;
 let ldy = 0;
 let rdx = 0;
 let rdy = 0;
+let count = 0;
+let dPress = 0;
 
 function preload() {
   bg = loadImage("https://cdn.glitch.global/628d59df-2d08-48f2-9b4b-ebaaf965e908/alley%20stage.gif?v=1666840125125");
@@ -30,6 +32,7 @@ function setup() {
   createCanvas(800, 400);
   angleMode(DEGREES);
   image(bg, 0, 0);
+  //not really sure why but the music isnt working for me
   music = createAudio("https://cdn.glitch.global/972c0e28-86ae-4368-9296-f573ccb7ae82/Tekken%203%20Jin%20theme%20arcade%20ver.mp3?v=1667269184277");
 }
 
@@ -49,25 +52,42 @@ function draw() {
   
   //A
   if (keyIsDown(65) && ldx >= -100) {
-    ldx = ldx - 5;
+    ldx = ldx - 3;
   }
   //D
   if (keyIsDown(68) && ldx <= rdx + 470) {
-    ldx = ldx + 5;
+    ldx = ldx + 3;
   }
   //Left arrow
   if (keyIsDown(LEFT_ARROW) && rdx >= ldx - 470) {
-    rdx = rdx - 5;
+    rdx = rdx - 3;
   }
   //Right arrow
   if (keyIsDown(RIGHT_ARROW) && rdx <= 100) {
-    rdx = rdx + 5;
+    rdx = rdx + 3;
   }
   
+  //dashing
+  count++
+  if (keyIsPressed(68)) {
+    dPress = dPress + 1;
+  }
+  if (count > 10) {
+    count = 0;
+  }
+  if (dPress >= 2) {
+    ldx = ldx + 20;
+  }
+  print(count);
+  print(dPress);
   //W/S and Up/Down arrows are going to be the two attacks
-  
   //W
   if (keyIsDown(65) == false && keyIsDown(68) == false && keyCode == 87) {
+    print('hi');
+  }
+  
+  //S
+  if (keyIsDown(65) == false && keyIsDown(68) == false && keyCode == 83) {
     print('hi');
   }
 }
@@ -127,11 +147,4 @@ function rSword() {
   quad(rdx + 665, 260 + rdy, rdx + 657, 262 + rdy, rdx + 647, 225 + rdy, rdx + 655, 223 + rdy);
   fill(240);
   quad(rdx + 647, 225 + rdy, rdx + 655, 223 + rdy, rdx + 623, 103 + rdy, rdx + 618, 115 + rdy);
-}
-
-function lSwipe() {
-  //S
-  if (keyIsDown(65) == false && keyIsDown(68) == false && keyCode == 83) {
-    print('hi');
-  }
 }
