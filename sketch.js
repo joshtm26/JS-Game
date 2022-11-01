@@ -16,7 +16,7 @@
 //make my own background
 //zoom in and make camera follow them
 
-let music;
+let bgm;
 let bg;
 let ldx = 0;
 let ldy = 0;
@@ -38,10 +38,10 @@ function setup() {
   createCanvas(800, 400);
   angleMode(DEGREES);
   image(bg, 0, 0);
-  //not really sure why but the music isnt working for me
-  music = createAudio(
+  bgm = createAudio(
     "https://cdn.glitch.global/972c0e28-86ae-4368-9296-f573ccb7ae82/Tekken%203%20Jin%20theme%20arcade%20ver.mp3?v=1667269184277"
   );
+  bgm.play();
 }
 
 function draw() {
@@ -56,6 +56,7 @@ function draw() {
   lDudeArms();
   lSword();
   rDude();
+  rDudeArms();
   rSword();
   pop();
 
@@ -200,7 +201,12 @@ function rDude() {
   line(rdx + 720, 305 + rdy, rdx + 740, 350 + rdy);
   line(rdx + 710, 260 + rdy, rdx + 685, 305 + rdy);
   line(rdx + 685, 305 + rdy, rdx + 690, 350 + rdy);
-  //arms
+}
+
+function rDudeArms() {
+  fill(0);
+  stroke(0);
+  strokeWeight(10);
   line(rdx + 704, 210, rdx + 688, 240);
   line(rdx + 688, 240, rdx + 660, 250);
   line(rdx + 704, 202, rdx + 680, 230);
