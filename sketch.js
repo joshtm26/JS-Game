@@ -20,6 +20,13 @@
 //make my own background
 //zoom in and make camera follow them
 
+class LeftGuy {
+  posX = 200;
+  posY = 200;
+  
+  
+}
+
 let bgm;
 let bg;
 
@@ -88,6 +95,8 @@ function draw() {
   //W/S and Up/Down arrows are going to be the two attacks
   wKeyPressed();
   upKeyPressed();
+  
+  print(dPress);
 }
 
 function wKeyPressed() {
@@ -112,7 +121,7 @@ function keyReleased() {
       dPress = 0;
     }
     if (dPress == 1) {
-      ldx += 80;
+      ldx += 60;
     }
   }
   //a dash
@@ -123,7 +132,7 @@ function keyReleased() {
       aPress = 0;
     }
     if (aPress == 1) {
-      ldx -= 80;
+      ldx -= 60;
     }
   }
   //left dash
@@ -134,7 +143,7 @@ function keyReleased() {
       lPress = 0;
     }
     if (lPress == 1) {
-      rdx -= 80;
+      rdx -= 60;
     }
   }
   //right dash
@@ -145,7 +154,7 @@ function keyReleased() {
       rPress = 0;
     }
     if (rPress == 1) {
-      rdx += 80;
+      rdx += 60;
     }
   }
 }
