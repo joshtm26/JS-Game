@@ -68,27 +68,43 @@ function draw() {
   }
   
   //dashing
-  count++
-  if (keyIsPressed(68)) {
-    dPress = dPress + 1;
+  // count++
+  // if (keyReleased(68)) {
+  //   dPress = dPress + 1;
+  // }
+  // if (count > 10) {
+  //   count = 0;
+  // }
+  // if (dPress >= 2) {
+  //   ldx = ldx + 20;
+  // }
+  // print(count);
+  // print(dPress);
+  
+  //W/S and Up/Down arrows are going to be the two attacks
+  wKeyPressed();
+  sKeyPressed();
+}
+
+function wKeyPressed() {
+  if (keyIsDown(65) == false && keyIsDown(68) == false && keyCode == 87) {
+    print('hi');
   }
+}
+
+function sKeyPressed() {
+  if (keyIsDown(65) == false && keyIsDown(68) == false && keyCode == 83) {
+    print('hi');
+  }
+}
+
+function keyReleased() {
+  dPress = dpress + 1;
   if (count > 10) {
     count = 0;
   }
   if (dPress >= 2) {
     ldx = ldx + 20;
-  }
-  print(count);
-  print(dPress);
-  //W/S and Up/Down arrows are going to be the two attacks
-  //W
-  if (keyIsDown(65) == false && keyIsDown(68) == false && keyCode == 87) {
-    print('hi');
-  }
-  
-  //S
-  if (keyIsDown(65) == false && keyIsDown(68) == false && keyCode == 83) {
-    print('hi');
   }
 }
 
@@ -132,7 +148,7 @@ function rDude() {
   //legs
   line(rdx + 710, 260 + rdy, rdx + 720, 305 + rdy);
   line(rdx + 720, 305 + rdy, rdx + 740, 350 + rdy);
-  line(rdx + 710, 260 + rdy, rdx + 685, 305, rdy);
+  line(rdx + 710, 260 + rdy, rdx + 685, 305 + rdy);
   line(rdx + 685, 305 + rdy, rdx + 690, 350 + rdy);
   //arms
   line(rdx + 704, 210, rdx + 688, 240);
@@ -148,3 +164,4 @@ function rSword() {
   fill(240);
   quad(rdx + 647, 225 + rdy, rdx + 655, 223 + rdy, rdx + 623, 103 + rdy, rdx + 618, 115 + rdy);
 }
+
