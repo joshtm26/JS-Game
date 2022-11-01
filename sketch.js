@@ -42,8 +42,8 @@ function setup() {
 
 function draw() {
   background(bg);
-  count = count + 1
-  
+  count = count + 1;
+
   push();
   scale(0.9);
   translate(45, 60);
@@ -72,9 +72,6 @@ function draw() {
     rdx = rdx + 3;
   }
 
-  //print(count);
-  print(dPress);
-
   //W/S and Up/Down arrows are going to be the two attacks
   wKeyPressed();
   sKeyPressed();
@@ -93,13 +90,15 @@ function sKeyPressed() {
 }
 
 function keyReleased() {
-  dPress + 1;
-  if (count >= 100) {
-    count = 0;
-    dPress = 0;
-  }
-  if (dPress == 2) {
-    ldx = ldx + 30;
+  if (keyCode == 68) {
+    dPress += 1;
+    if (count >= 10) {
+      count = 0;
+      dPress = 0;
+    }
+    if (dPress == 1) {
+      ldx += 100;
+    }
   }
 }
 
