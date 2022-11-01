@@ -51,7 +51,6 @@ function draw() {
   push();
   scale(0.9);
   translate(45, 60);
-
   lDude();
   lDudeArms();
   lSword();
