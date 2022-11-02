@@ -20,13 +20,19 @@
 let bgm;
 let bg;
 
+//positions
 let p1x = 0;
 let p1y = 0;
 let p2x = 0;
 let p2y = 0;
 
-let count = 0;
-let count2 = 0;
+//timers
+let dashCount = 0;
+let dashCount2 = 0;
+let attackCount = 0;
+let attackCount2 = 0;
+
+//presses
 let dPress = 0;
 let aPress = 0;
 let lPress = 0;
@@ -53,57 +59,45 @@ function draw() {
   fill(100);
   rect(0, 350, 800, 50);
 
-  count++;
-  count2++;
+  dashCount++;
+  dashCount2++;
+  attackCount++;
+  attackCount2++;
   
   p1();
   p2();
   p1Sword();
   p2Sword();
   
-  //A
+  //Basic Movement
+  //a
   if (keyIsDown(65) && p1x >= -100) {
     p1x -= 3;
   }
-  //D
+  //d
   if (keyIsDown(68) && p1x <= p2x + 400) {
     p1x += 3;
   }
-  //Left arrow
+  //left arrow
   if (keyIsDown(LEFT_ARROW) && p2x >= p1x - 400) {
     p2x -= 3;
   }
-  //Right arrow
+  //right arrow
   if (keyIsDown(RIGHT_ARROW) && p2x <= 100) {
     p2x += 3;
   }
 
-  //W and Up arrow are going to be the two attacks
-  wKeyPressed();
-  upKeyPressed();
-
   print(p1y);
 }
 
-function wKeyPressed() {
-  if (keyIsDown(65) == false && keyIsDown(68) == false && keyCode == 87) {
-    print("hi");
-  }
-}
-
-function upKeyPressed() {
-  if (keyIsDown(65) == false && keyIsDown(68) == false && keyCode == UP_ARROW) {
-    print("hi");
-  }
-}
-
 function keyPressed() {
+  
   //If the key is pressed twice within 12 frames you perform a dash
   //d dash
   if (keyIsDown(65) == false && keyCode == 68) {
     dPress += 1;
-    if (count >= 12) {
-      count = 0;
+    if (dashCount >= 12) {
+      dashCount = 0;
       dPress = 0;
     }
     if (dPress == 1) {
@@ -113,7 +107,7 @@ function keyPressed() {
   //a dash
   if (keyIsDown(68) == false && keyCode == 65) {
     aPress += 1;
-    if (count >= 12) {
+    if (dashCount >= 12) {
       count = 0;
       aPress = 0;
     }
@@ -143,6 +137,14 @@ function keyPressed() {
       p2x += 80;
     }
   }
+  
+  //If attack key is pressed and isn't within 60 frames of last attack then perform an attack (add blocking condition later)
+  //p1 attack (w)
+  if (attackCount >= 60 and ) {
+    
+  }
+  //p2 attack (s)
+  
 }
 
 function p1() {
