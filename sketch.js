@@ -25,8 +25,8 @@ let p1x = 180;
 let p2x = 620;
 let p1y = 0;
 let p2y = 0;
-let hitbox = p1x;
-let hitbox2 = p2x;
+let hitbox = p1x + 150;
+let hitbox2 = p2x - 150;
 
 //timers
 let dashCount = 0;
@@ -75,27 +75,24 @@ function draw() {
   //a
   if (keyIsDown(65) && p1x >= 80) {
     p1x -= 3;
+    hitbox -= 3;
   }
   //d
   if (keyIsDown(68) && p1x <= p2x - 20) {
     p1x += 3;
+    hitbox += 3;
   }
   //left arrow
   if (keyIsDown(LEFT_ARROW) && p2x >= p1x + 20) {
     p2x -= 3;
+    hitbox2 -= 3;
   }
   //right arrow
   if (keyIsDown(RIGHT_ARROW) && p2x <= 720) {
     p2x += 3;
-  }
-
-  //Collision
-  if (keyIsDownhitbox) {
-    print('hit')
+    hitbox2 += 3;
   }
   
-  
-  print(p1y);
 }
 
 function keyPressed() {
@@ -150,14 +147,16 @@ function keyPressed() {
   //If attack key is pressed and isn't within 100 frames of last attack then perform an attack (add blocking condition later)
   
   //p1 attack (w)
-  if (attackCount >= 100 && keyCode == 87) {
+  if (attackCount >= 100 && keyCode == 87 && hitbox >= p2x) {
     rect(p1x, 100, 150, 200);
     attackCount = 0;
+    print('p1 hit')
   }
   //p2 attack (s)
   if (attackCount2 >= 100 && keyCode == UP_ARROW) {
     rect(p2x - 150, 100, 150, 200);
     attackCount2 = 0;
+    print('p2 hit')
   }
 }
 
