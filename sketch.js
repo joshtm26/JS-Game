@@ -98,12 +98,11 @@ function draw() {
     p2x += 3;
     hitbox2 += 3;
   }
-
 }
 
 function keyPressed() {
   
-  //If the key is pressed twice within 12 frames you perform a dash
+  //DASH
 
   //d dash
   if (keyIsDown(65) == false && keyCode == 68) {
@@ -150,24 +149,31 @@ function keyPressed() {
     }
   }
 
-  //ATTACKS
-  
-  //p1 attack (w
+  //ATTACK
+
+  //p1 attack
   if (attackCount >= 120 && keyCode == 87) {
-    if(hitbox >= p2x && keyIsDown(DOWN_ARROW) == false) {
+    if (hitbox >= p2x && keyIsDown(DOWN_ARROW) == false) {
       attackCount = 0;
+      print("p1 wins");
     }
-    if ()
-    attackCount = 0;
+
+    if (hitbox >= p2x && keyIsDown(DOWN_ARROW) == true) {
+      attackCount = 0;
+      print("blocked");
+    }
   }
-  if (attackCount >= 120 && keyCode == 87 && hitbox >= p2x && keyIsDown(DOWN_ARROW) == false) {
-    attackCount = 0;
-    print("p1 hit");
-  }
-  //p2 attack (down)
-  if (attackCount2 >= 120 && keyCode == UP_ARROW && hitbox2 <= p1x && keyIsDown(83) == false) {
-    attackCount2 = 0;
-    print("p2 hit");
+  //p2 attack
+  if (attackCount2 >= 120 && keyCode == UP_ARROW) {
+    if (hitbox >= p2x && keyIsDown(83) == false) {
+      attackCount2 = 0;
+      print("p2 wins");
+    }
+
+    if (hitbox >= p2x && keyIsDown(83) == true) {
+      attackCount2 = 0;
+      print("blocked");
+    }
   }
 }
 
@@ -182,4 +188,3 @@ function p2() {
   fill(0, 0, 255, 150);
   rect(p2x, 170, 80, 200);
 }
-
