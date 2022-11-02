@@ -20,10 +20,10 @@
 let bgm;
 let bg;
 
-let lpx = 0;
-let lpy = 0;
-let rpx = 0;
-let rpy = 0;
+let p1x = 0;
+let p1y = 0;
+let p2x = 0;
+let p2y = 0;
 
 let count = 0;
 let dPress = 0;
@@ -58,39 +58,39 @@ function draw() {
   p2();
   
   push();
-  translate(170, 140)
+  translate(200, 150)
   rotate(15);
   p1Sword();
   pop();
   
   push();
-  translate(70, -50);
+  translate(570, 150);
   rotate(-15);
   p2Sword();
   pop();
   
   //A
-  if (keyIsDown(65) && lpx >= -100) {
-    lpx -= 3;
+  if (keyIsDown(65) && p1x >= -100) {
+    p1x -= 3;
   }
   //D
-  if (keyIsDown(68) && lpx <= rpx + 470) {
-    lpx += 3;
+  if (keyIsDown(68) && p1x <= p2x + 470) {
+    p1x += 3;
   }
   //Left arrow
-  if (keyIsDown(LEFT_ARROW) && rpx >= lpx - 470) {
-    rpx = rpx - 3;
+  if (keyIsDown(LEFT_ARROW) && p2x >= p1x - 470) {
+    p2x -= 3;
   }
   //Right arrow
-  if (keyIsDown(RIGHT_ARROW) && rpx <= 100) {
-    rpx = rpx + 3;
+  if (keyIsDown(RIGHT_ARROW) && p2x <= 100) {
+    p2x += 3;
   }
 
   //W and Up arrow are going to be the two attacks
   wKeyPressed();
   upKeyPressed();
 
-  print(dPress);
+
 }
 
 function wKeyPressed() {
@@ -115,7 +115,7 @@ function keyReleased() {
       dPress = 0;
     }
     if (dPress == 1) {
-      lpx += 60;
+      p1x += 60;
     }
   }
   //a dash
@@ -126,7 +126,7 @@ function keyReleased() {
       aPress = 0;
     }
     if (aPress == 1) {
-      lpx -= 60;
+      p1x -= 60;
     }
   }
   //left dash
@@ -137,7 +137,7 @@ function keyReleased() {
       lPress = 0;
     }
     if (lPress == 1) {
-      rpx -= 60;
+      p2x -= 60;
     }
   }
   //right dash
@@ -148,7 +148,7 @@ function keyReleased() {
       rPress = 0;
     }
     if (rPress == 1) {
-      rpx += 60;
+      p2x += 60;
     }
   }
 }
@@ -156,23 +156,23 @@ function keyReleased() {
 function p1() {
   noStroke();
   fill(255, 0, 0, 150);
-  rect(100, 170, 80, 200);
+  rect(100 + p1x, 170 + p1y, 80, 200);
 }
 
 function p1Sword() {
   noStroke();
   fill(0, 255, 0, 150);
-  rect(0, 140, 30, 150)
+  rect(p1x, p1y, 30, 150);
 }
 
 function p2() {
   noStroke();
   fill(0, 0, 255, 150);
-  rect(620, 170, 80, 200);
+  rect(620 + p2x, 170 + p2y, 80, 200);
 }
 
 function p2Sword() {
   noStroke();
   fill(0, 255, 0, 150);
-  rect(600, 140, 30, 150);
+  rect(p2x, p2y, 30, 150);
 }
