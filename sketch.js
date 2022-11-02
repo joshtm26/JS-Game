@@ -17,7 +17,6 @@ Down Arrow: block
 double tap left or right to perform a dash
 
 TO DO
-
 reset positions and display text "PLAYER 1/2 WINS" when hit
 keep track of score in the top left and right corners for both players
 add sprites
@@ -60,13 +59,14 @@ function preload() {
 function setup() {
   createCanvas(800, 400);
   angleMode(DEGREES);
+  bgm.volume(.3);
   bgm.play();
 }
 
 function draw() {
   //background(bg);
   background(0);
-  fill(100);
+  fill(200);
   rect(0, 350, 800, 50);
 
   dashCount++;
