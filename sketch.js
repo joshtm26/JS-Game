@@ -2,7 +2,7 @@
 
 //back and forth dashing/stepping
 //attack for both players
-//
+//block for both players
 //ending lag for the actions
 //reset positions and display text for winner when sword hits player
 //animations for movement, attacking, and idle
@@ -53,15 +53,18 @@ function draw() {
   rect(0, 350, 800, 50);
 
   count = count + 1;
+  
+  //p1
+  
+  
+  //p2
+  
 
   push();
   scale(0.9);
   translate(45, 60);
-  lDude();
-  lDudeArms();
+  
   lSword();
-  rDude();
-  rDudeArms();
   rSword();
   pop();
 
@@ -149,27 +152,10 @@ function keyReleased() {
   }
 }
 
-function lDude() {
-  fill(0);
-  stroke(0);
-  strokeWeight(10);
-  circle(lpx + 105, lpy + 160, 50);
-  line(lpx + 100, lpy + 150, lpx + 90, lpy + 260);
-  //legs
-  line(lpx + 90, lpy + 260, lpx + 80, lpy + 305);
-  line(lpx + 80, lpy + 305, lpx + 60, lpy + 350);
-  line(lpx + 90, lpy + 260, lpx + 115, lpy + 305);
-  line(lpx + 115, lpy + 305, lpx + 110, lpy + 350);
-}
-
-function lDudeArms() {
-  fill(0);
-  stroke(0);
-  strokeWeight(10);
-  line(lpx + 96, lpy + 210, lpx + 112, lpy + 240);
-  line(lpx + 112, lpy + 240, lpx + 140, lpy + 250);
-  line(lpx + 96, lpy + 202, lpx + 120, lpy + 230);
-  line(lpx + 120, lpy + 230, lpx + 145, lpy + 235);
+function p1() {
+  noStroke();
+  fill(255, 0, 0, 150);
+  rect(100, 170, 80, 200);
 }
 
 function lSword() {
@@ -198,27 +184,10 @@ function lSword() {
   );
 }
 
-function rDude() {
-  fill(0);
-  stroke(0);
-  strokeWeight(10);
-  circle(rpx + 695, 160, 50);
-  line(rpx + 700, 150, rpx + 710, 260);
-  //legs
-  line(rpx + 710, 260 + rpy, rpx + 720, 305 + rpy);
-  line(rpx + 720, 305 + rpy, rpx + 740, 350 + rpy);
-  line(rpx + 710, 260 + rpy, rpx + 685, 305 + rpy);
-  line(rpx + 685, 305 + rpy, rpx + 690, 350 + rpy);
-}
-
-function rDudeArms() {
-  fill(0);
-  stroke(0);
-  strokeWeight(10);
-  line(rpx + 704, 210, rpx + 688, 240);
-  line(rpx + 688, 240, rpx + 660, 250);
-  line(rpx + 704, 202, rpx + 680, 230);
-  line(rpx + 680, 230, rpx + 655, 235);
+function p2() {
+  noStroke();
+  fill(0, 0, 255, 150);
+  rect(620, 170, 80, 200);
 }
 
 function rSword() {
