@@ -1,6 +1,6 @@
 /*
 
-GAMEPLAY
+CONTROLS
 
 Player 1:
 A: move left
@@ -76,8 +76,6 @@ function draw() {
 
   p1();
   p2();
-  p1Sword();
-  p2Sword();
 
   //Basic Movement
   //a
@@ -86,12 +84,12 @@ function draw() {
     hitbox -= 3;
   }
   //d
-  if (keyIsDown(68) && p1x <= p2x - 20) {
+  if (keyIsDown(68) && p1x <= p2x) {
     p1x += 3;
     hitbox += 3;
   }
   //left arrow
-  if (keyIsDown(LEFT_ARROW) && p2x >= p1x + 20) {
+  if (keyIsDown(LEFT_ARROW) && p2x >= p1x) {
     p2x -= 3;
     hitbox2 -= 3;
   }
@@ -100,6 +98,7 @@ function draw() {
     p2x += 3;
     hitbox2 += 3;
   }
+
 }
 
 function keyPressed() {
@@ -153,13 +152,20 @@ function keyPressed() {
 
   //ATTACKS
   
-  //p1 attack (w)
-  if (attackCount >= 100 && keyCode == 87 && hitbox >= p2x) {
+  //p1 attack (w
+  if (attackCount >= 120 && keyCode == 87) {
+    if(hitbox >= p2x && keyIsDown(DOWN_ARROW) == false) {
+      attackCount = 0;
+    }
+    if ()
+    attackCount = 0;
+  }
+  if (attackCount >= 120 && keyCode == 87 && hitbox >= p2x && keyIsDown(DOWN_ARROW) == false) {
     attackCount = 0;
     print("p1 hit");
   }
-  //p2 attack (s)
-  if (attackCount2 >= 100 && keyCode == UP_ARROW && hitbox2 <= p1x) {
+  //p2 attack (down)
+  if (attackCount2 >= 120 && keyCode == UP_ARROW && hitbox2 <= p1x && keyIsDown(83) == false) {
     attackCount2 = 0;
     print("p2 hit");
   }
@@ -171,20 +177,9 @@ function p1() {
   rect(p1x - 80, 170, 80, 200);
 }
 
-function p1Sword() {
-  noStroke();
-  fill(0, 255, 0, 150);
-  rect(p1x - 10, 150, 30, 150);
-}
-
 function p2() {
   noStroke();
   fill(0, 0, 255, 150);
   rect(p2x, 170, 80, 200);
 }
 
-function p2Sword() {
-  noStroke();
-  fill(0, 255, 0, 150);
-  rect(p2x - 20, 150, 30, 150);
-}
