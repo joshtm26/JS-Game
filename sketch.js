@@ -1,4 +1,5 @@
 /*
+
 GAMEPLAY
 
 Player 1:
@@ -150,17 +151,15 @@ function keyPressed() {
     }
   }
 
-  //If attack key is pressed and isn't within 100 frames of last attack then perform an attack (add blocking condition later)
-
+  //ATTACKS
+  
   //p1 attack (w)
   if (attackCount >= 100 && keyCode == 87 && hitbox >= p2x) {
-    rect(p1x, 100, 150, 200);
     attackCount = 0;
     print("p1 hit");
   }
   //p2 attack (s)
   if (attackCount2 >= 100 && keyCode == UP_ARROW && hitbox2 <= p1x) {
-    rect(p2x - 150, 100, 150, 200);
     attackCount2 = 0;
     print("p2 hit");
   }
