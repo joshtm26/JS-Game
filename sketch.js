@@ -159,7 +159,7 @@ function keyPressed() {
     print("p1 hit");
   }
   //p2 attack (s)
-  if (attackCount2 >= 100 && keyCode == UP_ARROW) {
+  if (attackCount2 >= 100 && keyCode == UP_ARROW && hitbox2 <= p1x) {
     rect(p2x - 150, 100, 150, 200);
     attackCount2 = 0;
     print("p2 hit");
