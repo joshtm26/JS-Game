@@ -21,10 +21,11 @@ let bgm;
 let bg;
 
 //positions
-let p1x = 0;
+let p1x = 180;
+let p2x = 620;
 let p1y = 0;
-let p2x = 0;
 let p2y = 0;
+let hitboxX = p1x;
 
 //timers
 let dashCount = 0;
@@ -32,7 +33,7 @@ let dashCount2 = 0;
 let attackCount = 100;
 let attackCount2 = 100;
 
-//presses
+//actions
 let dPress = 0;
 let aPress = 0;
 let lPress = 0;
@@ -71,19 +72,19 @@ function draw() {
   
   //Basic Movement
   //a
-  if (keyIsDown(65) && p1x >= -100) {
+  if (keyIsDown(65) && p1x >= 80) {
     p1x -= 3;
   }
   //d
-  if (keyIsDown(68) && p1x <= p2x + 400) {
+  if (keyIsDown(68) && p1x <= p2x) {
     p1x += 3;
   }
   //left arrow
-  if (keyIsDown(LEFT_ARROW) && p2x >= p1x - 400) {
+  if (keyIsDown(LEFT_ARROW) && p2x >= p1x) {
     p2x -= 3;
   }
   //right arrow
-  if (keyIsDown(RIGHT_ARROW) && p2x <= 100) {
+  if (keyIsDown(RIGHT_ARROW) && p2x <= 80) {
     p2x += 3;
   }
 
@@ -143,9 +144,8 @@ function keyPressed() {
   
   //p1 attack (w)
   if (attackCount >= 100 && keyCode == 87) {
-    rect(170 + p1x, 150 + p1y, 100, 200);
+    rect(hitboxX, 100, 150, 200);
     attackCount = 0;
-    print('hi')
   }
   //p2 attack (s)
   
@@ -154,23 +154,23 @@ function keyPressed() {
 function p1() {
   noStroke();
   fill(255, 0, 0, 150);
-  rect(100 + p1x, 170 + p1y, 80, 200);
+  rect(p1x - 80, 170 + p1y, 80, 200);
 }
 
 function p1Sword() {
   noStroke();
   fill(0, 255, 0, 150);
-  rect(170 + p1x, 150 + p1y, 30, 150);
+  rect(p1x - 10, 150 + p1y, 30, 150);
 }
 
 function p2() {
   noStroke();
   fill(0, 0, 255, 150);
-  rect(620 + p2x, 170 + p2y, 80, 200);
+  rect(p2x, 170 + p2y, 80, 200);
 }
 
 function p2Sword() {
   noStroke();
   fill(0, 255, 0, 150);
-  rect(600 + p2x, 150 + p1y, 30, 150);
+  rect(p2x - 10, 150 + p1y, 30, 150);
 }
