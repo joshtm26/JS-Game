@@ -26,6 +26,7 @@ let p2x = 0;
 let p2y = 0;
 
 let count = 0;
+let count2 = 0;
 let dPress = 0;
 let aPress = 0;
 let lPress = 0;
@@ -52,28 +53,24 @@ function draw() {
   fill(100);
   rect(0, 350, 800, 50);
 
-  count = count + 1;
+  count++;
+  count2++;
   
   p1();
   p2();
   p1Sword();
-  
-  push();
-  translate(570, 150);
-  rotate(-15);
   p2Sword();
-  pop();
   
   //A
   if (keyIsDown(65) && p1x >= -100) {
-    p1x = p1x - 2;
+    p1x -= 3;
   }
   //D
-  if (keyIsDown(68) && p1x <= p2x + 470) {
-    p1x = p1x + 2;
+  if (keyIsDown(68) && p1x <= p2x + 400) {
+    p1x += 3;
   }
   //Left arrow
-  if (keyIsDown(LEFT_ARROW) && p2x >= p1x - 470) {
+  if (keyIsDown(LEFT_ARROW) && p2x >= p1x - 400) {
     p2x -= 3;
   }
   //Right arrow
@@ -100,50 +97,50 @@ function upKeyPressed() {
   }
 }
 
-function keyReleased() {
+function keyPressed() {
   //If the key is pressed twice within 12 frames you perform a dash
   //d dash
-  if (keyCode == 68) {
+  if (keyIsDown(65) == false && keyCode == 68) {
     dPress += 1;
     if (count >= 12) {
       count = 0;
       dPress = 0;
     }
     if (dPress == 1) {
-      p1x += 60;
+      p1x += 80;
     }
   }
   //a dash
-  if (keyCode == 65) {
+  if (keyIsDown(68) == false && keyCode == 65) {
     aPress += 1;
     if (count >= 12) {
       count = 0;
       aPress = 0;
     }
     if (aPress == 1) {
-      p1x -= 60;
+      p1x -= 80;
     }
   }
   //left dash
-  if (keyCode == LEFT_ARROW) {
+  if (keyIsDown(RIGHT_ARROW) == false && keyCode == LEFT_ARROW) {
     lPress += 1;
-    if (count >= 12) {
-      count = 0;
+    if (count2 >= 12) {
+      count2 = 0;
       lPress = 0;
     }
     if (lPress == 1) {
-      p2x -= 60;
+      p2x -= 80;
     }
   }
   //right dash
-  if (keyCode == RIGHT_ARROW) {
+  if (keyIsDown(LEFT_ARROW) == false && keyCode == RIGHT_ARROW) {
     rPress += 1;
-    if (count >= 12) {
-      count = 0;
+    if (count2 >= 12) {
+      count2 = 0;
       rPress = 0;
     }
     if (rPress == 1) {
-      p2x += 60;
+      p2x += 80;
     }
   }
 }
@@ -157,7 +154,7 @@ function p1() {
 function p1Sword() {
   noStroke();
   fill(0, 255, 0, 150);
-  
+  rect(170 + p1x, 150 + p1y, 30, 150);
 }
 
 function p2() {
@@ -169,5 +166,5 @@ function p2() {
 function p2Sword() {
   noStroke();
   fill(0, 255, 0, 150);
-  rect(570 + p1x, 150 + p1y, 30, 150);
+  rect(600 + p2x, 150 + p1y, 30, 150);
 }
