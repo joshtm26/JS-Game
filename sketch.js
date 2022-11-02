@@ -1,21 +1,30 @@
-//TO DO
+/*
+GAMEPLAY
 
-//back and forth dashing/stepping
-//attack for both players
-//block for both players
-//ending lag for the actions
-//reset positions and display text for winner when sword hits player
-//animations for movement, attacking, and idle
-//make the weapons look better (two different weapons?)
-//shadows for the characters
-//keep track of score in the top left and right corners
-//add sounds to the actions
+Player 1:
+A: move left
+D: move right
+W: attack
+S: block
+double tap A or D to perform a dash
 
-//MAYBE IF I HAVE TIME
+Player 2:
+Left Arrow; move left
+Right Arrow: move right
+Up Arrow: attack
+Down Arrow: block
+double tap left or right to perform a dash
 
-//make it not stick people
-//make my own background
-//zoom in and make camera follow them
+TO DO
+
+reset positions and display text "PLAYER 1/2 WINS" when hit
+keep track of score in the top left and right corners for both players
+add sprites
+add animations
+shadows for the characters
+add sounds to the actions
+
+*/
 
 let bgm;
 let bg;
@@ -23,8 +32,6 @@ let bg;
 //positions
 let p1x = 180;
 let p2x = 620;
-let p1y = 0;
-let p2y = 0;
 let hitbox = p1x + 150;
 let hitbox2 = p2x - 150;
 
@@ -65,12 +72,12 @@ function draw() {
   dashCount2++;
   attackCount++;
   attackCount2++;
-  
+
   p1();
   p2();
   p1Sword();
   p2Sword();
-  
+
   //Basic Movement
   //a
   if (keyIsDown(65) && p1x >= 80) {
@@ -92,13 +99,12 @@ function draw() {
     p2x += 3;
     hitbox2 += 3;
   }
-  
 }
 
 function keyPressed() {
   
   //If the key is pressed twice within 12 frames you perform a dash
-  
+
   //d dash
   if (keyIsDown(65) == false && keyCode == 68) {
     dPress += 1;
@@ -143,43 +149,43 @@ function keyPressed() {
       p2x += 80;
     }
   }
-  
+
   //If attack key is pressed and isn't within 100 frames of last attack then perform an attack (add blocking condition later)
-  
+
   //p1 attack (w)
   if (attackCount >= 100 && keyCode == 87 && hitbox >= p2x) {
     rect(p1x, 100, 150, 200);
     attackCount = 0;
-    print('p1 hit')
+    print("p1 hit");
   }
   //p2 attack (s)
   if (attackCount2 >= 100 && keyCode == UP_ARROW) {
     rect(p2x - 150, 100, 150, 200);
     attackCount2 = 0;
-    print('p2 hit')
+    print("p2 hit");
   }
 }
 
 function p1() {
   noStroke();
   fill(255, 0, 0, 150);
-  rect(p1x - 80, 170 + p1y, 80, 200);
+  rect(p1x - 80, 170, 80, 200);
 }
 
 function p1Sword() {
   noStroke();
   fill(0, 255, 0, 150);
-  rect(p1x - 10, 150 + p1y, 30, 150);
+  rect(p1x - 10, 150, 30, 150);
 }
 
 function p2() {
   noStroke();
   fill(0, 0, 255, 150);
-  rect(p2x, 170 + p2y, 80, 200);
+  rect(p2x, 170, 80, 200);
 }
 
 function p2Sword() {
   noStroke();
   fill(0, 255, 0, 150);
-  rect(p2x - 20, 150 + p1y, 30, 150);
+  rect(p2x - 20, 150, 30, 150);
 }
