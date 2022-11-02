@@ -54,20 +54,21 @@ function draw() {
 
   count = count + 1;
   
-  //p1
+  p1();
+  p2();
   
-  
-  //p2
-  
-
   push();
-  scale(0.9);
-  translate(45, 60);
-  
-  lSword();
-  rSword();
+  translate(170, 140)
+  rotate(15);
+  p1Sword();
   pop();
-
+  
+  push();
+  translate(70, -50);
+  rotate(-15);
+  p2Sword();
+  pop();
+  
   //A
   if (keyIsDown(65) && lpx >= -100) {
     lpx -= 3;
@@ -158,30 +159,10 @@ function p1() {
   rect(100, 170, 80, 200);
 }
 
-function lSword() {
-  fill(0);
+function p1Sword() {
   noStroke();
-  quad(
-    lpx + 135,
-    lpy + 260,
-    lpx + 143,
-    lpy + 262,
-    lpx + 153,
-    lpy + 225,
-    lpx + 145,
-    lpy + 223
-  );
-  fill(240);
-  quad(
-    lpx + 153,
-    lpy + 225,
-    lpx + 145,
-    lpy + 223,
-    lpx + 177,
-    lpy + 103,
-    lpx + 182,
-    lpy + 115
-  );
+  fill(0, 255, 0, 150);
+  rect(0, 140, 30, 150)
 }
 
 function p2() {
@@ -190,28 +171,8 @@ function p2() {
   rect(620, 170, 80, 200);
 }
 
-function rSword() {
-  fill(0);
+function p2Sword() {
   noStroke();
-  quad(
-    rpx + 665,
-    260 + rpy,
-    rpx + 657,
-    262 + rpy,
-    rpx + 647,
-    225 + rpy,
-    rpx + 655,
-    223 + rpy
-  );
-  fill(240);
-  quad(
-    rpx + 647,
-    225 + rpy,
-    rpx + 655,
-    223 + rpy,
-    rpx + 623,
-    103 + rpy,
-    rpx + 618,
-    115 + rpy
-  );
+  fill(0, 255, 0, 150);
+  rect(600, 140, 30, 150);
 }
