@@ -48,20 +48,15 @@ function setup() {
 
 function draw() {
   //background(bg);
-  background(200);
-  fill(255);
+  background(0);
+  fill(100);
   rect(0, 350, 800, 50);
 
   count = count + 1;
   
   p1();
   p2();
-  
-  push();
-  translate(200, 150)
-  rotate(15);
   p1Sword();
-  pop();
   
   push();
   translate(570, 150);
@@ -71,11 +66,11 @@ function draw() {
   
   //A
   if (keyIsDown(65) && p1x >= -100) {
-    p1x -= 3;
+    p1x = p1x - 2;
   }
   //D
   if (keyIsDown(68) && p1x <= p2x + 470) {
-    p1x += 3;
+    p1x = p1x + 2;
   }
   //Left arrow
   if (keyIsDown(LEFT_ARROW) && p2x >= p1x - 470) {
@@ -90,7 +85,7 @@ function draw() {
   wKeyPressed();
   upKeyPressed();
 
-
+  print(p1y);
 }
 
 function wKeyPressed() {
@@ -162,7 +157,7 @@ function p1() {
 function p1Sword() {
   noStroke();
   fill(0, 255, 0, 150);
-  rect(p1x, p1y, 30, 150);
+  
 }
 
 function p2() {
@@ -174,5 +169,5 @@ function p2() {
 function p2Sword() {
   noStroke();
   fill(0, 255, 0, 150);
-  rect(p2x, p2y, 30, 150);
+  rect(570 + p1x, 150 + p1y, 30, 150);
 }
