@@ -29,8 +29,8 @@ let p2y = 0;
 //timers
 let dashCount = 0;
 let dashCount2 = 0;
-let attackCount = 0;
-let attackCount2 = 0;
+let attackCount = 100;
+let attackCount2 = 100;
 
 //presses
 let dPress = 0;
@@ -93,6 +93,7 @@ function draw() {
 function keyPressed() {
   
   //If the key is pressed twice within 12 frames you perform a dash
+  
   //d dash
   if (keyIsDown(65) == false && keyCode == 68) {
     dPress += 1;
@@ -108,7 +109,7 @@ function keyPressed() {
   if (keyIsDown(68) == false && keyCode == 65) {
     aPress += 1;
     if (dashCount >= 12) {
-      count = 0;
+      dashCount = 0;
       aPress = 0;
     }
     if (aPress == 1) {
@@ -118,8 +119,8 @@ function keyPressed() {
   //left dash
   if (keyIsDown(RIGHT_ARROW) == false && keyCode == LEFT_ARROW) {
     lPress += 1;
-    if (count2 >= 12) {
-      count2 = 0;
+    if (dashCount2 >= 12) {
+      dashCount2 = 0;
       lPress = 0;
     }
     if (lPress == 1) {
@@ -129,8 +130,8 @@ function keyPressed() {
   //right dash
   if (keyIsDown(LEFT_ARROW) == false && keyCode == RIGHT_ARROW) {
     rPress += 1;
-    if (count2 >= 12) {
-      count2 = 0;
+    if (dashCount2 >= 12) {
+      dashCount2 = 0;
       rPress = 0;
     }
     if (rPress == 1) {
@@ -138,10 +139,13 @@ function keyPressed() {
     }
   }
   
-  //If attack key is pressed and isn't within 60 frames of last attack then perform an attack (add blocking condition later)
+  //If attack key is pressed and isn't within 100 frames of last attack then perform an attack (add blocking condition later)
+  
   //p1 attack (w)
-  if (attackCount >= 60 and ) {
-    
+  if (attackCount >= 100 && keyCode == 87) {
+    rect(170 + p1x, 150 + p1y, 100, 200);
+    attackCount = 0;
+    print('hi')
   }
   //p2 attack (s)
   
