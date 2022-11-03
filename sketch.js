@@ -76,8 +76,9 @@ function draw() {
 
   p1();
   p2();
-
-  //Basic Movement
+  
+  //MOVEMENT
+  
   //a
   if (keyIsDown(65) && p1x >= 80) {
     p1x -= 3;
@@ -97,7 +98,7 @@ function draw() {
   if (keyIsDown(RIGHT_ARROW) && p2x <= 720) {
     p2x += 3;
     hitbox2 += 3;
-  }
+  } 
 }
 
 function keyPressed() {
@@ -157,7 +158,6 @@ function keyPressed() {
       attackCount = 0;
       print("p1 wins");
     }
-
     if (hitbox >= p2x && keyIsDown(DOWN_ARROW) == true) {
       attackCount = 0;
       print("blocked");
@@ -169,7 +169,6 @@ function keyPressed() {
       attackCount2 = 0;
       print("p2 wins");
     }
-
     if (hitbox >= p2x && keyIsDown(83) == true) {
       attackCount2 = 0;
       print("blocked");
