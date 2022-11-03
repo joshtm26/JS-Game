@@ -18,11 +18,11 @@ double tap left or right to perform a dash
 
 TO DO
 reset positions and display text "PLAYER 1/2 WINS" when hit
-keep track of score in the top left and right corners for both players
-add sprites
-add animations
-shadows for the characters
+overlay sprites
+add the animations for the actions
 add sounds to the actions
+make a start screen and 3, 2, 1 countdown
+guilty gear counter text in bg lol
 
 */
 
@@ -113,6 +113,7 @@ function draw() {
     hitbox2 += 3;
   }
   
+  //hitbox color
   fill(0, 255, 0, 150);
   noStroke();
 }
@@ -180,7 +181,7 @@ function keyPressed() {
   //ATTACK
 
   //p1 attack
-  if (attackCount >= 120 && keyCode == 87) {
+  if (attackCount >= 100 && keyCode == 87) {
     attackCount = 0;
     rect(p1x, 200, 150, 100);
     if (hitbox >= p2x && blockCount2 > 60) {
@@ -192,7 +193,7 @@ function keyPressed() {
     }
   }
   //p2 attack
-  if (attackCount2 >= 120 && keyCode == UP_ARROW) {
+  if (attackCount2 >= 100 && keyCode == UP_ARROW) {
     attackCount2 = 0;
     rect(p2x, 470, 150, 100);
     if (hitbox >= p2x && blockCount > 60) {
