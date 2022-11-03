@@ -61,7 +61,7 @@ function preload() {
 function setup() {
   createCanvas(800, 400);
   angleMode(DEGREES);
-  bgm.volume(.3);
+  bgm.volume(0.3);
   bgm.play();
 }
 
@@ -70,7 +70,7 @@ function draw() {
   background(0);
   fill(200);
   rect(0, 350, 800, 50);
-  
+
   dashCount++;
   dashCount2++;
   attackCount++;
@@ -80,9 +80,9 @@ function draw() {
 
   p1();
   p2();
-  
+
   //MOVEMENT
-  
+
   //a
   if (keyIsDown(65) && p1x >= 80) {
     p1x -= 3;
@@ -102,12 +102,10 @@ function draw() {
   if (keyIsDown(RIGHT_ARROW) && p2x <= 720) {
     p2x += 3;
     hitbox2 += 3;
-  } 
-  
+  }
 }
 
 function keyPressed() {
-  
   //DASH
 
   //d dash
@@ -155,16 +153,28 @@ function keyPressed() {
     }
   }
 
+  //BLOCK
+
+  //p1 block
+  if (keyCode == 83 && blockCount >= 60) {
+    blockCount = 0;
+    print("p1 blocking");
+  }
+  if (keyCode == DOWN_ARROW && blockCount2 >= 60) {
+    blockCount2 = 0;
+    print("p2 blocking");
+  }
+
   //ATTACK
 
   //p1 attack
   if (attackCount >= 120 && keyCode == 87) {
     attackCount = 0;
     rect(p1x, 200, 150, 100);
-    if (hitbox >= p2x && blockCount >= 60) {
+    if (hitbox >= p2x && blockCount2 > 60) {
       print("p1 wins");
     }
-    if (hitbox >= p2x && blockCount <= 60) {
+    if (hitbox >= p2x && blockCount2 <= 60) {
       print("blocked");
     }
   }
@@ -172,22 +182,13 @@ function keyPressed() {
   if (attackCount2 >= 120 && keyCode == UP_ARROW) {
     attackCount2 = 0;
     rect(p2x, 470, 150, 100);
-    if (hitbox >= p2x && keyIsDown(83) == false) {
+    if (hitbox >= p2x && blockCount > 60) {
       print("p2 wins");
     }
-    if (hitbox >= p2x && keyIsDown(83) == true) {
+    if (hitbox >= p2x && blockCount <= 60) {
       print("blocked");
     }
   }
-  
-  //BLOCK
-  
-  //p1 block
-  if (keyCode == 83 && blockCount >= 60) {
-    blockCount = 0;
-    print('blocking')
-  }
-  
 }
 
 function p1() {
