@@ -48,6 +48,8 @@ let dPress = 0;
 let aPress = 0;
 let lPress = 0;
 let rPress = 0;
+let p1Score = 0;
+let p2Score = 0;
 
 function preload() {
   bg = loadImage(
@@ -80,7 +82,14 @@ function draw() {
 
   p1();
   p2();
-
+  
+  fill(255);
+  textSize(30);
+  text('P1:', 10, 35);
+  text(p1Score, 65, 35);
+  text('P2:', 700, 35);
+  
+  
   //MOVEMENT
 
   //a
@@ -103,6 +112,9 @@ function draw() {
     p2x += 3;
     hitbox2 += 3;
   }
+  
+  fill(0, 255, 0, 150);
+  noStroke();
 }
 
 function keyPressed() {
