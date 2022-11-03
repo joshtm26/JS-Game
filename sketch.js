@@ -68,7 +68,7 @@ function draw() {
   background(0);
   fill(200);
   rect(0, 350, 800, 50);
-
+  
   dashCount++;
   dashCount2++;
   attackCount++;
@@ -154,23 +154,23 @@ function keyPressed() {
 
   //p1 attack
   if (attackCount >= 120 && keyCode == 87) {
+    attackCount = 0;
+    rect(p1x, 200, 150, 100);
     if (hitbox >= p2x && keyIsDown(DOWN_ARROW) == false) {
-      attackCount = 0;
       print("p1 wins");
     }
     if (hitbox >= p2x && keyIsDown(DOWN_ARROW) == true) {
-      attackCount = 0;
       print("blocked");
     }
   }
   //p2 attack
   if (attackCount2 >= 120 && keyCode == UP_ARROW) {
+    attackCount2 = 0;
+    rect(p2x, 470, 150, 100);
     if (hitbox >= p2x && keyIsDown(83) == false) {
-      attackCount2 = 0;
       print("p2 wins");
     }
     if (hitbox >= p2x && keyIsDown(83) == true) {
-      attackCount2 = 0;
       print("blocked");
     }
   }
