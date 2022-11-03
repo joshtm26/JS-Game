@@ -112,13 +112,14 @@ function draw() {
     p2x += 3;
     hitbox2 += 3;
   }
+  //text for winner screen
+  textSize(50);
+  textAlgin
   
-  //hitbox color
-  fill(0, 255, 0, 150);
-  noStroke();
 }
 
 function keyPressed() {
+  
   //DASH
 
   //d dash
@@ -183,10 +184,12 @@ function keyPressed() {
   //p1 attack
   if (attackCount >= 100 && keyCode == 87) {
     attackCount = 0;
-    rect(p1x, 200, 150, 100);
     if (hitbox >= p2x && blockCount2 > 60) {
       print("p1 wins");
       p1Score += 1;
+      p1x = 180;
+      p2x = 620;
+      text
     }
     if (hitbox >= p2x && blockCount2 <= 60) {
       print("blocked");
@@ -195,10 +198,11 @@ function keyPressed() {
   //p2 attack
   if (attackCount2 >= 100 && keyCode == UP_ARROW) {
     attackCount2 = 0;
-    rect(p2x, 470, 150, 100);
     if (hitbox >= p2x && blockCount > 60) {
       print("p2 wins");
       p2Score += 1;
+      p1x = 180;
+      p2x = 620;
     }
     if (hitbox >= p2x && blockCount <= 60) {
       print("blocked");
