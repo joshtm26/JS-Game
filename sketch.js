@@ -88,7 +88,7 @@ function draw() {
   text('P1:', 10, 35);
   text(p1Score, 65, 35);
   text('P2:', 700, 35);
-  
+  text(p2Score, 755, 35);
   
   //MOVEMENT
 
@@ -185,6 +185,7 @@ function keyPressed() {
     rect(p1x, 200, 150, 100);
     if (hitbox >= p2x && blockCount2 > 60) {
       print("p1 wins");
+      p1Score += 1;
     }
     if (hitbox >= p2x && blockCount2 <= 60) {
       print("blocked");
@@ -196,6 +197,7 @@ function keyPressed() {
     rect(p2x, 470, 150, 100);
     if (hitbox >= p2x && blockCount > 60) {
       print("p2 wins");
+      p2Score += 1;
     }
     if (hitbox >= p2x && blockCount <= 60) {
       print("blocked");
