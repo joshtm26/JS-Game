@@ -40,6 +40,8 @@ let dashCount = 0;
 let dashCount2 = 0;
 let attackCount = 100;
 let attackCount2 = 100;
+let blockCount = 0;
+let blockCount2 = 0;
 
 //actions
 let dPress = 0;
@@ -73,6 +75,8 @@ function draw() {
   dashCount2++;
   attackCount++;
   attackCount2++;
+  blockCount++;
+  blockCount2++;
 
   p1();
   p2();
@@ -99,6 +103,7 @@ function draw() {
     p2x += 3;
     hitbox2 += 3;
   } 
+  
 }
 
 function keyPressed() {
@@ -156,10 +161,10 @@ function keyPressed() {
   if (attackCount >= 120 && keyCode == 87) {
     attackCount = 0;
     rect(p1x, 200, 150, 100);
-    if (hitbox >= p2x && keyIsDown(DOWN_ARROW) == false) {
+    if (hitbox >= p2x && blockCount >= 60) {
       print("p1 wins");
     }
-    if (hitbox >= p2x && keyIsDown(DOWN_ARROW) == true) {
+    if (hitbox >= p2x && blockCount <= 60) {
       print("blocked");
     }
   }
@@ -174,6 +179,15 @@ function keyPressed() {
       print("blocked");
     }
   }
+  
+  //BLOCK
+  
+  //p1 block
+  if (keyCode == 83 && blockCount >= 60) {
+    blockCount = 0;
+    print('blocking')
+  }
+  
 }
 
 function p1() {
