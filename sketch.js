@@ -113,9 +113,10 @@ function draw() {
     hitbox2 += 3;
   }
   //text for winner screen
+  fill(255);
   textSize(50);
-  textAlgin
   
+  print(attackCount)
 }
 
 function keyPressed() {
@@ -189,7 +190,7 @@ function keyPressed() {
       p1Score += 1;
       p1x = 180;
       p2x = 620;
-      text
+      text('PLAYER 1 WINS', 210, 200);
     }
     if (hitbox >= p2x && blockCount2 <= 60) {
       print("blocked");
@@ -203,6 +204,7 @@ function keyPressed() {
       p2Score += 1;
       p1x = 180;
       p2x = 620;
+      text('PLAYER 2 WINS', 210, 200);
     }
     if (hitbox >= p2x && blockCount <= 60) {
       print("blocked");
