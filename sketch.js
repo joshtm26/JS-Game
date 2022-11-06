@@ -116,7 +116,6 @@ function draw() {
   fill(255);
   textSize(50);
   
-  print(attackCount)
 }
 
 function keyPressed() {
