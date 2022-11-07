@@ -120,8 +120,8 @@ class P1 {
     //d dash
     if (keyIsDown(65) == false && keyCode == 68) {
       this.dPress += 1;
-      if (dashCount >= 12) {
-        dashCount = 0;
+      if (this.dashCount >= 12) {
+        this.dashCount = 0;
         this.dPress = 0;
       }
       if (this.dPress == 1) {
@@ -132,8 +132,8 @@ class P1 {
     //a dash
     if (keyIsDown(68) == false && keyCode == 65) {
       this.aPress += 1;
-      if (dashCount >= 12) {
-        dashCount = 0;
+      if (this.dashCount >= 12) {
+        this.dashCount = 0;
         this.aPress = 0;
       }
       if (this.aPress == 1) {
@@ -145,17 +145,17 @@ class P1 {
 
   block() {
     this.blockCount++;
-    if (keyCode == 83 && blockCount >= 60) {
-      blockCount = 0;
+    if (keyCode == 83 && this.blockCount >= 60) {
+      this.blockCount = 0;
       print("p1 blocking");
     }
   }
 
   attack() {
     this.attackCount++;
-    if (attackCount >= 100 && keyCode == 87) {
-      attackCount = 0;
-      if (this.hitbox >= p2.x && blockCount2 > 60) {
+    if (this.attackCount >= 100 && keyCode == 87) {
+      this.attackCount = 0;
+      if (this.hitbox >= p2.x && p2.blockCount > 60) {
         print("p1 wins");
         p1Score += 1;
         p2.x = 620;
@@ -163,7 +163,7 @@ class P1 {
         p2.hitbox = p2.x - 150;
         this.hitbox = this.x + 150;
       }
-      if (this.hitbox >= p2.x && blockCount2 <= 60) {
+      if (this.hitbox >= p2.x && p2.blockCount <= 60) {
         print("blocked");
       }
     }
@@ -208,8 +208,8 @@ class P2 {
     //left dash
     if (keyIsDown(RIGHT_ARROW) == false && keyCode == LEFT_ARROW) {
       this.lPress += 1;
-      if (dashCount2 >= 12) {
-        dashCount2 = 0;
+      if (this.dashCount >= 12) {
+        this.dashCount = 0;
         this.lPress = 0;
       }
       if (this.lPress == 1) {
@@ -220,8 +220,8 @@ class P2 {
     //right dash
     if (keyIsDown(LEFT_ARROW) == false && keyCode == RIGHT_ARROW) {
       this.rPress += 1;
-      if (dashCount2 >= 12) {
-        dashCount2 = 0;
+      if (this.dashCount >= 12) {
+        this.dashCount = 0;
         this.rPress = 0;
       }
       if (this.rPress == 1) {
@@ -233,17 +233,17 @@ class P2 {
 
   block() {
     this.blockCount++;
-    if (keyCode == DOWN_ARROW && blockCount2 >= 60) {
-      blockCount2 = 0;
+    if (keyCode == DOWN_ARROW && this.blockCount >= 60) {
+      this.blockCount = 0;
       print("p2 blocking");
     }
   }
 
   attack() {
     this.attackCount++;
-    if (attackCount2 >= 100 && keyCode == UP_ARROW) {
-      attackCount2 = 0;
-      if (this.hitbox <= p1.x && blockCount > 60) {
+    if (this.attackCount >= 100 && keyCode == UP_ARROW) {
+      this.attackCount = 0;
+      if (this.hitbox <= p1.x && p1.blockCount > 60) {
         print("p2 wins");
         p2Score += 1;
         p1.x = 180;
@@ -251,7 +251,7 @@ class P2 {
         p1.hitbox = p1.x + 150;
         this.hitbox = this.x - 150;
       }
-      if (this.hitbox <= p1.x && blockCount <= 60) {
+      if (this.hitbox <= p1.x && p1.blockCount <= 60) {
         print("blocked");
       }
     }
