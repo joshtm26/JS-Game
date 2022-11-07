@@ -17,23 +17,20 @@ Down Arrow: block
 double tap left or right to perform a dash
 
 TO DO
-reset positions and display text "PLAYER 1/2 WINS" when hit
 overlay sprites
 add the animations for the actions
 add sounds to the actions
 make a start screen and 3, 2, 1 countdown
+make a pause and display winner text when someone wins
 guilty gear counter text in bg lol
 
 */
 
 let bgm;
 let bg;
-
-//positions
-let p1x = 180;
-let p2x = 620;
-let hitbox = p1x + 150;
-let hitbox2 = p2x - 150;
+const ground = 50;
+let p1Score = 0;
+let p2Score = 0;
 
 //timers
 let dashCount = 0;
@@ -42,14 +39,6 @@ let attackCount = 100;
 let attackCount2 = 100;
 let blockCount = 0;
 let blockCount2 = 0;
-
-//actions
-let dPress = 0;
-let aPress = 0;
-let lPress = 0;
-let rPress = 0;
-let p1Score = 0;
-let p2Score = 0;
 
 function preload() {
   bg = loadImage(
@@ -65,12 +54,14 @@ function setup() {
   angleMode(DEGREES);
   bgm.volume(0.3);
   bgm.play();
+  p1 = new P1();
+  p2 = new P2();
 }
 
 function draw() {
   //background(bg);
-  background(0);
-  fill(200);
+  background(200);
+  fill(0);
   rect(0, 350, 800, 50);
 
   dashCount++;
@@ -80,146 +71,198 @@ function draw() {
   blockCount++;
   blockCount2++;
 
-  p1();
-  p2();
-  
+  p1.display();
+  p2.display();
+
+  p1.move();
+  p2.move();
+
+  //scores
   fill(255);
   textSize(30);
-  text('P1:', 10, 35);
+  text("P1:", 10, 35);
   text(p1Score, 65, 35);
-  text('P2:', 700, 35);
+  text("P2:", 700, 35);
   text(p2Score, 755, 35);
-  
-  //MOVEMENT
-
-  //a
-  if (keyIsDown(65) && p1x >= 80) {
-    p1x -= 3;
-    hitbox -= 3;
-  }
-  //d
-  if (keyIsDown(68) && p1x <= p2x) {
-    p1x += 3;
-    hitbox += 3;
-  }
-  //left arrow
-  if (keyIsDown(LEFT_ARROW) && p2x >= p1x) {
-    p2x -= 3;
-    hitbox2 -= 3;
-  }
-  //right arrow
-  if (keyIsDown(RIGHT_ARROW) && p2x <= 720) {
-    p2x += 3;
-    hitbox2 += 3;
-  }
-  //text for winner screen
-  fill(255);
-  textSize(50);
-  
 }
 
 function keyPressed() {
-  
-  //DASH
+  p1.dash();
+  p2.dash();
 
-  //d dash
-  if (keyIsDown(65) == false && keyCode == 68) {
-    dPress += 1;
-    if (dashCount >= 12) {
-      dashCount = 0;
-      dPress = 0;
-    }
-    if (dPress == 1) {
-      p1x += 80;
-    }
+  p1.block();
+  p2.block();
+
+  p1.attack();
+  p2.attack();
+}
+
+class P1 {
+  x = 180;
+  y = ground + 100;
+  w = 80;
+  h = 200;
+  hitbox = this.x + 150;
+  aPress = 0;
+  dPress = 0;
+  dashCount = 0;
+  blockCount = 0;
+  attackCount = 100;
+
+  display() {
+    noStroke();
+    fill(255, 0, 0, 150);
+    rect(this.x - 80, this.y, this.w, this.h);
+    fill(0, 255, 0, 150);
+    rect(this.hitbox - 150, this.y + 50, 150, 100);
   }
-  //a dash
-  if (keyIsDown(68) == false && keyCode == 65) {
-    aPress += 1;
-    if (dashCount >= 12) {
-      dashCount = 0;
-      aPress = 0;
+
+  move() {
+    //a
+    if (keyIsDown(65) && this.x >= 80) {
+      this.x -= 3;
+      this.hitbox -= 3;
     }
-    if (aPress == 1) {
-      p1x -= 80;
-    }
-  }
-  //left dash
-  if (keyIsDown(RIGHT_ARROW) == false && keyCode == LEFT_ARROW) {
-    lPress += 1;
-    if (dashCount2 >= 12) {
-      dashCount2 = 0;
-      lPress = 0;
-    }
-    if (lPress == 1) {
-      p2x -= 80;
-    }
-  }
-  //right dash
-  if (keyIsDown(LEFT_ARROW) == false && keyCode == RIGHT_ARROW) {
-    rPress += 1;
-    if (dashCount2 >= 12) {
-      dashCount2 = 0;
-      rPress = 0;
-    }
-    if (rPress == 1) {
-      p2x += 80;
+    //d
+    if (keyIsDown(68) && this.x <= p2.x) {
+      this.x += 3;
+      this.hitbox += 3;
     }
   }
 
-  //BLOCK
-
-  //p1 block
-  if (keyCode == 83 && blockCount >= 60) {
-    blockCount = 0;
-    print("p1 blocking");
-  }
-  if (keyCode == DOWN_ARROW && blockCount2 >= 60) {
-    blockCount2 = 0;
-    print("p2 blocking");
-  }
-
-  //ATTACK
-
-  //p1 attack
-  if (attackCount >= 100 && keyCode == 87) {
-    attackCount = 0;
-    if (hitbox >= p2x && blockCount2 > 60) {
-      print("p1 wins");
-      p1Score += 1;
-      p1x = 180;
-      p2x = 620;
-      text('PLAYER 1 WINS', 210, 200);
+  dash() {
+    //d dash
+    if (keyIsDown(65) == false && keyCode == 68) {
+      this.dPress += 1;
+      if (dashCount >= 12) {
+        dashCount = 0;
+        this.dPress = 0;
+      }
+      if (this.dPress == 1) {
+        this.x += 80;
+        this.hitbox += 80;
+      }
     }
-    if (hitbox >= p2x && blockCount2 <= 60) {
-      print("blocked");
+    //a dash
+    if (keyIsDown(68) == false && keyCode == 65) {
+      this.aPress += 1;
+      if (dashCount >= 12) {
+        dashCount = 0;
+        this.aPress = 0;
+      }
+      if (this.aPress == 1) {
+        this.x -= 80;
+        this.hitbox -= 80;
+      }
     }
   }
-  //p2 attack
-  if (attackCount2 >= 100 && keyCode == UP_ARROW) {
-    attackCount2 = 0;
-    if (hitbox >= p2x && blockCount > 60) {
-      print("p2 wins");
-      p2Score += 1;
-      p1x = 180;
-      p2x = 620;
-      text('PLAYER 2 WINS', 210, 200);
+
+  block() {
+    if (keyCode == 83 && blockCount >= 60) {
+      blockCount = 0;
+      print("p1 blocking");
     }
-    if (hitbox >= p2x && blockCount <= 60) {
-      print("blocked");
+  }
+
+  attack() {
+    if (attackCount >= 100 && keyCode == 87) {
+      attackCount = 0;
+      if (this.hitbox >= p2.x && blockCount2 > 60) {
+        print("p1 wins");
+        p1Score += 1;
+        p2.x = 620;
+        this.x = 180;
+        p2.hitbox = p2.x - 150;
+        this.hitbox = this.x + 150;
+      }
+      if (this.hitbox >= p2.x && blockCount2 <= 60) {
+        print("blocked");
+      }
     }
   }
 }
 
+class P2 {
+  x = 620;
+  y = ground + 100;
+  w = 80;
+  h = 200;
+  hitbox = this.x - 150;
+  lPress = 0;
+  rPress = 0;
+  dashCount = 0;
+  blockCount = 0;
+  attackCount = 100;
 
-function p1() {
-  noStroke();
-  fill(255, 0, 0, 150);
-  rect(p1x - 80, 170, 80, 200);
-}
+  display() {
+    noStroke();
+    fill(0, 0, 255, 150);
+    rect(this.x, this.y, this.w, this.h);
+    fill(0, 255, 0, 150);
+    rect(this.hitbox, this.y + 50, 150, 100);
+  }
 
-function p2() {
-  noStroke();
-  fill(0, 0, 255, 150);
-  rect(p2x, 170, 80, 200);
+  move() {
+    //left
+    if (keyIsDown(LEFT_ARROW) && this.x >= p1.x) {
+      this.x -= 3;
+      this.hitbox -= 3;
+    }
+    //right
+    if (keyIsDown(RIGHT_ARROW) && this.x <= 720) {
+      this.x += 3;
+      this.hitbox += 3;
+    }
+  }
+
+  dash() {
+    //left dash
+    if (keyIsDown(RIGHT_ARROW) == false && keyCode == LEFT_ARROW) {
+      this.lPress += 1;
+      if (dashCount2 >= 12) {
+        dashCount2 = 0;
+        this.lPress = 0;
+      }
+      if (this.lPress == 1) {
+        this.x -= 80;
+        this.hitbox -= 80;
+      }
+    }
+    //right dash
+    if (keyIsDown(LEFT_ARROW) == false && keyCode == RIGHT_ARROW) {
+      this.rPress += 1;
+      if (dashCount2 >= 12) {
+        dashCount2 = 0;
+        this.rPress = 0;
+      }
+      if (this.rPress == 1) {
+        this.x += 80;
+        this.hitbox += 80;
+      }
+    }
+  }
+
+  block() {
+    if (keyCode == DOWN_ARROW && blockCount2 >= 60) {
+      blockCount2 = 0;
+      print("p2 blocking");
+    }
+  }
+
+  attack() {
+    if (attackCount2 >= 100 && keyCode == UP_ARROW) {
+      attackCount2 = 0;
+      if (this.hitbox <= p1.x && blockCount > 60) {
+        print("p2 wins");
+        p2Score += 1;
+        p1.x = 180;
+        this.x = 620;
+        p1.hitbox = p1.x + 150;
+        this.hitbox = this.x - 150;
+      }
+      if (this.hitbox <= p1.x && blockCount <= 60) {
+        print("blocked");
+      }
+    }
+  }
 }
