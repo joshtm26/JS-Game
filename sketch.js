@@ -32,13 +32,6 @@ const ground = 50;
 let p1Score = 0;
 let p2Score = 0;
 
-//timers
-let dashCount = 0;
-let dashCount2 = 0;
-let attackCount = 100;
-let attackCount2 = 100;
-let blockCount = 0;
-let blockCount2 = 0;
 
 function preload() {
   bg = loadImage(
@@ -64,16 +57,8 @@ function draw() {
   fill(0);
   rect(0, 350, 800, 50);
 
-  dashCount++;
-  dashCount2++;
-  attackCount++;
-  attackCount2++;
-  blockCount++;
-  blockCount2++;
-
   p1.display();
   p2.display();
-
   p1.move();
   p2.move();
 
@@ -131,6 +116,7 @@ class P1 {
   }
 
   dash() {
+    this.dashCount++;
     //d dash
     if (keyIsDown(65) == false && keyCode == 68) {
       this.dPress += 1;
@@ -158,6 +144,7 @@ class P1 {
   }
 
   block() {
+    this.blockCount++;
     if (keyCode == 83 && blockCount >= 60) {
       blockCount = 0;
       print("p1 blocking");
@@ -165,6 +152,7 @@ class P1 {
   }
 
   attack() {
+    this.attackCount++;
     if (attackCount >= 100 && keyCode == 87) {
       attackCount = 0;
       if (this.hitbox >= p2.x && blockCount2 > 60) {
@@ -216,6 +204,7 @@ class P2 {
   }
 
   dash() {
+    this.dashCount++;
     //left dash
     if (keyIsDown(RIGHT_ARROW) == false && keyCode == LEFT_ARROW) {
       this.lPress += 1;
@@ -243,6 +232,7 @@ class P2 {
   }
 
   block() {
+    this.blockCount++;
     if (keyCode == DOWN_ARROW && blockCount2 >= 60) {
       blockCount2 = 0;
       print("p2 blocking");
@@ -250,6 +240,7 @@ class P2 {
   }
 
   attack() {
+    this.attackCount++;
     if (attackCount2 >= 100 && keyCode == UP_ARROW) {
       attackCount2 = 0;
       if (this.hitbox <= p1.x && blockCount > 60) {
