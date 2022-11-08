@@ -32,6 +32,7 @@ let player2;
 const ground = 60;
 let p1Score = 0;
 let p2Score = 0;
+let anim = [];
 
 function preload() {
   player1 = loadImage(
@@ -46,6 +47,13 @@ function preload() {
   bgm = createAudio(
     "https://cdn.glitch.global/972c0e28-86ae-4368-9296-f573ccb7ae82/Tekken%203%20Jin%20theme%20arcade%20ver.mp3?v=1667269184277"
   );
+  const frames = [
+    loadImage("https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/attack%20frame%201.png?v=1667941448127"),
+    loadImage("https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/attack%20frame%202.png?v=1667941452785"),
+    loadImage("https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/attack%20frame%203.png?v=1667941456650"),
+    loadImage("https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/attack%20frame%204.png?v=1667941462478"),
+];
+anim = new Animation(frames);
 }
 
 function setup() {
@@ -55,6 +63,7 @@ function setup() {
   bgm.play();
   p1 = new P1();
   p2 = new P2();
+  frameRate(10);
 }
 
 function draw() {
@@ -79,6 +88,8 @@ function draw() {
   p2.blockCount++;
   p1.attackCount++;
   p2.attackCount++;
+  
+  anim.display();
 
   //scores
   fill(255);
@@ -168,6 +179,9 @@ class P1 {
   attack() {
     if (this.attackCount >= 100 && keyCode == 87) {
       this.attackCount = 0;
+      
+      anim.animate();
+      
       if (this.hitbox >= p2.x && p2.blockCount > 60) {
         print("p1 wins");
         p1Score += 1;
@@ -180,6 +194,19 @@ class P1 {
         print("blocked");
       }
     }
+  }
+}
+
+class Animation {
+  constructor(images) {
+    this.frames = images;
+    this.frame = 0;
+  }
+  animate(){
+    this.frame++;
+  }
+  display(){
+    image(this.frames[this.frame], 0, 0);
   }
 }
 
@@ -267,3 +294,4 @@ class P2 {
     }
   }
 }
+
