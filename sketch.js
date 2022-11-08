@@ -36,10 +36,10 @@ let p2Score = 0;
 
 function preload() {
   player1 = loadImage(
-    "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p1.png?v=1667893148741"
+    "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p1.png?v=1667937390640"
   );
   player2 = loadImage(
-  "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p2.png?v=1667893276630"
+  "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p2.png?v=1667937831521"
   );
   bg = loadImage(
     "https://cdn.glitch.global/628d59df-2d08-48f2-9b4b-ebaaf965e908/alley%20stage.gif?v=1666840125125"
@@ -61,8 +61,14 @@ function setup() {
 function draw() {
   background(bg);
   
+  push()
+  translate(-156, -22);
   image(player1, p1.x, p1.y);
+  pop()
+  push()
+  translate();
   image(player2, p2.x, p2.y);
+  pop()
   
   p1.display();
   p2.display();
