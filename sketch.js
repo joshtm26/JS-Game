@@ -61,6 +61,8 @@ function draw() {
   p2.display();
   p1.move();
   p2.move();
+  p1.attackCount
+  p2.attackCount++
 
   //scores
   fill(255);
@@ -69,15 +71,15 @@ function draw() {
   text(p1Score, 65, 35);
   text("P2:", 700, 35);
   text(p2Score, 755, 35);
+  
+  print(p1.attackCount)
 }
 
 function keyPressed() {
   p1.dash();
   p2.dash();
-
   p1.block();
   p2.block();
-
   p1.attack();
   p2.attack();
 }
@@ -116,7 +118,6 @@ class P1 {
   }
 
   dash() {
-    this.dashCount++;
     //d dash
     if (keyIsDown(65) == false && keyCode == 68) {
       this.dPress += 1;
@@ -144,7 +145,6 @@ class P1 {
   }
 
   block() {
-    this.blockCount++;
     if (keyCode == 83 && this.blockCount >= 60) {
       this.blockCount = 0;
       print("p1 blocking");
@@ -152,7 +152,6 @@ class P1 {
   }
 
   attack() {
-    this.attackCount++;
     if (this.attackCount >= 100 && keyCode == 87) {
       this.attackCount = 0;
       if (this.hitbox >= p2.x && p2.blockCount > 60) {
@@ -204,7 +203,6 @@ class P2 {
   }
 
   dash() {
-    this.dashCount++;
     //left dash
     if (keyIsDown(RIGHT_ARROW) == false && keyCode == LEFT_ARROW) {
       this.lPress += 1;
@@ -232,7 +230,6 @@ class P2 {
   }
 
   block() {
-    this.blockCount++;
     if (keyCode == DOWN_ARROW && this.blockCount >= 60) {
       this.blockCount = 0;
       print("p2 blocking");
@@ -240,7 +237,6 @@ class P2 {
   }
 
   attack() {
-    this.attackCount++;
     if (this.attackCount >= 100 && keyCode == UP_ARROW) {
       this.attackCount = 0;
       if (this.hitbox <= p1.x && p1.blockCount > 60) {
