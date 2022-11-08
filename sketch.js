@@ -28,6 +28,8 @@ guilty gear counter text in bg lol
 
 let bgm;
 let bg;
+let player1;
+let player2;
 const ground = 60;
 let p1Score = 0;
 let p2Score = 0;
