@@ -52,9 +52,6 @@ function setup() {
 
 function draw() {
   background(bg);
-  // background(200);
-  // fill(0);
-  // rect(0, 350, 800, 40);
 
   p1.display();
   p2.display();
