@@ -48,12 +48,20 @@ function preload() {
     "https://cdn.glitch.global/972c0e28-86ae-4368-9296-f573ccb7ae82/Tekken%203%20Jin%20theme%20arcade%20ver.mp3?v=1667269184277"
   );
   const frames = [
-    loadImage("https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/attack%20frame%201.png?v=1667941448127"),
-    loadImage("https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/attack%20frame%202.png?v=1667941452785"),
-    loadImage("https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/attack%20frame%203.png?v=1667941456650"),
-    loadImage("https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/attack%20frame%204.png?v=1667941462478"),
-];
-anim = new Animation(frames);
+    loadImage(
+      "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/attack%20frame%201.png?v=1667941448127"
+    ),
+    loadImage(
+      "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/attack%20frame%202.png?v=1667941452785"
+    ),
+    loadImage(
+      "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/attack%20frame%203.png?v=1667941456650"
+    ),
+    loadImage(
+      "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/attack%20frame%204.png?v=1667941462478"
+    ),
+  ];
+  anim = new Animation(frames);
 }
 
 function setup() {
@@ -87,8 +95,11 @@ function draw() {
   p2.blockCount++;
   p1.attackCount++;
   p2.attackCount++;
-  
-  anim.display();
+
+  if (anim.animating) {
+    anim.display();
+  }
+    
 
   //scores
   fill(255);
@@ -97,8 +108,6 @@ function draw() {
   text(p1Score, 65, 35);
   text("P2:", 700, 35);
   text(p2Score, 755, 35);
-  
-  print(p1.attackCount);
 }
 
 function keyPressed() {
@@ -180,9 +189,9 @@ class P1 {
   attack() {
     if (this.attackCount >= 100 && keyCode == 87) {
       this.attackCount = 0;
-      
-      anim.animate();
-      
+
+      anim.play();
+
       if (this.hitbox >= p2.x && p2.blockCount > 60) {
         print("p1 wins");
         p1Score += 1;
@@ -202,12 +211,28 @@ class Animation {
   constructor(images) {
     this.frames = images;
     this.frame = 0;
+    this.frameRate = 5;
+    this.frameHold = 0;
+    this.animating = false;
   }
-  animate(){
-    for (let this.frame = 0; this.frame < this.frame.length; this.frame++)
+  animate() {
+    this.frameHold++;
+    if (this.frameHold >= frameRate() / this.frameRate) {
+      this.frame++;
+      this.frameHold = 0;
+    }
+    if (this.frame == this.frames.length - 1) {
+      this.animating = false;
+    }
   }
-  display(){
+
+  display() {
     image(this.frames[this.frame], p1.x, ground);
+  }
+
+  play() {
+    this.animating = true;
+    this.frame = 0;
   }
 }
 
@@ -295,4 +320,3 @@ class P2 {
     }
   }
 }
-
