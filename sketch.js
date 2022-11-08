@@ -61,14 +61,8 @@ function setup() {
 function draw() {
   background(bg);
   
-  push();
-  scale(4);
-  translate()
   image(player1, p1.x, p1.y);
-  pop();
-  push();
   image(player2, p2.x, p2.y);
-  pop();
   
   p1.display();
   p2.display();
