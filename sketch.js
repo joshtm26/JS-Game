@@ -28,10 +28,9 @@ guilty gear counter text in bg lol
 
 let bgm;
 let bg;
-const ground = 50;
+const ground = 60;
 let p1Score = 0;
 let p2Score = 0;
-
 
 function preload() {
   bg = loadImage(
@@ -52,17 +51,21 @@ function setup() {
 }
 
 function draw() {
-  //background(bg);
-  background(200);
-  fill(0);
-  rect(0, 350, 800, 50);
+  background(bg);
+  // background(200);
+  // fill(0);
+  // rect(0, 350, 800, 40);
 
   p1.display();
   p2.display();
   p1.move();
   p2.move();
-  p1.attackCount
-  p2.attackCount++
+  p1.dashCount++;
+  p2.dashCount++;
+  p1.blockCount++;
+  p2.blockCount++;
+  p1.attackCount++;
+  p2.attackCount++;
 
   //scores
   fill(255);
@@ -71,8 +74,6 @@ function draw() {
   text(p1Score, 65, 35);
   text("P2:", 700, 35);
   text(p2Score, 755, 35);
-  
-  print(p1.attackCount)
 }
 
 function keyPressed() {
