@@ -97,9 +97,10 @@ function draw() {
   p2.attackCount++;
 
   if (anim.animating) {
-    anim.display();
+    anim.animate(); {
+      anim.display();
+    }
   }
-    
 
   //scores
   fill(255);
