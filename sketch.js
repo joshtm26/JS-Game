@@ -69,8 +69,8 @@ function draw() {
   image(player2, p2.x, p2.y);
   pop();
 
-  p1.display();
-  p2.display();
+  //p1.display();
+  //p2.display();
   p1.move();
   p2.move();
   p1.dashCount++;
