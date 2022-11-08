@@ -17,7 +17,6 @@ Down Arrow: block
 double tap left or right to perform a dash
 
 TO DO
-overlay sprites
 add the animations for the actions
 add sounds to the actions
 make a start screen and 3, 2, 1 countdown
@@ -62,16 +61,16 @@ function draw() {
   background(bg);
   
   push()
-  translate(-156, -22);
+  translate(-145, -22);
   image(player1, p1.x, p1.y);
   pop()
   push()
-  translate();
+  translate(-90, -58);
   image(player2, p2.x, p2.y);
   pop()
   
-  p1.display();
-  p2.display();
+  //p1.display();
+  //p2.display();
   p1.move();
   p2.move();
   p1.dashCount++;
