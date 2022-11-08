@@ -38,7 +38,7 @@ function preload() {
     "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p1.png?v=1667937390640"
   );
   player2 = loadImage(
-  "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p2.png?v=1667937831521"
+    "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p2.png?v=1667937831521"
   );
   bg = loadImage(
     "https://cdn.glitch.global/628d59df-2d08-48f2-9b4b-ebaaf965e908/alley%20stage.gif?v=1666840125125"
@@ -59,18 +59,18 @@ function setup() {
 
 function draw() {
   background(bg);
-  
-  push()
+
+  push();
   translate(-145, -22);
   image(player1, p1.x, p1.y);
-  pop()
-  push()
+  pop();
+  push();
   translate(-90, -58);
   image(player2, p2.x, p2.y);
-  pop()
-  
-  //p1.display();
-  //p2.display();
+  pop();
+
+  p1.display();
+  p2.display();
   p1.move();
   p2.move();
   p1.dashCount++;
@@ -112,9 +112,9 @@ class P1 {
 
   display() {
     noStroke();
-    fill(255, 0, 0, 150);
+    fill(255, 0, 0, 100);
     rect(this.x - 80, this.y, this.w, this.h);
-    fill(0, 255, 0, 150);
+    fill(0, 255, 0, 100);
     rect(this.hitbox - 150, this.y + 50, 150, 100);
   }
 
@@ -197,9 +197,9 @@ class P2 {
 
   display() {
     noStroke();
-    fill(0, 0, 255, 150);
+    fill(0, 0, 255, 100);
     rect(this.x, this.y, this.w, this.h);
-    fill(0, 255, 0, 150);
+    fill(0, 255, 0, 100);
     rect(this.hitbox, this.y + 50, 150, 100);
   }
 
