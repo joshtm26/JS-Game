@@ -63,7 +63,6 @@ function setup() {
   bgm.play();
   p1 = new P1();
   p2 = new P2();
-  frameRate(10);
 }
 
 function draw() {
@@ -98,6 +97,8 @@ function draw() {
   text(p1Score, 65, 35);
   text("P2:", 700, 35);
   text(p2Score, 755, 35);
+  
+  print(p1.attackCount);
 }
 
 function keyPressed() {
@@ -203,10 +204,10 @@ class Animation {
     this.frame = 0;
   }
   animate(){
-    this.frame++;
+    for (let this.frame = 0; this.frame < this.frame.length; this.frame++)
   }
   display(){
-    image(this.frames[this.frame], 0, 0);
+    image(this.frames[this.frame], p1.x, ground);
   }
 }
 
