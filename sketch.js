@@ -122,7 +122,7 @@ function draw() {
     p2attackanim.display();
   }
 
-
+print(p1.attackCount);
   //scores
   fill(255);
   textSize(30);
@@ -202,7 +202,7 @@ class Player1 {
   }
 
   block() {
-    if (keyCode == 83 && this.blockCount >= 60) {
+    if (keyCode == 83 && keyIsDown(65) == false && keyIsDown(68) == false && this.blockCount >= 100) {
       this.blockCount = 0;
       print("p1 blocking");
     }
@@ -212,7 +212,7 @@ class Player1 {
     if (this.attackCount >= 100 && keyCode == 87) {
       this.attackCount = 0;
       p1attackanim.play();
-      if (this.hitbox >= p2.x && p2.blockCount > 60) {
+      if (this.hitbox >= p2.x && p2.blockCount > 60 && this.attackCount > 5 && this.attackCount < 10) {
         p1Score += 1;
         p2.x = 850;
         this.x = 180;
@@ -287,7 +287,7 @@ class Player2 {
   }
 
   block() {
-    if (keyCode == DOWN_ARROW && this.blockCount >= 60) {
+    if (keyCode == DOWN_ARROW && keyIsDown(LEFT_ARROW) == false && keyIsDown(RIGHT_ARROW) == false && this.blockCount >= 100) {
       this.blockCount = 0;
       print("p2 blocking");
     }
