@@ -29,7 +29,7 @@ let bgm;
 let bg;
 let player1;
 let player2;
-const ground = 60;
+const ground = 150;
 let p1Score = 0;
 let p2Score = 0;
 let anim = [];
@@ -65,7 +65,7 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(800, 400);
+  createCanvas(1000, 500);
   angleMode(DEGREES);
   bgm.volume(0.3);
   bgm.play();
@@ -142,7 +142,7 @@ class P1 {
 
   move() {
     //a
-    if (keyIsDown(65) && this.x >= 80) {
+    if (keyIsDown(65) && this.x >= 90) {
       this.x -= 3;
       this.hitbox -= 3;
     }
@@ -208,37 +208,8 @@ class P1 {
   }
 }
 
-class Animation {
-  constructor(images) {
-    this.frames = images;
-    this.frame = 0;
-    this.frameRate = 5;
-    this.frameHold = 0;
-    this.animating = false;
-  }
-  animate() {
-    this.frameHold++;
-    if (this.frameHold >= frameRate() / this.frameRate) {
-      this.frame++;
-      this.frameHold = 0;
-    }
-    if (this.frame == this.frames.length - 1) {
-      this.animating = false;
-    }
-  }
-
-  display() {
-    image(this.frames[this.frame], p1.x, ground);
-  }
-
-  play() {
-    this.animating = true;
-    this.frame = 0;
-  }
-}
-
 class P2 {
-  x = 620;
+  x = 850;
   y = ground + 100;
   w = 80;
   h = 200;
@@ -264,7 +235,7 @@ class P2 {
       this.hitbox -= 3;
     }
     //right
-    if (keyIsDown(RIGHT_ARROW) && this.x <= 720) {
+    if (keyIsDown(RIGHT_ARROW) && this.x <= 940) {
       this.x += 3;
       this.hitbox += 3;
     }
@@ -319,5 +290,34 @@ class P2 {
         print("blocked");
       }
     }
+  }
+}
+
+class Animation {
+  constructor(images) {
+    this.frames = images;
+    this.frame = 0;
+    this.frameRate = 15;
+    this.frameHold = 0;
+    this.animating = false;
+  }
+  animate() {
+    this.frameHold++;
+    if (this.frameHold >= frameRate() / this.frameRate) {
+      this.frame++;
+      this.frameHold = 0;
+    }
+    if (this.frame == this.frames.length - 1) {
+      this.animating = false;
+    }
+  }
+
+  display() {
+    image(this.frames[this.frame], p1.x, ground);
+  }
+
+  play() {
+    this.animating = true;
+    this.frame = 0;
   }
 }
