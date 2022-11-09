@@ -62,8 +62,6 @@ function preload() {
       "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/attack%20frame%204.png?v=1667970223885"
     ),
   ];
-  p1attackanim = new P1AttackAnimation(p1attackframes);
-  
   const p2attackframes = [
     loadImage(
       "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p2%20attack%20frame%201.png?v=1667972603469"
@@ -78,8 +76,8 @@ function preload() {
       "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p2%20attack%20frame%204.png?v=1667972617590"
     ),
   ];
+  p1attackanim = new P1AttackAnimation(p1attackframes);
   p2attackanim = new P2AttackAnimation(p2attackframes);
-
 }
 
 function setup() {
@@ -87,8 +85,8 @@ function setup() {
   angleMode(DEGREES);
   bgm.volume(0.3);
   bgm.play();
-  p1 = new P1();
-  p2 = new P2();
+  p1 = new Player1();
+  p2 = new Player2();
 }
 
 function draw() {
@@ -103,8 +101,8 @@ function draw() {
   image(player2, p2.x, p2.y);
   pop();
 
-  // p1.display();
-  // p2.display();
+  p1.display();
+  p2.display();
   p1.move();
   p2.move();
   p1.dashCount++;
@@ -143,7 +141,7 @@ function keyPressed() {
   p2.attack();
 }
 
-class P1 {
+class Player1 {
   x = 180;
   y = ground + 100;
   w = 80;
@@ -218,7 +216,7 @@ class P1 {
         p1Score += 1;
         p2.x = 850;
         this.x = 180;
-        p2.hitbox = p2.x - 150;
+        p2.hitbox = p2.x - 302;
         this.hitbox = this.x + 320;
       }
       if (this.hitbox >= p2.x && p2.blockCount <= 60) {
@@ -228,12 +226,12 @@ class P1 {
   }
 }
 
-class P2 {
+class Player2 {
   x = 850;
   y = ground + 100;
   w = 80;
   h = 200;
-  hitbox = this.x - 150;
+  hitbox = this.x - 302;
   lPress = 0;
   rPress = 0;
   dashCount = 0;
@@ -245,7 +243,7 @@ class P2 {
     fill(0, 0, 255, 100);
     rect(this.x, this.y, this.w, this.h);
     fill(0, 255, 0, 100);
-    rect(this.hitbox, this.y + 30, 150, 100);
+    rect(this.hitbox, this.y + 30, 302, 100);
   }
 
   move() {
@@ -303,8 +301,8 @@ class P2 {
         p2Score += 1;
         p1.x = 180;
         this.x = 850;
-        p1.hitbox = p1.x + 150;
-        this.hitbox = this.x - 150;
+        p1.hitbox = p1.x + 320;
+        this.hitbox = this.x - 302;
       }
       if (this.hitbox <= p1.x && p1.blockCount <= 60) {
         print("blocked");
@@ -347,7 +345,7 @@ class P2AttackAnimation {
   constructor(images) {
     this.p2attackframes = images;
     this.frame = 0;
-    this.frameRate = 10;
+    this.frameRate = 12;
     this.frameHold = 0;
     this.animating = false;
   }
@@ -364,7 +362,7 @@ class P2AttackAnimation {
   }
 
   display() {
-    image(this.p2attackframes[this.frame], p1.x + 298, ground - 212);
+    image(this.p2attackframes[this.frame], p2.x - 370, ground - 212);
   }
 
   play() {
