@@ -47,7 +47,8 @@ function preload() {
   bgm = createAudio(
     "https://cdn.glitch.global/972c0e28-86ae-4368-9296-f573ccb7ae82/Tekken%203%20Jin%20theme%20arcade%20ver.mp3?v=1667269184277"
   );
-  const frames = [
+  
+  const p1attackframes = [
     loadImage(
       "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/attack%20frame%201.png?v=1667970012328"
     ),
@@ -61,7 +62,24 @@ function preload() {
       "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/attack%20frame%204.png?v=1667970223885"
     ),
   ];
-  p1attack = new Player1Attack(frames);
+  p1attackanim = new P1AttackAnimation(p1attackframes);
+  
+  const p2attackframes = [
+    loadImage(
+      "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p2%20attack%20frame%201.png?v=1667972603469"
+    ),
+    loadImage(
+      "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p2%20attack%20frame%202.png?v=1667972607799"
+    ),
+    loadImage(
+      "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p2%20attack%20frame%203.png?v=1667972612278"
+    ),
+    loadImage(
+      "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p2%20attack%20frame%204.png?v=1667972617590"
+    ),
+  ];
+  p2attackanim = new P2AttackAnimation(p2attackframes);
+
 }
 
 function setup() {
@@ -96,10 +114,16 @@ function draw() {
   p1.attackCount++;
   p2.attackCount++;
 
-  if (anim.animating) {
-    anim.animate();
-    anim.display();
+  if (p1attackanim.animating) {
+    p1attackanim.animate();
+    p1attackanim.display();
   }
+  
+  if (p2attackanim.animating) {
+    p2attackanim.animate();
+    p2attackanim.display();
+  }
+
 
   //scores
   fill(255);
@@ -189,7 +213,7 @@ class P1 {
   attack() {
     if (this.attackCount >= 100 && keyCode == 87) {
       this.attackCount = 0;
-      anim.play();
+      p1attackanim.play();
       if (this.hitbox >= p2.x && p2.blockCount > 60) {
         p1Score += 1;
         p2.x = 850;
@@ -274,6 +298,7 @@ class P2 {
   attack() {
     if (this.attackCount >= 100 && keyCode == UP_ARROW) {
       this.attackCount = 0;
+      p2attackanim.play();
       if (this.hitbox <= p1.x && p1.blockCount > 60) {
         p2Score += 1;
         p1.x = 180;
@@ -288,9 +313,9 @@ class P2 {
   }
 }
 
-class Player1Attack {
+class P1AttackAnimation {
   constructor(images) {
-    this.frames = images;
+    this.p1attackframes = images;
     this.frame = 0;
     this.frameRate = 15;
     this.frameHold = 0;
@@ -303,13 +328,43 @@ class Player1Attack {
       this.frame++;
       this.frameHold = 0;
     }
-    if (this.frame == this.frames.length - 1) {
+    if (this.frame == this.p1attackframes.length - 1) {
       this.animating = false;
     }
   }
 
   display() {
-    image(this.frames[this.frame], p1.x - 436, ground - 188);
+    image(this.p1attackframes[this.frame], p1.x - 436, ground - 188);
+  }
+
+  play() {
+    this.animating = true;
+    this.frame = 0;
+  }
+}
+
+class P2AttackAnimation {
+  constructor(images) {
+    this.p2attackframes = images;
+    this.frame = 0;
+    this.frameRate = 15;
+    this.frameHold = 0;
+    this.animating = false;
+  }
+  
+  animate() {
+    this.frameHold++;
+    if (this.frameHold >= frameRate()/this.frameRate) {
+      this.frame++;
+      this.frameHold = 0;
+    }
+    if (this.frame == this.p2attackframes.length - 1) {
+      this.animating = false;
+    }
+  }
+
+  display() {
+    image(this.p2attackframes[this.frame], p1.x - 436, ground - 188);
   }
 
   play() {
