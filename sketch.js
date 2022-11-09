@@ -24,7 +24,9 @@ add sounds to the actions
 make a block animation
 make a start screen and 3, 2, 1 countdown
 make a pause and display winner text when someone wins
-guilty gear counter text in bg lol
+add health
+
+figure out how to use p5.play holy shit it looks so much easier
 
 */
 
@@ -111,8 +113,8 @@ function draw() {
       pop();
     }
 
-  // p1.display();
-  // p2.display();
+  // p1.hitboxes();
+  // p2.hitboxes();
   p1.move();
   p2.move();
   p1.dashCount++;
@@ -162,7 +164,7 @@ class Player1 {
   blockCount = 0;
   attackCount = 100;
 
-  display() {
+  hitboxes() {
     noStroke();
     fill(255, 0, 0, 100);
     rect(this.x - 80, this.y, this.w, this.h);
@@ -253,7 +255,7 @@ class Player2 {
   blockCount = 0;
   attackCount = 100;
 
-  display() {
+  hitboxes() {
     noStroke();
     fill(0, 0, 255, 100);
     rect(this.x, this.y, this.w, this.h);
