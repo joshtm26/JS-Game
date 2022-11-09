@@ -94,31 +94,22 @@ function setup() {
 
 function draw() {
   background(bg);
-
-  //why is this an infinite loop?
   
-  //   while (p1attackanim.animating == false) {
-  //     push();
-  //     translate(-145, -22);
-  //     image(player1, p1.x, p1.y);
-  //     pop();
-  //   }
+    if (p1attackanim.animating == false) {
+      push();
+      translate(-145, -22);
+      image(player1, p1.x, p1.y);
+      pop();
+    } else {
+      
+    }
 
-  //   while (p2attackanim.animating == false) {
-  //     push();
-  //     translate(-90, -58);
-  //     image(player2, p2.x, p2.y);
-  //     pop();
-  //   }
-
-  push();
-  translate(-145, -22);
-  image(player1, p1.x, p1.y);
-  pop();
-  push();
-  translate(-90, -58);
-  image(player2, p2.x, p2.y);
-  pop();
+    if (p2attackanim.animating == false) {
+      push();
+      translate(-90, -58);
+      image(player2, p2.x, p2.y);
+      pop();
+    }
 
   // p1.display();
   // p2.display();
@@ -224,7 +215,8 @@ class Player1 {
       keyCode == 83 &&
       keyIsDown(65) == false &&
       keyIsDown(68) == false &&
-      this.blockCount >= 100
+      this.blockCount >= 100 &&
+      this.attackCount >= 100
     ) {
       this.blockCount = 0;
       print("p1 blocking");
@@ -314,7 +306,8 @@ class Player2 {
       keyCode == DOWN_ARROW &&
       keyIsDown(LEFT_ARROW) == false &&
       keyIsDown(RIGHT_ARROW) == false &&
-      this.blockCount >= 100
+      this.blockCount >= 100 &&
+      this.attackCount >= 100
     ) {
       this.blockCount = 0;
       print("p2 blocking");
