@@ -29,7 +29,7 @@ let bgm;
 let bg;
 let player1;
 let player2;
-const ground = 150;
+const ground = 110;
 let p1Score = 0;
 let p2Score = 0;
 let anim = [];
@@ -49,23 +49,23 @@ function preload() {
   );
   const frames = [
     loadImage(
-      "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/attack%20frame%201.png?v=1667941448127"
+      "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/attack%20frame%201.png?v=1667970012328"
     ),
     loadImage(
-      "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/attack%20frame%202.png?v=1667941452785"
+      "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/attack%20frame%202.png?v=1667970022137"
     ),
     loadImage(
-      "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/attack%20frame%203.png?v=1667941456650"
+      "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/attack%20frame%203.png?v=1667970027482"
     ),
     loadImage(
-      "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/attack%20frame%204.png?v=1667941462478"
+      "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/attack%20frame%204.png?v=1667970223885"
     ),
   ];
   anim = new Animation(frames);
 }
 
 function setup() {
-  createCanvas(1000, 500);
+  createCanvas(1000, 450);
   angleMode(DEGREES);
   bgm.volume(0.3);
   bgm.play();
@@ -97,9 +97,8 @@ function draw() {
   p2.attackCount++;
 
   if (anim.animating) {
-    anim.animate(); {
-      anim.display();
-    }
+    anim.animate();
+    anim.display();
   }
 
   //scores
@@ -107,8 +106,8 @@ function draw() {
   textSize(30);
   text("P1:", 10, 35);
   text(p1Score, 65, 35);
-  text("P2:", 700, 35);
-  text(p2Score, 755, 35);
+  text("P2:", 900, 35);
+  text(p2Score, 955, 35);
 }
 
 function keyPressed() {
@@ -313,7 +312,7 @@ class Animation {
   }
 
   display() {
-    image(this.frames[this.frame], p1.x - 125, ground + 90);
+    image(this.frames[this.frame], p1.x - 400, ground - 130);
   }
 
   play() {
