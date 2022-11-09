@@ -193,7 +193,7 @@ class P1 {
       if (this.hitbox >= p2.x && p2.blockCount > 60) {
         print("p1 wins");
         p1Score += 1;
-        p2.x = 620;
+        p2.x = 850;
         this.x = 180;
         p2.hitbox = p2.x - 150;
         this.hitbox = this.x + 150;
@@ -279,7 +279,7 @@ class P2 {
         print("p2 wins");
         p2Score += 1;
         p1.x = 180;
-        this.x = 620;
+        this.x = 850;
         p1.hitbox = p1.x + 150;
         this.hitbox = this.x - 150;
       }
