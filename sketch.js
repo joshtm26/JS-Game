@@ -103,8 +103,8 @@ function draw() {
   image(player2, p2.x, p2.y);
   pop();
 
-  p1.display();
-  p2.display();
+  // p1.display();
+  // p2.display();
   p1.move();
   p2.move();
   p1.dashCount++;
@@ -317,7 +317,7 @@ class P1AttackAnimation {
   constructor(images) {
     this.p1attackframes = images;
     this.frame = 0;
-    this.frameRate = 15;
+    this.frameRate = 10;
     this.frameHold = 0;
     this.animating = false;
   }
@@ -347,7 +347,7 @@ class P2AttackAnimation {
   constructor(images) {
     this.p2attackframes = images;
     this.frame = 0;
-    this.frameRate = 15;
+    this.frameRate = 10;
     this.frameHold = 0;
     this.animating = false;
   }
@@ -364,7 +364,7 @@ class P2AttackAnimation {
   }
 
   display() {
-    image(this.p2attackframes[this.frame], p1.x - 436, ground - 188);
+    image(this.p2attackframes[this.frame], p1.x + 298, ground - 212);
   }
 
   play() {
