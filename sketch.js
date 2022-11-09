@@ -212,7 +212,7 @@ class Player1 {
     if (this.attackCount >= 100 && keyCode == 87) {
       this.attackCount = 0;
       p1attackanim.play();
-      if (this.hitbox >= p2.x && p2.blockCount > 60 && this.attackCount > 5 && this.attackCount < 10) {
+      if (this.hitbox >= p2.x && p2.blockCount > 60 && 5 < this.attackCount && this.attackCount < 10) {
         p1Score += 1;
         p2.x = 850;
         this.x = 180;
