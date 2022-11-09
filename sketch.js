@@ -183,8 +183,8 @@ class Player1 {
         this.dPress = 0;
       }
       if (this.dPress == 1) {
-        this.x += 80;
-        this.hitbox += 80;
+        this.x += 60;
+        this.hitbox += 60;
       }
     }
     //a dash
@@ -195,8 +195,8 @@ class Player1 {
         this.aPress = 0;
       }
       if (this.aPress == 1) {
-        this.x -= 80;
-        this.hitbox -= 80;
+        this.x -= 60;
+        this.hitbox -= 60;
       }
     }
   }
@@ -212,7 +212,7 @@ class Player1 {
     if (this.attackCount >= 100 && keyCode == 87) {
       this.attackCount = 0;
       p1attackanim.play();
-      if (this.hitbox >= p2.x && p2.blockCount > 60 && 5 < this.attackCount && this.attackCount < 10) {
+      if (this.hitbox >= p2.x && p2.blockCount > 60) {
         p1Score += 1;
         p2.x = 850;
         this.x = 180;
@@ -268,8 +268,8 @@ class Player2 {
         this.lPress = 0;
       }
       if (this.lPress == 1) {
-        this.x -= 80;
-        this.hitbox -= 80;
+        this.x -= 60;
+        this.hitbox -= 60;
       }
     }
     //right dash
@@ -280,8 +280,8 @@ class Player2 {
         this.rPress = 0;
       }
       if (this.rPress == 1) {
-        this.x += 80;
-        this.hitbox += 80;
+        this.x += 60;
+        this.hitbox += 60;
       }
     }
   }
@@ -315,7 +315,7 @@ class P1AttackAnimation {
   constructor(images) {
     this.p1attackframes = images;
     this.frame = 0;
-    this.frameRate = 10;
+    this.frameRate = 15;
     this.frameHold = 0;
     this.animating = false;
   }
@@ -345,7 +345,7 @@ class P2AttackAnimation {
   constructor(images) {
     this.p2attackframes = images;
     this.frame = 0;
-    this.frameRate = 12;
+    this.frameRate = 15;
     this.frameHold = 0;
     this.animating = false;
   }
