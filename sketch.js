@@ -18,7 +18,10 @@ double tap left or right to perform a dash
 
 TO DO
 add the animations for the actions
+fix dash to not be a teleport
+pause in between rounds, enough time to at least fully show death animation
 add sounds to the actions
+make a block animation
 make a start screen and 3, 2, 1 countdown
 make a pause and display winner text when someone wins
 guilty gear counter text in bg lol
@@ -93,7 +96,7 @@ function draw() {
   background(bg);
 
   //why is this an infinite loop?
-
+  
   //   while (p1attackanim.animating == false) {
   //     push();
   //     translate(-145, -22);
@@ -337,6 +340,7 @@ class Player2 {
 }
 
 class P1AttackAnimation {
+  
   constructor(images) {
     this.p1attackframes = images;
     this.frame = 0;
@@ -367,6 +371,7 @@ class P1AttackAnimation {
 }
 
 class P2AttackAnimation {
+  
   constructor(images) {
     this.p2attackframes = images;
     this.frame = 0;
