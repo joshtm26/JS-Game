@@ -124,7 +124,7 @@ class P1 {
   y = ground + 100;
   w = 80;
   h = 200;
-  hitbox = this.x + 150;
+  hitbox = this.x + 300;
   aPress = 0;
   dPress = 0;
   dashCount = 0;
