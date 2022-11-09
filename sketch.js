@@ -47,7 +47,7 @@ function preload() {
   bgm = createAudio(
     "https://cdn.glitch.global/972c0e28-86ae-4368-9296-f573ccb7ae82/Tekken%203%20Jin%20theme%20arcade%20ver.mp3?v=1667269184277"
   );
-  
+
   const p1attackframes = [
     loadImage(
       "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/attack%20frame%201.png?v=1667970012328"
@@ -92,6 +92,22 @@ function setup() {
 function draw() {
   background(bg);
 
+  //why is this an infinite loop?
+
+  //   while (p1attackanim.animating == false) {
+  //     push();
+  //     translate(-145, -22);
+  //     image(player1, p1.x, p1.y);
+  //     pop();
+  //   }
+
+  //   while (p2attackanim.animating == false) {
+  //     push();
+  //     translate(-90, -58);
+  //     image(player2, p2.x, p2.y);
+  //     pop();
+  //   }
+
   push();
   translate(-145, -22);
   image(player1, p1.x, p1.y);
@@ -101,8 +117,8 @@ function draw() {
   image(player2, p2.x, p2.y);
   pop();
 
-  p1.display();
-  p2.display();
+  // p1.display();
+  // p2.display();
   p1.move();
   p2.move();
   p1.dashCount++;
@@ -116,13 +132,12 @@ function draw() {
     p1attackanim.animate();
     p1attackanim.display();
   }
-  
+
   if (p2attackanim.animating) {
     p2attackanim.animate();
     p2attackanim.display();
   }
 
-print(p1.attackCount);
   //scores
   fill(255);
   textSize(30);
@@ -202,7 +217,12 @@ class Player1 {
   }
 
   block() {
-    if (keyCode == 83 && keyIsDown(65) == false && keyIsDown(68) == false && this.blockCount >= 100) {
+    if (
+      keyCode == 83 &&
+      keyIsDown(65) == false &&
+      keyIsDown(68) == false &&
+      this.blockCount >= 100
+    ) {
       this.blockCount = 0;
       print("p1 blocking");
     }
@@ -287,7 +307,12 @@ class Player2 {
   }
 
   block() {
-    if (keyCode == DOWN_ARROW && keyIsDown(LEFT_ARROW) == false && keyIsDown(RIGHT_ARROW) == false && this.blockCount >= 100) {
+    if (
+      keyCode == DOWN_ARROW &&
+      keyIsDown(LEFT_ARROW) == false &&
+      keyIsDown(RIGHT_ARROW) == false &&
+      this.blockCount >= 100
+    ) {
       this.blockCount = 0;
       print("p2 blocking");
     }
@@ -319,10 +344,10 @@ class P1AttackAnimation {
     this.frameHold = 0;
     this.animating = false;
   }
-  
+
   animate() {
     this.frameHold++;
-    if (this.frameHold >= frameRate()/this.frameRate) {
+    if (this.frameHold >= frameRate() / this.frameRate) {
       this.frame++;
       this.frameHold = 0;
     }
@@ -349,10 +374,10 @@ class P2AttackAnimation {
     this.frameHold = 0;
     this.animating = false;
   }
-  
+
   animate() {
     this.frameHold++;
-    if (this.frameHold >= frameRate()/this.frameRate) {
+    if (this.frameHold >= frameRate() / this.frameRate) {
       this.frame++;
       this.frameHold = 0;
     }
