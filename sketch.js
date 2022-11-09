@@ -20,13 +20,12 @@ TO DO
 add the animations for the actions
 fix dash to not be a teleport
 pause in between rounds, enough time to at least fully show death animation
-add sounds to the actions
-make a block animation
+add sounds effects to the actions
 make a start screen and 3, 2, 1 countdown
-make a pause and display winner text when someone wins
+make a block animation
 add health
 
-figure out how to use p5.play holy shit it looks so much easier
+figure out how to add p5.play 
 
 */
 
@@ -96,22 +95,21 @@ function setup() {
 
 function draw() {
   background(bg);
-  
-    if (p1attackanim.animating == false) {
-      push();
-      translate(-145, -22);
-      image(player1, p1.x, p1.y);
-      pop();
-    } else {
-      
-    }
 
-    if (p2attackanim.animating == false) {
-      push();
-      translate(-90, -58);
-      image(player2, p2.x, p2.y);
-      pop();
-    }
+  if (p1attackanim.animating == false) {
+    push();
+    translate(-145, -22);
+    image(player1, p1.x, p1.y);
+    pop();
+  } else {
+  }
+
+  if (p2attackanim.animating == false) {
+    push();
+    translate(-90, -58);
+    image(player2, p2.x, p2.y);
+    pop();
+  }
 
   // p1.hitboxes();
   // p2.hitboxes();
@@ -335,7 +333,6 @@ class Player2 {
 }
 
 class P1AttackAnimation {
-  
   constructor(images) {
     this.p1attackframes = images;
     this.frame = 0;
@@ -366,7 +363,6 @@ class P1AttackAnimation {
 }
 
 class P2AttackAnimation {
-  
   constructor(images) {
     this.p2attackframes = images;
     this.frame = 0;
