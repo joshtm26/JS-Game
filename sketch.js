@@ -61,7 +61,7 @@ function preload() {
       "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/attack%20frame%204.png?v=1667970223885"
     ),
   ];
-  anim = new Animation(frames);
+  p1attack = new Player1Attack(frames);
 }
 
 function setup() {
@@ -85,8 +85,8 @@ function draw() {
   image(player2, p2.x, p2.y);
   pop();
 
-  //p1.display();
-  //p2.display();
+  p1.display();
+  p2.display();
   p1.move();
   p2.move();
   p1.dashCount++;
@@ -124,7 +124,7 @@ class P1 {
   y = ground + 100;
   w = 80;
   h = 200;
-  hitbox = this.x + 300;
+  hitbox = this.x + 320;
   aPress = 0;
   dPress = 0;
   dashCount = 0;
@@ -136,7 +136,7 @@ class P1 {
     fill(255, 0, 0, 100);
     rect(this.x - 80, this.y, this.w, this.h);
     fill(0, 255, 0, 100);
-    rect(this.hitbox - 150, this.y + 50, 150, 100);
+    rect(this.hitbox - 320, this.y + 30, 320, 100);
   }
 
   move() {
@@ -191,12 +191,11 @@ class P1 {
       this.attackCount = 0;
       anim.play();
       if (this.hitbox >= p2.x && p2.blockCount > 60) {
-        print("p1 wins");
         p1Score += 1;
         p2.x = 850;
         this.x = 180;
         p2.hitbox = p2.x - 150;
-        this.hitbox = this.x + 150;
+        this.hitbox = this.x + 320;
       }
       if (this.hitbox >= p2.x && p2.blockCount <= 60) {
         print("blocked");
@@ -222,7 +221,7 @@ class P2 {
     fill(0, 0, 255, 100);
     rect(this.x, this.y, this.w, this.h);
     fill(0, 255, 0, 100);
-    rect(this.hitbox, this.y + 50, 150, 100);
+    rect(this.hitbox, this.y + 30, 150, 100);
   }
 
   move() {
@@ -276,7 +275,6 @@ class P2 {
     if (this.attackCount >= 100 && keyCode == UP_ARROW) {
       this.attackCount = 0;
       if (this.hitbox <= p1.x && p1.blockCount > 60) {
-        print("p2 wins");
         p2Score += 1;
         p1.x = 180;
         this.x = 850;
@@ -290,7 +288,7 @@ class P2 {
   }
 }
 
-class Animation {
+class Player1Attack {
   constructor(images) {
     this.frames = images;
     this.frame = 0;
