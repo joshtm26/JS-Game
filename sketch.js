@@ -189,9 +189,7 @@ class P1 {
   attack() {
     if (this.attackCount >= 100 && keyCode == 87) {
       this.attackCount = 0;
-
       anim.play();
-
       if (this.hitbox >= p2.x && p2.blockCount > 60) {
         print("p1 wins");
         p1Score += 1;
@@ -296,10 +294,11 @@ class Animation {
   constructor(images) {
     this.frames = images;
     this.frame = 0;
-    this.frameRate = 10;
+    this.frameRate = 15;
     this.frameHold = 0;
     this.animating = false;
   }
+  
   animate() {
     this.frameHold++;
     if (this.frameHold >= frameRate() / this.frameRate) {
@@ -312,7 +311,7 @@ class Animation {
   }
 
   display() {
-    image(this.frames[this.frame], p1.x - 400, ground - 130);
+    image(this.frames[this.frame], p1.x - 436, ground - 188);
   }
 
   play() {
