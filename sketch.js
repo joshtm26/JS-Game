@@ -301,7 +301,7 @@ class Animation {
   
   animate() {
     this.frameHold++;
-    if (this.frameHold >= frameRate() / this.frameRate) {
+    if (this.frameHold >= frameRate()/this.frameRate) {
       this.frame++;
       this.frameHold = 0;
     }
