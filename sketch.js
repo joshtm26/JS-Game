@@ -297,7 +297,7 @@ class Animation {
   constructor(images) {
     this.frames = images;
     this.frame = 0;
-    this.frameRate = 15;
+    this.frameRate = 10;
     this.frameHold = 0;
     this.animating = false;
   }
@@ -313,7 +313,7 @@ class Animation {
   }
 
   display() {
-    image(this.frames[this.frame], p1.x, ground);
+    image(this.frames[this.frame], p1.x - 125, ground + 90);
   }
 
   play() {
