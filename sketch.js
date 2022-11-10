@@ -94,6 +94,7 @@ function setup() {
   bgm.play();
   p1 = new Player1();
   p2 = new Player2();
+  new Sprite();
 }
 
 function draw() {
