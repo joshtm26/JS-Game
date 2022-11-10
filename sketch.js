@@ -32,12 +32,12 @@ how to make the dash not a teleport
 
 */
 
-const friction = .5;
 let bgm;
 let bg;
 let player1;
 let player2;
 const ground = 110;
+const dashSpeed = 2;
 let p1Score = 0;
 let p2Score = 0;
 let anim = [];
@@ -125,8 +125,7 @@ function draw() {
   p2.blockCount++;
   p1.attackCount++;
   p2.attackCount++;
-  
-  p1.dashSpeed();
+  p1.dashActivate();
 
   if (p1attackanim.animating) {
     p1attackanim.animate();
@@ -166,7 +165,9 @@ class Player1 {
   dPress = 0;
   dashCount = 0;
   speed = 0;
-  activateDash = false;
+  dDash = false;
+  aDash = false;
+  startingX = 0;
   blockCount = 0;
   attackCount = 100;
 
@@ -200,7 +201,8 @@ class Player1 {
         this.dPress = 0;
       }
       if (this.dPress == 1) {
-        this.activateDash = true;
+        this.startingX = this.x;
+        this.dDash = true;
       }
     }
     //a dash
@@ -211,17 +213,28 @@ class Player1 {
         this.aPress = 0;
       }
       if (this.aPress == 1) {
-        this.x -= 60;
-        this.hitbox -= 60;
+        this.startingX = this.x;
+        this.aDash = true;
       }
     }
   }
-  
-  dashSpeed() {
-    this.speed = this.speed + friction;
-    this.x = this.x + this.speed;
-    if (this.x >= this.x + 60) {
-      this.speed = 0;
+
+  dashActivate() {
+    if (this.dDash == true) {
+      this.speed = this.speed + dashSpeed;
+      this.x = this.x + this.speed;
+      if (this.x >= this.startingX + 60) {
+        this.speed = 0;
+        this.dDash = false;
+      }
+    }
+    if (this.aDash == true) {
+      this.speed = this.speed - dashSpeed;
+      this.x = this.x + this.speed;
+      if (this.x >= this.startingX - 60) {
+        this.speed = 0;
+        this.aDash = false;
+      }
     }
   }
 
