@@ -114,17 +114,19 @@ function draw() {
     pop();
   }
 
-  // p1.hitboxes();
-  // p2.hitboxes();
+  p1.hitboxes();
+  p2.hitboxes();
   p1.move();
   p2.move();
+  p1.dashing();
+  p2.dashing();
   p1.dashCount++;
   p2.dashCount++;
   p1.blockCount++;
   p2.blockCount++;
   p1.attackCount++;
   p2.attackCount++;
-  p1.dashActivate();
+  
 
   if (p1attackanim.animating) {
     p1attackanim.animate();
@@ -143,8 +145,6 @@ function draw() {
   text(p1Score, 65, 35);
   text("P2:", 900, 35);
   text(p2Score, 955, 35);
-  
-  print(p1.aDash)
 }
 
 function keyPressed() {
@@ -220,10 +220,11 @@ class Player1 {
     }
   }
 
-  dashActivate() {
+  dashing() {
     if (this.dDash == true) {
       this.speed = this.speed + dashSpeed;
       this.x = this.x + this.speed;
+      this.hitbox = this.hitbox + this.speed;
       if (this.x >= this.startingX + 60) {
         this.speed = 0;
         this.dDash = false;
@@ -232,7 +233,8 @@ class Player1 {
     if (this.aDash == true) {
       this.speed = this.speed - dashSpeed;
       this.x = this.x + this.speed;
-      if (this.x >= this.startingX - 60) {
+      this.hitbox = this.hitbox + this.speed;
+      if (this.x <= this.startingX - 60) {
         this.speed = 0;
         this.aDash = false;
       }
@@ -279,6 +281,10 @@ class Player2 {
   lPress = 0;
   rPress = 0;
   dashCount = 0;
+  speed = 0;
+  lDash = false;
+  rDash = false;
+  startingX = 0;
   blockCount = 0;
   attackCount = 100;
 
@@ -329,7 +335,28 @@ class Player2 {
       }
     }
   }
-
+  
+dashing() {
+    if (this.lDash == true) {
+      this.speed = this.speed + dashSpeed;
+      this.x = this.x + this.speed;
+      this.hitbox = this.hitbox + this.speed;
+      if (this.x >= this.startingX + 60) {
+        this.speed = 0;
+        this.dDash = false;
+      }
+    }
+    if (this.rDash == true) {
+      this.speed = this.speed - dashSpeed;
+      this.x = this.x + this.speed;
+      this.hitbox = this.hitbox + this.speed;
+      if (this.x <= this.startingX - 60) {
+        this.speed = 0;
+        this.aDash = false;
+      }
+    }
+  }
+  
   block() {
     if (
       keyCode == DOWN_ARROW &&
