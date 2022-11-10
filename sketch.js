@@ -222,19 +222,23 @@ class Player1 {
       this.speed = this.speed + dashSpeed;
       this.x = this.x + this.speed;
       this.hitbox = this.hitbox + this.speed;
-      if (this.x >= this.startingX + 60) {
+      if (this.x >= this.startingX + 60 || this.x >= p2.x) {
         this.speed = 0;
         this.dDash = false;
       }
     }
+
     if (this.aDash == true) {
-      this.speed = this.speed - dashSpeed;
-      this.x = this.x + this.speed;
-      this.hitbox = this.hitbox + this.speed;
-      if (this.x <= this.startingX - 60) {
-        this.speed = 0;
-        this.aDash = false;
+      if (this.x >= 100) {
+        this.speed = this.speed - dashSpeed;
+        this.x = this.x + this.speed;
+        this.hitbox = this.hitbox + this.speed;
+        
       }
+      if (this.x <= this.startingX - 60) {
+          this.speed = 0;
+          this.aDash = false;
+        }
     }
   }
 
@@ -349,7 +353,6 @@ class Player2 {
       this.speed = this.speed - dashSpeed;
       this.x = this.x + this.speed;
       this.hitbox = this.hitbox + this.speed;
-      if()
       if (this.x <= this.startingX - 60) {
         this.speed = 0;
         this.lDash = false;
