@@ -140,6 +140,8 @@ function draw() {
   text(p1Score, 65, 35);
   text("P2:", 900, 35);
   text(p2Score, 955, 35);
+  
+  print(p1.dPress);
 }
 
 function keyPressed() {
@@ -193,8 +195,9 @@ class Player1 {
         this.dPress = 0;
       }
       if (this.dPress == 1) {
-        this.x += 60;
-        this.hitbox += 60;
+        // this.x += 60;
+        // this.hitbox += 60;
+        
       }
     }
     //a dash
