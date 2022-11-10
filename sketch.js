@@ -28,7 +28,6 @@ add health
 
 QUESTIONS FOR CALEB
 where to add p5.play script
-how to make the dash not a teleport
 
 */
 
@@ -144,6 +143,8 @@ function draw() {
   text(p1Score, 65, 35);
   text("P2:", 900, 35);
   text(p2Score, 955, 35);
+  
+  print(p1.aDash)
 }
 
 function keyPressed() {
