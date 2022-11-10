@@ -26,9 +26,6 @@ make player all white during the block
 make it raining
 add health
 
-QUESTIONS FOR CALEB
-where to add p5.play script
-
 */
 
 let bgm;
@@ -94,7 +91,6 @@ function setup() {
   bgm.play();
   p1 = new Player1();
   p2 = new Player2();
-  new Sprite();
 }
 
 function draw() {
@@ -353,6 +349,7 @@ class Player2 {
       this.speed = this.speed - dashSpeed;
       this.x = this.x + this.speed;
       this.hitbox = this.hitbox + this.speed;
+      if()
       if (this.x <= this.startingX - 60) {
         this.speed = 0;
         this.lDash = false;
