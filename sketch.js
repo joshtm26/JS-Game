@@ -164,6 +164,7 @@ class Player1 {
   dashCount = 0;
   blockCount = 0;
   attackCount = 100;
+  dashSpeed = 10;
 
   hitboxes() {
     noStroke();
@@ -197,6 +198,7 @@ class Player1 {
       if (this.dPress == 1) {
         // this.x += 60;
         // this.hitbox += 60;
+       
         
       }
     }
