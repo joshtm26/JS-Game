@@ -142,6 +142,8 @@ function draw() {
   text(p1Score, 65, 35);
   text("P2:", 900, 35);
   text(p2Score, 955, 35);
+
+  console.log(p1.speed);
 }
 
 function keyPressed() {
@@ -233,12 +235,11 @@ class Player1 {
         this.speed = this.speed - dashSpeed;
         this.x = this.x + this.speed;
         this.hitbox = this.hitbox + this.speed;
-        
-      }
-      if (this.x <= this.startingX - 60) {
+        if (this.x <= this.startingX - 60 && this.x >= 100) {
           this.speed = 0;
           this.aDash = false;
         }
+      }
     }
   }
 
