@@ -231,14 +231,15 @@ class Player1 {
     }
 
     if (this.aDash == true) {
-      if (this.x >= 100) {
-        this.speed = this.speed - dashSpeed;
-        this.x = this.x + this.speed;
-        this.hitbox = this.hitbox + this.speed;
-        if (this.x <= this.startingX - 60 && this.x >= 100) {
-          this.speed = 0;
-          this.aDash = false;
-        }
+      this.speed = this.speed - dashSpeed;
+      this.x = this.x + this.speed;
+      this.hitbox = this.hitbox + this.speed;
+      if (this.x <= this.startingX - 60) {
+        this.speed = 0;
+        this.aDash = false;
+      } else if (this.x <= 100) {
+        this.speed = 0;
+        this.aDash = false;
       }
     }
   }
