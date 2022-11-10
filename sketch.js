@@ -18,6 +18,7 @@ double tap left or right to perform a dash
 
 TO DO
 add the animations for the actions
+make attack not instant
 fix dash to not be a teleport
 pause in between rounds, enough time to at least fully show death animation
 add sounds effects to the actions
