@@ -19,11 +19,11 @@ double tap left or right to perform a dash
 TO DO
 add the animations for the actions
 make attack not instant
-fix dash to not be a teleport
-pause in between rounds, enough time to at least fully show death animation
+pause in between rounds, enough time to at least fully show death animation and winner text
 add sounds effects to the actions
 make a start screen and 3, 2, 1 countdown
-make a block animation
+make player all white during the block
+make it raining
 add health
 
 QUESTIONS FOR CALEB
@@ -114,8 +114,9 @@ function draw() {
     pop();
   }
 
-  p1.hitboxes();
-  p2.hitboxes();
+  //uncomment if you want to see the hitboxes/hurtboxes
+  // p1.hitboxes();
+  // p2.hitboxes();
   p1.move();
   p2.move();
   p1.dashing();
@@ -126,7 +127,6 @@ function draw() {
   p2.blockCount++;
   p1.attackCount++;
   p2.attackCount++;
-  
 
   if (p1attackanim.animating) {
     p1attackanim.animate();
@@ -164,11 +164,11 @@ class Player1 {
   hitbox = this.x + 320;
   aPress = 0;
   dPress = 0;
-  dashCount = 0;
   speed = 0;
   dDash = false;
   aDash = false;
   startingX = 0;
+  dashCount = 0;
   blockCount = 0;
   attackCount = 100;
 
@@ -264,6 +264,8 @@ class Player1 {
         this.x = 180;
         p2.hitbox = p2.x - 302;
         this.hitbox = this.x + 320;
+        p2.attackCount = 100;
+        this.attackCount = 100;
       }
       if (this.hitbox >= p2.x && p2.blockCount <= 60) {
         print("blocked");
@@ -280,11 +282,11 @@ class Player2 {
   hitbox = this.x - 302;
   lPress = 0;
   rPress = 0;
-  dashCount = 0;
   speed = 0;
   lDash = false;
   rDash = false;
   startingX = 0;
+  dashCount = 0;
   blockCount = 0;
   attackCount = 100;
 
@@ -318,8 +320,8 @@ class Player2 {
         this.lPress = 0;
       }
       if (this.lPress == 1) {
-        this.x -= 60;
-        this.hitbox -= 60;
+        this.startingX = this.x;
+        this.lDash = true;
       }
     }
     //right dash
@@ -330,33 +332,33 @@ class Player2 {
         this.rPress = 0;
       }
       if (this.rPress == 1) {
-        this.x += 60;
-        this.hitbox += 60;
+        this.startingX = this.x;
+        this.rDash = true;
       }
     }
   }
-  
-dashing() {
-    if (this.lDash == true) {
+
+  dashing() {
+    if (this.rDash == true) {
       this.speed = this.speed + dashSpeed;
       this.x = this.x + this.speed;
       this.hitbox = this.hitbox + this.speed;
       if (this.x >= this.startingX + 60) {
         this.speed = 0;
-        this.dDash = false;
+        this.rDash = false;
       }
     }
-    if (this.rDash == true) {
+    if (this.lDash == true) {
       this.speed = this.speed - dashSpeed;
       this.x = this.x + this.speed;
       this.hitbox = this.hitbox + this.speed;
       if (this.x <= this.startingX - 60) {
         this.speed = 0;
-        this.aDash = false;
+        this.lDash = false;
       }
     }
   }
-  
+
   block() {
     if (
       keyCode == DOWN_ARROW &&
@@ -380,6 +382,8 @@ dashing() {
         this.x = 850;
         p1.hitbox = p1.x + 320;
         this.hitbox = this.x - 302;
+        p1.attackCount = 100;
+        this.attackCount = 100;
       }
       if (this.hitbox <= p1.x && p1.blockCount <= 60) {
         print("blocked");
