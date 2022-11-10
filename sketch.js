@@ -26,7 +26,9 @@ make a start screen and 3, 2, 1 countdown
 make a block animation
 add health
 
-figure out how to add p5.play 
+QUESTIONS FOR CALEB
+where to add p5.play script
+how to make the dash not a teleport
 
 */
 
