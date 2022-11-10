@@ -32,7 +32,7 @@ how to make the dash not a teleport
 
 */
 
-const dashSpeed = 10
+const friction = 10;
 let bgm;
 let bg;
 let player1;
@@ -197,10 +197,8 @@ class Player1 {
         this.dPress = 0;
       }
       if (this.dPress == 1) {
-        // this.x += 60;
-        // this.hitbox += 60;
-        this.speed = this.speed + dashSpeed;
-        this.x = this.x + this.speed;
+        this.x += 60;
+        this.hitbox += 60;
         }
       }
     }
@@ -218,8 +216,6 @@ class Player1 {
     }
   }
   
-  
-
   block() {
     if (
       keyCode == 83 &&
