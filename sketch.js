@@ -198,7 +198,6 @@ class Player1 {
       if (this.dPress == 1) {
         // this.x += 60;
         // this.hitbox += 60;
-       
         
       }
     }
