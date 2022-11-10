@@ -32,6 +32,7 @@ how to make the dash not a teleport
 
 */
 
+const dashSpeed = 10
 let bgm;
 let bg;
 let player1;
@@ -142,8 +143,6 @@ function draw() {
   text(p1Score, 65, 35);
   text("P2:", 900, 35);
   text(p2Score, 955, 35);
-  
-  print(p1.dPress);
 }
 
 function keyPressed() {
@@ -166,7 +165,7 @@ class Player1 {
   dashCount = 0;
   blockCount = 0;
   attackCount = 100;
-  dashSpeed = 0;
+  speed = 0;
 
   hitboxes() {
     noStroke();
@@ -200,9 +199,8 @@ class Player1 {
       if (this.dPress == 1) {
         // this.x += 60;
         // this.hitbox += 60;
-        for (let i = 0; i < 60; i++) {
-          this.x += 1;
-          this.hitbox += 1;
+        this.speed = this.speed + dashSpeed;
+        this.x = this.x + this.speed;
         }
       }
     }
@@ -219,6 +217,8 @@ class Player1 {
       }
     }
   }
+  
+  
 
   block() {
     if (
