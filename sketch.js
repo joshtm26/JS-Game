@@ -101,9 +101,8 @@ function draw() {
     translate(-145, -22);
     image(player1, p1.x, p1.y);
     pop();
-  } else {
   }
-
+  
   if (p2attackanim.animating == false) {
     push();
     translate(-90, -58);
