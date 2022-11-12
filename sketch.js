@@ -30,13 +30,13 @@ add health
 
 let bgm;
 let bg;
+let anim = [];
 let player1;
 let player2;
 const ground = 110;
 const dashSpeed = 2;
 let p1Score = 0;
 let p2Score = 0;
-let anim = [];
 
 function preload() {
   player1 = loadImage(
@@ -102,7 +102,7 @@ function draw() {
     image(player1, p1.x, p1.y);
     pop();
   }
-  
+
   if (p2attackanim.animating == false) {
     push();
     translate(-90, -58);
@@ -141,8 +141,6 @@ function draw() {
   text(p1Score, 65, 35);
   text("P2:", 900, 35);
   text(p2Score, 955, 35);
-
-  console.log(p1.speed);
 }
 
 function keyPressed() {
@@ -233,10 +231,7 @@ class Player1 {
       this.speed = this.speed - dashSpeed;
       this.x = this.x + this.speed;
       this.hitbox = this.hitbox + this.speed;
-      if (this.x <= this.startingX - 60) {
-        this.speed = 0;
-        this.aDash = false;
-      } else if (this.x <= 100) {
+      if (this.x <= this.startingX - 60 || this.x <= 100) {
         this.speed = 0;
         this.aDash = false;
       }
@@ -345,7 +340,7 @@ class Player2 {
       this.speed = this.speed + dashSpeed;
       this.x = this.x + this.speed;
       this.hitbox = this.hitbox + this.speed;
-      if (this.x >= this.startingX + 60) {
+      if (this.x >= this.startingX + 60 || this.x >= 940) {
         this.speed = 0;
         this.rDash = false;
       }
@@ -354,7 +349,7 @@ class Player2 {
       this.speed = this.speed - dashSpeed;
       this.x = this.x + this.speed;
       this.hitbox = this.hitbox + this.speed;
-      if (this.x <= this.startingX - 60) {
+      if (this.x <= this.startingX - 60 || this.x <= p2.x) {
         this.speed = 0;
         this.lDash = false;
       }
