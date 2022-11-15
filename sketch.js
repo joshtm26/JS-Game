@@ -164,7 +164,7 @@ function draw() {
     text("Player 1 Wins", 270, 150);
   }
   if (p2.win == true) {
-    p1anim.p1DeathAnim.play();
+    p1anim.death();
     text("Player 2 Wins", 270, 150);
   }
 }
