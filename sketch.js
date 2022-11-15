@@ -82,12 +82,20 @@ function preload() {
   p1attackanim = new P1AttackAnimation(p1attackframes);
   p2attackanim = new P2AttackAnimation(p2attackframes);
 
-  idleAni = loadAni(
-    "https://cdn.glitch.global/e5ca06d8-cdb6-4524-b0c9-ca1ee4ec9d3e/Idle.png?v=1668220041408",
+  p1IdleAni = loadAni(
+    "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/idle%20sprite%20sheet.png?v=1668543650590",
     { size: [800, 800], frames: 8 }
   );
-  runAni = loadAni(
-    "https://cdn.glitch.global/e5ca06d8-cdb6-4524-b0c9-ca1ee4ec9d3e/run%20sprite%20sheet.png?v=1668539850197",
+  p1RunAni = loadAni(
+    "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/run%20sprite%20sheet.png?v=1668543674989",
+    { size: [800, 800], frames: 8 }
+  );
+  p2IdleAni = loadAni(
+    "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p2%20idle%20sprite%20sheet.png?v=1668544232693",
+    { size: [800, 800], frames: 4 }
+  );
+  p2RunAni = loadAni(
+    "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p2%20run%20sprite%20sheet.png?v=1668544242138",
     { size: [800, 800], frames: 8 }
   );
 }
@@ -100,6 +108,7 @@ function setup() {
   p1 = new Player1();
   p2 = new Player2();
   p1anim = new P1Animations();
+  p2anim = new P2Animations();
 }
 
 function draw() {
@@ -151,6 +160,19 @@ function draw() {
   if (running == false && p1attackanim.animating == false) {
     p1anim.idle();
   }
+  
+  if (keyIsDown(LEFT_ARROW) == true || keyIsDown(RIGHT_ARROW) == true) {
+    running = true;
+  } else {
+    running = false;
+  }
+
+  if (running == true && p2attackanim.animating == false) {
+    p2anim.run();
+  }
+  if (running == false && p2attackanim.animating == false) {
+    p2anim.idle();
+  }
 
   //scores
   fill(255);
@@ -169,15 +191,11 @@ function keyPressed() {
   p1.attack();
   p2.attack();
 
-  if (keyCode == 32 && p1.win == true) {
+  if (keyCode == 32) {
     p1.x = 180;
     p1.hitbox = p1.x + 320;
     p1.attackCount = 100;
     p1.win = false;
-    loop();
-  }
-
-  if (keyCode == 32 && p2.win == true) {
     p2.x = 850;
     p2.hitbox = p2.x - 302;
     p2.attackCount = 100;
@@ -479,11 +497,18 @@ class P2AttackAnimation {
 
 class P1Animations {
   idle() {
-    animation(idleAni, p1.x - 37, 322);
+    animation(p1IdleAni, p1.x - 37, 322);
   }
   run() {
-    animation(runAni, p1.x - 37, 322);
+    animation(p1RunAni, p1.x - 37, 322);
   }
 }
 
-class P2Animations {}
+class P2Animations {
+  idle() {
+    animation(p2IdleAni, p2.x - 37, 322);
+  }
+  run() {
+    animation(p2RunAni, p2.x - 37, 322);
+  }
+}
