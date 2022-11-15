@@ -37,6 +37,7 @@ const ground = 110;
 const dashSpeed = 2;
 let p1Score = 0;
 let p2Score = 0;
+let roundCount = 120;
 
 function preload() {
   player1 = loadImage(
@@ -123,6 +124,7 @@ function draw() {
   p2.blockCount++;
   p1.attackCount++;
   p2.attackCount++;
+  roundCount++;
 
   if (p1attackanim.animating) {
     p1attackanim.animate();
@@ -134,6 +136,13 @@ function draw() {
     p2attackanim.display();
   }
 
+  if (p1.win == true || p2.win == true) {
+    roundCount = 0;
+    while(roundCount < 120) {
+      noLoop();
+    }
+  }
+
   //scores
   fill(255);
   textSize(30);
@@ -141,6 +150,8 @@ function draw() {
   text(p1Score, 65, 35);
   text("P2:", 900, 35);
   text(p2Score, 955, 35);
+
+  print(roundCount);
 }
 
 function keyPressed() {
@@ -167,6 +178,7 @@ class Player1 {
   dashCount = 0;
   blockCount = 0;
   attackCount = 100;
+  win = false;
 
   hitboxes() {
     noStroke();
@@ -263,6 +275,7 @@ class Player1 {
         this.hitbox = this.x + 320;
         p2.attackCount = 100;
         this.attackCount = 100;
+        this.win = true;
       }
       if (this.hitbox >= p2.x && p2.blockCount <= 60) {
         print("blocked");
@@ -286,6 +299,7 @@ class Player2 {
   dashCount = 0;
   blockCount = 0;
   attackCount = 100;
+  win = false;
 
   hitboxes() {
     noStroke();
@@ -381,6 +395,7 @@ class Player2 {
         this.hitbox = this.x - 302;
         p1.attackCount = 100;
         this.attackCount = 100;
+        this.win = true;
       }
       if (this.hitbox <= p1.x && p1.blockCount <= 60) {
         print("blocked");
