@@ -81,7 +81,15 @@ function preload() {
   ];
   p1attackanim = new P1AttackAnimation(p1attackframes);
   p2attackanim = new P2AttackAnimation(p2attackframes);
-
+ 
+  idleAni = loadAni(
+    "https://cdn.glitch.global/e5ca06d8-cdb6-4524-b0c9-ca1ee4ec9d3e/Idle.png?v=1668220041408",
+    { size: [800, 800], frames: 8 }
+  );
+  runAni = loadAni(
+    "https://cdn.glitch.global/e5ca06d8-cdb6-4524-b0c9-ca1ee4ec9d3e/run%20sprite%20sheet.png?v=1668539850197",
+    { size: [800, 800], frames: 8 }
+  );
 }
 
 function setup() {
@@ -91,10 +99,10 @@ function setup() {
   bgm.play();
   p1 = new Player1();
   p2 = new Player2();
+  p1anim = new P1Animations
 }
 
 function draw() {
-
   // background(bg);
   background(120);
 
@@ -135,6 +143,21 @@ function draw() {
     p2attackanim.animate();
     p2attackanim.display();
   }
+  
+    
+ if (keyIsDown(68) == true || keyIsDown(65) == true) {
+    running = true;
+  } else {
+    running = false;
+  }
+
+  if (running == true) {
+    p1anim.run();
+  }
+  if (running == false && p1attackanim.animating == false) {
+    p1anim.idle();
+  }
+
 
   //scores
   fill(255);
@@ -160,7 +183,7 @@ function keyPressed() {
     p1.win = false;
     loop();
   }
-  
+
   if (keyCode == 32 && p2.win == true) {
     p2.x = 850;
     p2.hitbox = p2.x - 302;
@@ -462,9 +485,12 @@ class P2AttackAnimation {
 }
 
 class P1Animations {
-  
+  idle() {
+    animation(idleAni, p1.x, ground);
+  }
+  run() {
+    animation(runAni, p1.x, ground);
+  }
 }
 
-class P2Animations {
-  
-}
+class P2Animations {}
