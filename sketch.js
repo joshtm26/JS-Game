@@ -128,6 +128,10 @@ function draw() {
   p2.blockCount++;
   p1.attackCount++;
   p2.attackCount++;
+  p1anim.run();
+  p1anim.idle();
+  p2anim.run();
+  p2anim.idle();
 
   if (p1attackanim.animating) {
     p1attackanim.animate();
@@ -138,23 +142,7 @@ function draw() {
     p2attackanim.animate();
     p2attackanim.display();
   }
-
-  p1anim.run;
-  p1anim.idle;
-
-  if (keyIsDown(LEFT_ARROW) == true || keyIsDown(RIGHT_ARROW) == true) {
-    running = true;
-  } else {
-    running = false;
-  }
-
-  if (running == true && p2attackanim.animating == false) {
-    p2anim.run();
-  }
-  if (running == false && p2attackanim.animating == false) {
-    p2anim.idle();
-  }
-
+  
   //scores
   fill(255);
   textSize(30);
@@ -162,6 +150,9 @@ function draw() {
   text(p1Score, 65, 35);
   text("P2:", 900, 35);
   text(p2Score, 955, 35);
+  
+  textSize(75)
+  text("Player 1 Wins", 270, 200);
 }
 
 function keyPressed() {
@@ -172,6 +163,7 @@ function keyPressed() {
   p1.attack();
   p2.attack();
 
+  //space resets everything
   if (keyCode == 32) {
     p1.x = 180;
     p1.hitbox = p1.x + 320;
@@ -477,28 +469,41 @@ class P2AttackAnimation {
 }
 
 class P1Animations {
+  running = false;
+
   idle() {
-    if (running == false && p1attackanim.animating == false) {
+    if (this.running == false && p1attackanim.animating == false) {
       animation(p1IdleAni, p1.x - 37, 322);
     }
   }
   run() {
     if (keyIsDown(68) == true || keyIsDown(65) == true) {
-      running = true;
+      this.running = true;
     } else {
-      running = false;
+      this.running = false;
     }
-    if (running == true && p1attackanim.animating == false) {
+    if (this.running == true && p1attackanim.animating == false) {
       animation(p1RunAni, p1.x - 37, 322);
     }
   }
 }
 
 class P2Animations {
+  running = false;
+  
   idle() {
-    animation(p2IdleAni, p2.x + 30, 298);
+    if (this.running == false && p2attackanim.animating == false) {
+      animation(p2IdleAni, p2.x + 30, 298);
+    }
   }
   run() {
-    animation(p2RunAni, p2.x + 30, 298);
+    if (keyIsDown(LEFT_ARROW) == true || keyIsDown(RIGHT_ARROW) == true) {
+      this.running = true;
+    } else {
+      this.running = false;
+    }
+    if (this.running == true && p2attackanim.animating == false) {
+      animation(p2RunAni, p2.x + 30, 298);
+    }
   }
 }
