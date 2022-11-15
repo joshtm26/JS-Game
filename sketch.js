@@ -81,6 +81,7 @@ function preload() {
   ];
   p1attackanim = new P1AttackAnimation(p1attackframes);
   p2attackanim = new P2AttackAnimation(p2attackframes);
+
 }
 
 function setup() {
@@ -456,4 +457,12 @@ class P2AttackAnimation {
     this.animating = true;
     this.frame = 0;
   }
+}
+
+class P1Animations {
+  
+}
+
+class P2Animations {
+  
 }
