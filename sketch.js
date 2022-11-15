@@ -115,15 +115,6 @@ function draw() {
   // background(bg);
   background(120);
 
-  print(p1.win);
-  
-  if (p2attackanim.animating == false) {
-    push();
-    translate(-90, -58);
-    image(player2, p2.x, p2.y);
-    pop();
-  }
-
   //uncomment if you want to see the hitboxes/hurtboxes
   // p1.hitboxes();
   // p2.hitboxes();
@@ -148,19 +139,9 @@ function draw() {
     p2attackanim.display();
   }
 
-  if (keyIsDown(68) == true || keyIsDown(65) == true) {
-    running = true;
-  } else {
-    running = false;
-  }
+  p1anim.run;
+  p1anim.idle;
 
-  if (running == true && p1attackanim.animating == false) {
-    p1anim.run();
-  }
-  if (running == false && p1attackanim.animating == false) {
-    p1anim.idle();
-  }
-  
   if (keyIsDown(LEFT_ARROW) == true || keyIsDown(RIGHT_ARROW) == true) {
     running = true;
   } else {
@@ -497,18 +478,27 @@ class P2AttackAnimation {
 
 class P1Animations {
   idle() {
-    animation(p1IdleAni, p1.x - 37, 322);
+    if (running == false && p1attackanim.animating == false) {
+      animation(p1IdleAni, p1.x - 37, 322);
+    }
   }
   run() {
-    animation(p1RunAni, p1.x - 37, 322);
+    if (keyIsDown(68) == true || keyIsDown(65) == true) {
+      running = true;
+    } else {
+      running = false;
+    }
+    if (running == true && p1attackanim.animating == false) {
+      animation(p1RunAni, p1.x - 37, 322);
+    }
   }
 }
 
 class P2Animations {
   idle() {
-    animation(p2IdleAni, p2.x + 30, 297);
+    animation(p2IdleAni, p2.x + 30, 298);
   }
   run() {
-    animation(p2RunAni, p2.x - 37, 322);
+    animation(p2RunAni, p2.x + 30, 298);
   }
 }
