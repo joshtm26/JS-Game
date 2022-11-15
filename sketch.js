@@ -91,11 +91,11 @@ function preload() {
     { size: [800, 800], frames: 8 }
   );
   p2IdleAni = loadAni(
-    "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p2%20idle%20sprite%20sheet.png?v=1668544232693",
+    "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p2%20idle%20sprite%20sheet.png?v=1668544996926",
     { size: [800, 800], frames: 4 }
   );
   p2RunAni = loadAni(
-    "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p2%20run%20sprite%20sheet.png?v=1668544242138",
+    "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p2%20run%20sprite%20sheet.png?v=1668545001094",
     { size: [800, 800], frames: 8 }
   );
 }
@@ -506,7 +506,7 @@ class P1Animations {
 
 class P2Animations {
   idle() {
-    animation(p2IdleAni, p2.x - 37, 322);
+    animation(p2IdleAni, p2.x + 30, 297);
   }
   run() {
     animation(p2RunAni, p2.x - 37, 322);
