@@ -17,13 +17,12 @@ Down Arrow: block
 double tap left or right to perform a dash
 
 TO DO
-add the animations for the actions
-make attack not instant
+add block animation
 pause in between rounds, enough time to at least fully show death animation and winner text
+make attack not instant
 add sounds effects to the actions
 make a start screen and 3, 2, 1 countdown
 make it raining
-add health
 
 */
 
@@ -83,16 +82,16 @@ function preload() {
   p2attackanim = new P2AttackAnimation(p2attackframes);
 
   p1IdleAni = loadAni(
-    "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/idle%20sprite%20sheet.png?v=1668543650590",
+    "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p1%20idle%20sprite%20sheet.png?v=1668547022515",
     { size: [800, 800], frames: 8 }
   );
   p1RunAni = loadAni(
-    "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/run%20sprite%20sheet.png?v=1668543674989",
+    "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p1%20run%20sprite%20sheet.png?v=1668546986144",
     { size: [800, 800], frames: 8 }
   );
   p2IdleAni = loadAni(
     "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p2%20idle%20sprite%20sheet.png?v=1668544996926",
-    { size: [800, 800], frames: 4 }
+    { size: [800, 800], frames: 8 }
   );
   p2RunAni = loadAni(
     "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p2%20run%20sprite%20sheet.png?v=1668545001094",
@@ -151,8 +150,14 @@ function draw() {
   text("P2:", 900, 35);
   text(p2Score, 955, 35);
   
+  //winner text
   textSize(75)
-  text("Player 1 Wins", 270, 200);
+  if (p1.win == true) {
+    text("Player 1 Wins", 270, 150);
+  }
+  if (p2.win == true) {
+    text("Player 2 Wins", 270, 150);
+  }
 }
 
 function keyPressed() {
@@ -283,7 +288,7 @@ class Player1 {
       p1attackanim.play();
       if (this.hitbox >= p2.x && p2.blockCount > 60) {
         p1Score += 1;
-        this.win == true;
+        this.win = true;
         noLoop();
       }
       if (this.hitbox >= p2.x && p2.blockCount <= 60) {
