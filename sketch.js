@@ -35,6 +35,7 @@ const ground = 110;
 const dashSpeed = 2;
 let p1Score = 0;
 let p2Score = 0;
+let paused = false;
 
 function preload() {
   player1 = loadImage(
@@ -114,24 +115,26 @@ function draw() {
   // background(bg);
   background(120);
 
-  //uncomment if you want to see the hitboxes/hurtboxes
-  // p1.hitboxes();
+  if (paused == false) {
+    // p1.hitboxes();
   // p2.hitboxes();
   p1.move();
   p2.move();
   p1.dashing();
   p2.dashing();
+  p1anim.run();
+    p2anim.run();
+  }
+  
+  p1anim.idle();
+  p2anim.idle();
   p1.dashCount++;
   p2.dashCount++;
   p1.blockCount++;
   p2.blockCount++;
   p1.attackCount++;
   p2.attackCount++;
-  p1anim.run();
-  p1anim.idle();
-  p2anim.run();
-  p2anim.idle();
-
+  
   if (p1attackanim.animating) {
     p1attackanim.animate();
     p1attackanim.display();
@@ -161,12 +164,15 @@ function draw() {
 }
 
 function keyPressed() {
-  p1.dash();
+  if (paused == false) {
+     p1.dash();
   p2.dash();
   p1.block();
   p2.block();
   p1.attack();
   p2.attack();
+  }
+ 
 
   //space resets everything
   if (keyCode == 32) {
@@ -178,7 +184,7 @@ function keyPressed() {
     p2.hitbox = p2.x - 302;
     p2.attackCount = 100;
     p2.win = false;
-    loop();
+    paused = false;
   }
 }
 
@@ -289,7 +295,7 @@ class Player1 {
       if (this.hitbox >= p2.x && p2.blockCount > 60) {
         p1Score += 1;
         this.win = true;
-        noLoop();
+        paused = true;
       }
       if (this.hitbox >= p2.x && p2.blockCount <= 60) {
         print("blocked");
