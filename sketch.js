@@ -22,7 +22,6 @@ make attack not instant
 pause in between rounds, enough time to at least fully show death animation and winner text
 add sounds effects to the actions
 make a start screen and 3, 2, 1 countdown
-make player all white during the block
 make it raining
 add health
 
@@ -133,6 +132,14 @@ function draw() {
     p2attackanim.animate();
     p2attackanim.display();
   }
+  
+//   if (p1.win == true) {
+//     noLoop();
+//   }
+  
+//   if (p2.win == true) {
+//    noLoop(); 
+//   }
 
   //scores
   fill(255);
@@ -150,6 +157,11 @@ function keyPressed() {
   p2.block();
   p1.attack();
   p2.attack();
+  
+  if(keyCode == 32) {
+    loop();
+  }
+  
   }
 
 class Player1 {
@@ -265,6 +277,7 @@ class Player1 {
         p2.attackCount = 100;
         this.attackCount = 100;
         this.win = true;
+        noLoop();
       }
       if (this.hitbox >= p2.x && p2.blockCount <= 60) {
         print("blocked");
