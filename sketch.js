@@ -81,7 +81,7 @@ function preload() {
   ];
   p1attackanim = new P1AttackAnimation(p1attackframes);
   p2attackanim = new P2AttackAnimation(p2attackframes);
- 
+
   idleAni = loadAni(
     "https://cdn.glitch.global/e5ca06d8-cdb6-4524-b0c9-ca1ee4ec9d3e/Idle.png?v=1668220041408",
     { size: [800, 800], frames: 8 }
@@ -99,20 +99,15 @@ function setup() {
   bgm.play();
   p1 = new Player1();
   p2 = new Player2();
-  p1anim = new P1Animations
+  p1anim = new P1Animations();
 }
 
 function draw() {
   // background(bg);
   background(120);
 
-  if (p1attackanim.animating == false) {
-    push();
-    translate(-145, -22);
-    image(player1, p1.x, p1.y);
-    pop();
-  }
-
+  print(p1.win);
+  
   if (p2attackanim.animating == false) {
     push();
     translate(-90, -58);
@@ -143,21 +138,19 @@ function draw() {
     p2attackanim.animate();
     p2attackanim.display();
   }
-  
-    
- if (keyIsDown(68) == true || keyIsDown(65) == true) {
+
+  if (keyIsDown(68) == true || keyIsDown(65) == true) {
     running = true;
   } else {
     running = false;
   }
 
-  if (running == true) {
+  if (running == true && p1attackanim.animating == false) {
     p1anim.run();
   }
   if (running == false && p1attackanim.animating == false) {
     p1anim.idle();
   }
-
 
   //scores
   fill(255);
@@ -486,10 +479,10 @@ class P2AttackAnimation {
 
 class P1Animations {
   idle() {
-    animation(idleAni, p1.x, ground);
+    animation(idleAni, p1.x - 37, 322);
   }
   run() {
-    animation(runAni, p1.x, ground);
+    animation(runAni, p1.x - 37, 322);
   }
 }
 
