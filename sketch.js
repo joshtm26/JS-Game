@@ -132,14 +132,6 @@ function draw() {
     p2attackanim.animate();
     p2attackanim.display();
   }
-  
-//   if (p1.win == true) {
-//     noLoop();
-//   }
-  
-//   if (p2.win == true) {
-//    noLoop(); 
-//   }
 
   //scores
   fill(255);
@@ -157,12 +149,23 @@ function keyPressed() {
   p2.block();
   p1.attack();
   p2.attack();
-  
-  if(keyCode == 32) {
+
+  if (keyCode == 32 && p1.win == true) {
+    p1.x = 180;
+    p1.hitbox = p1.x + 320;
+    p1.attackCount = 100;
+    p1.win = false;
     loop();
   }
   
+  if (keyCode == 32 && p2.win == true) {
+    p2.x = 850;
+    p2.hitbox = p2.x - 302;
+    p2.attackCount = 100;
+    p2.win = false;
+    loop();
   }
+}
 
 class Player1 {
   x = 180;
@@ -270,13 +273,7 @@ class Player1 {
       p1attackanim.play();
       if (this.hitbox >= p2.x && p2.blockCount > 60) {
         p1Score += 1;
-        p2.x = 850;
-        this.x = 180;
-        p2.hitbox = p2.x - 302;
-        this.hitbox = this.x + 320;
-        p2.attackCount = 100;
-        this.attackCount = 100;
-        this.win = true;
+        this.win == true;
         noLoop();
       }
       if (this.hitbox >= p2.x && p2.blockCount <= 60) {
@@ -391,13 +388,8 @@ class Player2 {
       p2attackanim.play();
       if (this.hitbox <= p1.x && p1.blockCount > 60) {
         p2Score += 1;
-        p1.x = 180;
-        this.x = 850;
-        p1.hitbox = p1.x + 320;
-        this.hitbox = this.x - 302;
-        p1.attackCount = 100;
-        this.attackCount = 100;
         this.win = true;
+        noLoop();
       }
       if (this.hitbox <= p1.x && p1.blockCount <= 60) {
         print("blocked");
