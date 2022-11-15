@@ -130,6 +130,7 @@ function draw() {
     p2anim.run();
   }
 
+  p1DeathAni.noLoop();
   p1anim.idle();
   p2anim.idle();
   p1.dashCount++;
@@ -415,6 +416,7 @@ class Player2 {
       if (this.hitbox <= p1.x && p1.blockCount > 60) {
         p2Score += 1;
         this.win = true;
+        p1DeathAni.play
         paused = true;
       }
       if (this.hitbox <= p1.x && p1.blockCount <= 60) {
