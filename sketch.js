@@ -21,6 +21,7 @@ add block animation
 pause in between rounds, enough time to at least fully show death animation and winner text
 make attack not instant
 add sounds effects to the actions
+change fonts
 make a start screen and 3, 2, 1 countdown
 make it raining
 
@@ -129,8 +130,7 @@ function draw() {
     p1anim.run();
     p2anim.run();
   }
-
-  p1DeathAni.noLoop();
+  
   p1anim.idle();
   p2anim.idle();
   p1.dashCount++;
@@ -164,7 +164,7 @@ function draw() {
     text("Player 1 Wins", 270, 150);
   }
   if (p2.win == true) {
-    p1anim.death();
+    p1anim.p1DeathAnim.play();
     text("Player 2 Wins", 270, 150);
   }
 }
@@ -416,7 +416,6 @@ class Player2 {
       if (this.hitbox <= p1.x && p1.blockCount > 60) {
         p2Score += 1;
         this.win = true;
-        p1DeathAni.play
         paused = true;
       }
       if (this.hitbox <= p1.x && p1.blockCount <= 60) {
@@ -507,6 +506,7 @@ class P1Animations {
   }
   
   death() {
+    p1DeathAni.noLoop();
     animation(p1DeathAni, p1.x - 37, 322);
   }
 }
