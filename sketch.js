@@ -95,7 +95,8 @@ function setup() {
 
 function draw() {
 
-  background(bg);
+  // background(bg);
+  background(120);
 
   if (p1attackanim.animating == false) {
     push();
