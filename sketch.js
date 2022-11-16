@@ -167,6 +167,8 @@ function draw() {
     p1ani.death();
     text("Player 2 Wins", 270, 150);
   }
+  
+  print(p1.dying);
 }
 
 function keyPressed() {
@@ -185,10 +187,12 @@ function keyPressed() {
     p1.hitbox = p1.x + 320;
     p1.attackCount = 100;
     p1.win = false;
+    p1ani.dying = false;
     p2.x = 850;
     p2.hitbox = p2.x - 302;
     p2.attackCount = 100;
     p2.win = false;
+    p2ani.dying = false;
     paused = false;
   }
 }
@@ -487,9 +491,10 @@ class P2AttackAnimation {
 
 class P1Animations {
   running = false;
+  dying = false;
 
   idle() {
-    if (this.running == false && p1attackanim.animating == false) {
+    if (this.running == false && this.dying == false && p1attackanim.animating == false) {
       animation(p1IdleAni, p1.x - 37, 322);
     }
   }
@@ -506,6 +511,7 @@ class P1Animations {
   }
   
   death() {
+    this.dying = true;
     p1DeathAni.noLoop();
     animation(p1DeathAni, p1.x - 37, 322);
   }
