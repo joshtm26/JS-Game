@@ -117,6 +117,7 @@ function setup() {
   p2 = new Player2();
   p1ani = new P1Animations();
   p2ani = new P2Animations();
+  p2IdleAni.framedelay = 20;
 }
 
 function draw() {
@@ -194,11 +195,13 @@ function keyPressed() {
     p1.attackCount = 100;
     p1.win = false;
     p1ani.dying = false;
+    p1DeathAni.play(0);
     p2.x = 850;
     p2.hitbox = p2.x - 302;
     p2.attackCount = 100;
     p2.win = false;
     p2ani.dying = false;
+    p2DeathAni.play(0);
     paused = false;
   }
 }
@@ -521,8 +524,10 @@ class P1Animations {
   
   death() {
     this.dying = true;
-    p1DeathAni.noLoop();
     animation(p1DeathAni, p1.x - 37, 322);
+    if (p1DeathAni.frame == 5) {
+      p1DeathAni.stop();
+    }
   }
 }
 
@@ -549,7 +554,9 @@ class P2Animations {
   
   death() {
     this.dying = true;
-    p2DeathAni.noLoop();
     animation(p2DeathAni, p2.x + 30, 298);
+    if (p2DeathAni.frame == 6) {
+      p1DeathAni.stop();
+    }
   }
 }
