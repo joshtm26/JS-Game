@@ -18,9 +18,9 @@ double tap left or right to perform a dash
 
 TO DO
 add block animation
-pause in between rounds, enough time to at least fully show death animation and winner text
-make attack not instant
+fix p2 run and idle
 add sounds effects to the actions
+make attack not instant (would have to rewrite the attack animation in p5 play and then add p1/p2AttackAni.frame == 3 to the attack if statement)
 change fonts
 make a start screen and 3, 2, 1 countdown
 make it raining
@@ -28,10 +28,8 @@ make it raining
 */
 
 let bgm;
-//let bg;
+let bg;
 let anim = [];
-let player1;
-let player2;
 const ground = 110;
 const dashSpeed = 2;
 let p1Score = 0;
@@ -45,9 +43,9 @@ function preload() {
   player2 = loadImage(
     "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p2.png?v=1667937831521"
   );
-  // bg = loadImage(
-  //   "https://cdn.glitch.global/628d59df-2d08-48f2-9b4b-ebaaf965e908/alley%20stage.gif?v=1666840125125"
-  // );
+  bg = loadImage(
+    "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/backup%20bg.jpg?v=1668637190070"
+  );
   bgm = createAudio(
     "https://cdn.glitch.global/972c0e28-86ae-4368-9296-f573ccb7ae82/Tekken%203%20Jin%20theme%20arcade%20ver.mp3?v=1667269184277"
   );
@@ -83,10 +81,6 @@ function preload() {
   p1attackanim = new P1AttackAnimation(p1attackframes);
   p2attackanim = new P2AttackAnimation(p2attackframes);
 
-  bgAni = loadAni(
-    "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/bg%20sprite%20sheet.png?v=1668636838373",
-    { size: [760, 224], frames: 12 }
-  );
   p1IdleAni = loadAni(
     "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p1%20idle%20sprite%20sheet.png?v=1668547022515",
     { size: [800, 800], frames: 8 }
@@ -112,7 +106,7 @@ function preload() {
 function setup() {
   createCanvas(1000, 450);
   angleMode(DEGREES);
-  bgm.volume(0.3);
+  bgm.volume(0.1);
   bgm.play();
   p1 = new Player1();
   p2 = new Player2();
@@ -121,8 +115,8 @@ function setup() {
 }
 
 function draw() {
-  background(animation(bgAni, 0, 0));
-  //background(120);
+  //background(bg);
+  background(120);
 
   if (paused == false) {
     // p1.hitboxes();
@@ -172,7 +166,6 @@ function draw() {
     text("Player 2 Wins", 270, 150);
   }
   
-  print(p1.dying);
 }
 
 function keyPressed() {
