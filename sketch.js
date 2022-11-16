@@ -101,6 +101,10 @@ function preload() {
     "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p2%20run%20sprite%20sheet.png?v=1668545001094",
     { size: [800, 800], frames: 8 }
   );
+  p2DeathAni = loadAni(
+    "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p2%20death%20sprite%20sheet.png?v=1668639771337",
+    { size: [800, 800], frames: 7 }
+  );
 }
 
 function setup() {
@@ -162,6 +166,7 @@ function draw() {
   //winner text
   textSize(75);
   if (p1.win == true) {
+    p2ani.death();
     text("Player 1 Wins", 270, 150);
   }
   if (p2.win == true) {
@@ -304,8 +309,9 @@ class Player1 {
       if (this.hitbox >= p2.x && p2.blockCount > 60) {
         p1Score += 1;
         this.win = true;
+        p1ani.running = false;
+        p2ani.running = false;
         paused = true;
-        //call p2 death animation
       }
       if (this.hitbox >= p2.x && p2.blockCount <= 60) {
         print("blocked");
@@ -420,6 +426,8 @@ class Player2 {
       if (this.hitbox <= p1.x && p1.blockCount > 60) {
         p2Score += 1;
         this.win = true;
+        p1ani.running = false;
+        p2ani.running = false;
         paused = true;
       }
       if (this.hitbox <= p1.x && p1.blockCount <= 60) {
@@ -519,12 +527,14 @@ class P1Animations {
 
 class P2Animations {
   running = false;
+  dying = false;
 
   idle() {
     if (this.running == false && p2attackanim.animating == false) {
       animation(p2IdleAni, p2.x + 30, 298);
     }
   }
+  
   run() {
     if (keyIsDown(LEFT_ARROW) == true || keyIsDown(RIGHT_ARROW) == true) {
       this.running = true;
@@ -534,5 +544,11 @@ class P2Animations {
     if (this.running == true && p2attackanim.animating == false) {
       animation(p2RunAni, p2.x + 30, 298);
     }
+  }
+  
+  death() {
+    this.dying = true;
+    p2DeathAni.noLoop();
+    animation(p2DeathAni, p2.x + 30, 298);
   }
 }
