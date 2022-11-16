@@ -103,9 +103,14 @@ function preload() {
     { size: [800, 800], frames: 8 }
   );
   p2DeathAni = loadAni(
-    "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p2%20death%20sprite%20sheet.png?v=1668639771337",
-    { size: [800, 800], frames: 7 }
-  );
+		"https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p2%20death%20frame%201.png?v=1668642722862",
+    "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p2%20death%20frame%202.png?v=1668642728663",
+    "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p2%20death%20frame%203.png?v=1668642739228",
+    "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p2%20death%20frame%204.png?v=1668642744617",
+    "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p2%20death%20frame%205.png?v=1668642749988",
+    "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p2%20death%20frame%206.png?v=1668642754869",
+    "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p2%20death%20frame%207.png?v=1668642759618"
+	);
 }
 
 function setup() {
@@ -117,7 +122,6 @@ function setup() {
   p2 = new Player2();
   p1ani = new P1Animations();
   p2ani = new P2Animations();
-  p2IdleAni.framedelay = 20;
 }
 
 function draw() {
@@ -189,7 +193,7 @@ function keyPressed() {
   }
 
   //press space to reset everything
-  if (keyCode == 32) {
+  if (keyCode == 32 && paused == true) {
     p1.x = 180;
     p1.hitbox = p1.x + 320;
     p1.attackCount = 100;
@@ -536,7 +540,7 @@ class P2Animations {
   dying = false;
 
   idle() {
-    if (this.running == false && p2attackanim.animating == false) {
+    if (this.running == false && this.dying == false && p2attackanim.animating == false) {
       animation(p2IdleAni, p2.x + 30, 298);
     }
   }
@@ -556,7 +560,7 @@ class P2Animations {
     this.dying = true;
     animation(p2DeathAni, p2.x + 30, 298);
     if (p2DeathAni.frame == 6) {
-      p1DeathAni.stop();
+      p2DeathAni.stop();
     }
   }
 }
