@@ -112,8 +112,8 @@ function setup() {
   bgm.play();
   p1 = new Player1();
   p2 = new Player2();
-  p1anim = new P1Animations();
-  p2anim = new P2Animations();
+  p1ani = new P1Animations();
+  p2ani = new P2Animations();
 }
 
 function draw() {
@@ -127,12 +127,12 @@ function draw() {
     p2.move();
     p1.dashing();
     p2.dashing();
-    p1anim.run();
-    p2anim.run();
+    p1ani.run();
+    p2ani.run();
   }
   
-  p1anim.idle();
-  p2anim.idle();
+  p1ani.idle();
+  p2ani.idle();
   p1.dashCount++;
   p2.dashCount++;
   p1.blockCount++;
@@ -164,7 +164,7 @@ function draw() {
     text("Player 1 Wins", 270, 150);
   }
   if (p2.win == true) {
-    p1anim.death();
+    p1ani.death();
     text("Player 2 Wins", 270, 150);
   }
 }
