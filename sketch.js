@@ -117,6 +117,9 @@ function setup() {
 function draw() {
   //background(bg);
   background(120);
+  noStroke();
+  fill(40);
+  rect(0, 410, 1000, 40);
 
   if (paused == false) {
     // p1.hitboxes();
