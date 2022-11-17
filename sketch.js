@@ -18,7 +18,6 @@ double tap left or right to perform a dash
 
 TO DO
 add block animation
-fix p2 run and idle
 add sounds effects to the actions
 make attack not instant (would have to rewrite the attack animation in p5 play and then add p1/p2AttackAni.frame == 3 to the attack if statement)
 change fonts
