@@ -135,8 +135,7 @@ function preload() {
 function setup() {
   createCanvas(1000, 450);
   angleMode(DEGREES);
-  bgm.volume(0.1);
-  bgm.play();
+  bgm.volume(0.05);
   p1 = new Player1();
   p2 = new Player2();
   p1ani = new P1Animations();
@@ -222,6 +221,7 @@ function draw() {
 
 function mousePressed() {
   //paused = true;
+  bgm.play();
   loop()
 }
 
