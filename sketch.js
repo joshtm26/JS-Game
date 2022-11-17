@@ -124,6 +124,8 @@ function setup() {
   p2 = new Player2();
   p1ani = new P1Animations();
   p2ani = new P2Animations();
+  p1IdleAni.frameDelay = 6;
+  p2IdleAni.frameDelay = 9;
 }
 
 function draw() {
@@ -183,7 +185,6 @@ function draw() {
     p1ani.death();
     text("Player 2 Wins", 270, 150);
   }
-  
 }
 
 function keyPressed() {
@@ -227,7 +228,7 @@ class Player1 {
   aDash = false;
   startingX = 0;
   dashCount = 0;
-  blockLag = 50;
+  blocking = false;
   attackLag = 100;
   win = false;
 
@@ -306,9 +307,12 @@ class Player1 {
       keyIsDown(83) &&
       keyIsDown(65) == false &&
       keyIsDown(68) == false &&
-      this.attackLag >= 100
+      this.attackLag >= 50
     ) {
+      this.blocking = true;
       image(p1Block, this.x -500, this.y -300)
+    } else {
+      this.blocking = false;
     }
   }
 
@@ -433,14 +437,14 @@ class Player2 {
     if (this.attackLag >= 100 && keyCode == UP_ARROW) {
       this.attackLag = 0;
       p2attackanim.play();
-      if (this.hitbox <= p1.x && p1.blockLag > 60) {
+      if (this.hitbox <= p1.x && p1.blocking == false) {
         p2Score += 1;
         this.win = true;
         p1ani.running = false;
         p2ani.running = false;
         paused = true;
       }
-      if (this.hitbox <= p1.x && p1.blockLag <= 60) {
+      if (this.hitbox <= p1.x && p1.blocking == true) {
         print("blocked");
       }
     }
