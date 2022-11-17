@@ -43,7 +43,7 @@ function preload() {
     "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p2.png?v=1667937831521"
   );
   bg = loadImage(
-    "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/backup%20bg.jpg?v=1668637190070"
+    "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/alley%20stage.gif?v=1668651530562"
   );
   bgm = createAudio(
     "https://cdn.glitch.global/972c0e28-86ae-4368-9296-f573ccb7ae82/Tekken%203%20Jin%20theme%20arcade%20ver.mp3?v=1667269184277"
@@ -92,6 +92,9 @@ function preload() {
     "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p1%20death%20sprite%20sheet.png?v=1668548217039",
     { size: [800, 800], frames: 6 }
   );
+  p1Block = loadImage(
+    "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p1%20block.png?v=1668650892631"
+  );
   
   p2IdleAni = loadAni(
     "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p2%20idle%20sprite%20sheet.png?v=1668644255411",
@@ -130,8 +133,7 @@ function setup() {
 }
 
 function draw() {
-  //background(bg);
-  background(120);
+  background(bg);
   noStroke();
   fill(40);
   rect(0, 410, 1000, 40);
@@ -230,7 +232,7 @@ class Player1 {
   aDash = false;
   startingX = 0;
   dashCount = 0;
-  blockLag = 0;
+  blockLag = 50;
   attackLag = 100;
   win = false;
 
@@ -306,14 +308,12 @@ class Player1 {
 
   block() {
     if (
-      keyIsDown == 83 &&
+      keyIsDown(83) &&
       keyIsDown(65) == false &&
       keyIsDown(68) == false &&
-      this.blockLag >= 100 &&
       this.attackLag >= 100
     ) {
-      this.blockLag = 0;
-      print("p1 blocking");
+      image(p1Block, this.x -500, this.y -300)
     }
   }
 
