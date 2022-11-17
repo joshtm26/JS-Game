@@ -156,7 +156,7 @@ function draw() {
   if (isLooping() == false) {
     fill(255)
     textSize(60)
-    text("Click to Begin", 340, 200)
+    text("Click to Begin", 325, 200)
     push();
     scale(.25)
     image(wasd, 200, 250);
@@ -221,6 +221,7 @@ function draw() {
 }
 
 function mousePressed() {
+  //paused = true;
   loop()
 }
 
