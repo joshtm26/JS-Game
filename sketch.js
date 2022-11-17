@@ -22,9 +22,9 @@ double tap left or right to perform a dash
 TO DO
 add sounds effects to attack, dash, and successful block
 change fonts to pixel font
-make attack not instant (would have to rewrite the attack animation in p5 play and then add p1/p2AttackAni.frame == 3 to the attack if statement)
+add an array and for loop (maybe rain?)
 make a start screen and 3, 2, 1 countdown
-make it raining with a for loop or smthn
+make attack not instant (would have to rewrite the attack animation in p5 play and then add p1/p2AttackAni.frame == 3 to the attack if statement)
 
 */
 
@@ -140,11 +140,16 @@ function setup() {
   p1DeathAni.frameDelay = 6;
   p2DeathAni.frameDelay = 8;
   p1Blocked.life = 200;
+  noLoop();
 }
 
 function draw() {
   background(bg);
 
+  if (isLooping() == false) {
+    rect(100, 100, 100, 100)
+  }
+  
   if (paused == false) {
     // p1.hitboxes();
     // p2.hitboxes();
@@ -197,6 +202,10 @@ function draw() {
     p1ani.death();
     text("Player 2 Wins", 270, 150);
   }
+}
+
+function mousePressed() {
+  loop()
 }
 
 function keyPressed() {
@@ -298,7 +307,7 @@ class Player1 {
       this.speed = this.speed + dashSpeed;
       this.x = this.x + this.speed;
       this.hitbox = this.hitbox + this.speed;
-      if (this.x >= this.startingX + 60 || this.x >= p2.x) {
+      if (this.x >= this.startingX + 70 || this.x >= p2.x) {
         this.speed = 0;
         this.dDash = false;
       }
@@ -308,7 +317,7 @@ class Player1 {
       this.speed = this.speed - dashSpeed;
       this.x = this.x + this.speed;
       this.hitbox = this.hitbox + this.speed;
-      if (this.x <= this.startingX - 60 || this.x <= 100) {
+      if (this.x <= this.startingX - 70 || this.x <= 100) {
         this.speed = 0;
         this.aDash = false;
       }
@@ -422,7 +431,7 @@ class Player2 {
       this.speed = this.speed + dashSpeed;
       this.x = this.x + this.speed;
       this.hitbox = this.hitbox + this.speed;
-      if (this.x >= this.startingX + 60 || this.x >= 940) {
+      if (this.x >= this.startingX + 70 || this.x >= 940) {
         this.speed = 0;
         this.rDash = false;
       }
@@ -431,7 +440,7 @@ class Player2 {
       this.speed = this.speed - dashSpeed;
       this.x = this.x + this.speed;
       this.hitbox = this.hitbox + this.speed;
-      if (this.x <= this.startingX - 60 || this.x <= p1.x) {
+      if (this.x <= this.startingX - 70 || this.x <= p1.x) {
         this.speed = 0;
         this.lDash = false;
       }
@@ -520,7 +529,7 @@ class P1Animations {
       p1.blocking == true &&
       p1attackanim.animating == false
     ) {
-      animation(p1Blocked, p1.x - 37, 322);
+      animation(p1Blocked, p1.x - 58, 298);
     }
   }
 }
