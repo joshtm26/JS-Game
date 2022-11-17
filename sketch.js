@@ -36,12 +36,6 @@ let p2Score = 0;
 let paused = false;
 
 function preload() {
-  player1 = loadImage(
-    "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p1.png?v=1667937390640"
-  );
-  player2 = loadImage(
-    "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p2.png?v=1667937831521"
-  );
   bg = loadImage(
     "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/alley%20stage.gif?v=1668651530562"
   );
@@ -133,7 +127,8 @@ function setup() {
 }
 
 function draw() {
-  background(bg);
+  //background(bg);
+  background(120);
   noStroke();
   fill(40);
   rect(0, 410, 1000, 40);
