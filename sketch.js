@@ -17,14 +17,14 @@ Down Arrow: block
 double tap left or right to perform a dash
 
 TO DO
-add block animation
+add eye glow for successful block
 add sounds effects to the actions
 make attack not instant (would have to rewrite the attack animation in p5 play and then add p1/p2AttackAni.frame == 3 to the attack if statement)
 change fonts
 make a start screen and 3, 2, 1 countdown
 make it raining
 
-*/
+*/ 
 
 let bgm;
 let bg;
@@ -307,6 +307,7 @@ class Player1 {
       keyIsDown(83) &&
       keyIsDown(65) == false &&
       keyIsDown(68) == false &&
+      this.speed == 0 &&
       this.attackLag >= 50
     ) {
       this.blocking = true;
