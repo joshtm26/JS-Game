@@ -20,7 +20,6 @@ Down Arrow: block
 double tap left or right to perform a dash
 
 TO DO
-change fonts to pixel font
 add an array and for loop (maybe rain?)
 make a start screen and 3, 2, 1 countdown
 make attack not instant (would have to rewrite the attack animation in p5 play and then add p1/p2AttackAni.frame == 3 to the attack if statement)
@@ -143,7 +142,7 @@ function preload() {
 function setup() {
   createCanvas(1000, 450);
   angleMode(DEGREES);
-  bgm.volume(0.1);
+  bgm.volume(0.2);
   p1 = new Player1();
   p2 = new Player2();
   p1ani = new P1Animations();
@@ -158,21 +157,26 @@ function setup() {
 function draw() {
   background(bg);
   textFont(pixelFont);
-  
+
   //start screen
   if (isLooping() == false) {
-    fill(255);
     textSize(50);
+    fill(0);
+    text("Click to Begin", 300, 205);
+    fill(255);
     text("Click to Begin", 295, 200);
     textSize(25);
-    text("volume warning", 382, 245)
+    fill(0);
+    text("volume warning", 385, 250);
+    fill(255);
+    text("volume warning", 380, 245);
     push();
-    scale(.25)
+    scale(0.25);
     image(wasd, 200, 250);
     image(arrows, 3150, 230);
     pop();
   }
-  
+
   //pauses these methods in between rounds until space bar is hit
   if (paused == false) {
     //uncomment to see hitboxes
@@ -199,6 +203,7 @@ function draw() {
   p1.lag++;
   p2.lag++;
 
+  //displaying both players attack animations
   if (p1attackanim.animating) {
     p1attackanim.animate();
     p1attackanim.display();
@@ -220,18 +225,27 @@ function draw() {
   //play death animation and display winner text
   if (p1.win == true) {
     p2ani.death();
-    p1Wins();
+    textSize(65);
+    fill(0);
+    text("Player 1 Wins", 230, 155);
+    fill(255);
+    text("Player 1 Wins", 225, 150);
   }
   if (p2.win == true) {
     p1ani.death();
-    p2Wins();
+    textSize(65);
+    fill(0);
+    text("Player 2 Wins", 230, 155);
+    fill(255);
+    text("Player 2 Wins", 225, 150);
   }
 }
 
+//start the sketch and music
 function mousePressed() {
   //paused = true;
   bgm.play();
-  loop()
+  loop();
 }
 
 function keyPressed() {
@@ -260,20 +274,6 @@ function keyPressed() {
     p2DeathAni.play(0);
     paused = false;
   }
-}
-
-//thest two text functions are so I could get a black shadow on the winner text
-function p1Wins() {
-  textSize(65);
-  fill(0);
-  text("Player 1 Wins", 230, 155);
-  fill(255);
-  text("Player 1 Wins", 225, 150);
-}
-
-function p2Wins() {
-  textSize(65);
-  text("Player 2 Wins", 225, 150);
 }
 
 class Player1 {
