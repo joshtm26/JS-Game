@@ -20,7 +20,6 @@ Down Arrow: block
 double tap left or right to perform a dash
 
 TO DO
-add eye glow for successful block (p1/p2Blocked)
 add sounds effects to dash, attack, and successful block
 change fonts to pixel font
 make attack not instant (would have to rewrite the attack animation in p5 play and then add p1/p2AttackAni.frame == 3 to the attack if statement)
@@ -340,6 +339,9 @@ class Player1 {
         this.win = true;
         p1ani.running = false;
         p2ani.running = false;
+        p1attackanim.animating == false;
+        p2attackanim.animating == false;
+        p1.blocking = false;
         paused = true;
       }
       if (this.hitbox >= p2.x && p2.blocking == true) {
@@ -460,6 +462,9 @@ class Player2 {
         this.win = true;
         p1ani.running = false;
         p2ani.running = false;
+        p1attackanim.animating == false;
+        p2attackanim.animating == false;
+        p2.blocking = false;
         paused = true;
       }
       if (this.hitbox <= p1.x && p1.blocking == true) {
@@ -509,8 +514,13 @@ class P1Animations {
       this.blockedCount = 0;
       p1.blocked = false;
     }
-    if (this.blockedCount <= 30 && this.running == false && p1.blocking == true && p1attackanim.animating == false) {
-        animation(p1Blocked, p1.x - 37, 322);
+    if (
+      this.blockedCount <= 30 &&
+      this.running == false &&
+      p1.blocking == true &&
+      p1attackanim.animating == false
+    ) {
+      animation(p1Blocked, p1.x - 37, 322);
     }
   }
 }
@@ -549,14 +559,19 @@ class P2Animations {
       p2DeathAni.stop();
     }
   }
-  
+
   blocked() {
     if (p2.blocked == true) {
       this.blockedCount = 0;
       p2.blocked = false;
     }
-    if (this.blockedCount <= 30 && this.running == false && p2.blocking == true && p2attackanim.animating == false) {
-        animation(p2Blocked, p2.x + 30, 298);
+    if (
+      this.blockedCount <= 30 &&
+      this.running == false &&
+      p2.blocking == true &&
+      p2attackanim.animating == false
+    ) {
+      animation(p2Blocked, p2.x + 31, 298);
     }
   }
 }
