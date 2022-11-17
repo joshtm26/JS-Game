@@ -217,16 +217,14 @@ function draw() {
   text("P2:", 890, 35);
   text(p2Score, 955, 35);
 
-  //winner text
-  textSize(65);
-  text("Player 1 Wins", 250, 150);
+  //play death animation and display winner text
   if (p1.win == true) {
     p2ani.death();
-    
+    p1Wins();
   }
   if (p2.win == true) {
     p1ani.death();
-    text("Player 2 Wins", 250, 150);
+    p2Wins();
   }
 }
 
@@ -262,6 +260,20 @@ function keyPressed() {
     p2DeathAni.play(0);
     paused = false;
   }
+}
+
+//thest two text functions are so I could get a black shadow on the winner text
+function p1Wins() {
+  textSize(65);
+  fill(0);
+  text("Player 1 Wins", 230, 155);
+  fill(255);
+  text("Player 1 Wins", 225, 150);
+}
+
+function p2Wins() {
+  textSize(65);
+  text("Player 2 Wins", 225, 150);
 }
 
 class Player1 {
