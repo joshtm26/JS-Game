@@ -17,10 +17,10 @@ Down Arrow: block
 double tap left or right to perform a dash
 
 TO DO
-add eye glow for successful block
-add sounds effects to the actions
+add eye glow for successful block (p1/p2Blocked)
+add sounds effects to dash, attack, and successful block
+change fonts to pixel font
 make attack not instant (would have to rewrite the attack animation in p5 play and then add p1/p2AttackAni.frame == 3 to the attack if statement)
-change fonts
 make a start screen and 3, 2, 1 countdown
 make it raining
 
@@ -437,7 +437,7 @@ class Player2 {
       this.lag >= 50
     ) {
       this.blocking = true;
-      image(p2Block, this.x -370, -102)
+      image(p2Block, this.x -369, -102)
     } else {
       this.blocking = false;
     }
@@ -496,7 +496,7 @@ class P2Animations {
   dying = false;
 
   idle() {
-    if (this.running == false && this.dying == false && p2attackanim.animating == false) {
+    if (this.running == false && p2.blocking == false && this.dying == false && p2attackanim.animating == false) {
       animation(p2IdleAni, p2.x + 30, 298);
     }
   }
