@@ -95,8 +95,8 @@ function preload() {
   );
   
   p2IdleAni = loadAni(
-    "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p2%20idle%20sprite%20sheet.png?v=1668544996926",
-    { size: [800, 800], frames: 4 }
+    "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p2%20idle%20sprite%20sheet.png?v=1668644255411",
+    { size: [800, 800], frames: 8 }
   );
   p2RunAni = loadAni(
     "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p2%20run%20frame%201.png?v=1668643356409",
