@@ -20,7 +20,6 @@ Down Arrow: block
 double tap left or right to perform a dash
 
 TO DO
-add sounds effects to attack, dash, and successful block
 change fonts to pixel font
 add an array and for loop (maybe rain?)
 make a start screen and 3, 2, 1 countdown
@@ -253,8 +252,7 @@ function keyPressed() {
     p1ani.dying = false;
     p1DeathAni.play(0);
     p2.x = 850;
-    p2.speed
-    p2.startingX = 0;
+    p2.startingX = 940;
     p2.hitbox = p2.x - 302;
     p2.lag = 100;
     p2.win = false;
