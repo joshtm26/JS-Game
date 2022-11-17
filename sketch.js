@@ -27,9 +27,6 @@ make attack not instant (would have to rewrite the attack animation in p5 play a
 
 */
 
-let bg;
-let bgm;
-let sword;
 let anim = [];
 const ground = 110;
 const dashSpeed = 2;
@@ -38,17 +35,20 @@ let p2Score = 0;
 let paused = false;
 
 function preload() {
-  wasd = loadImage(
-    "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/wasd.png?v=1668661321884"
-  );
-  arrows = loadImage(
-    "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/arrow%20keys.png?v=1668661319006"
-  );
   bg = loadImage(
     "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/alley%20stage.gif?v=1668651530562"
   );
   bgm = createAudio(
     "https://cdn.glitch.global/972c0e28-86ae-4368-9296-f573ccb7ae82/Tekken%203%20Jin%20theme%20arcade%20ver.mp3?v=1667269184277"
+  );
+  pixelFont = loadFont(
+    "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/Retro%20Gaming.ttf?v=1668667876787"
+  );
+  wasd = loadImage(
+    "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/wasd.png?v=1668661321884"
+  );
+  arrows = loadImage(
+    "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/arrow%20keys.png?v=1668661319006"
   );
   sword = loadSound(
     "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/sword.mp3?v=1668666101572"
@@ -157,14 +157,15 @@ function setup() {
 
 function draw() {
   background(bg);
-
+  textFont(pixelFont);
+  
   //start screen
   if (isLooping() == false) {
     fill(255);
-    textSize(60);
-    text("Click to Begin", 330, 200);
-    textSize(20);
-    text("volume warning the sound effects are a little loud", 294, 245)
+    textSize(50);
+    text("Click to Begin", 295, 200);
+    textSize(25);
+    text("volume warning", 382, 245)
     push();
     scale(.25)
     image(wasd, 200, 250);
@@ -211,16 +212,17 @@ function draw() {
   //scores
   fill(255);
   textSize(30);
-  text("P1:", 10, 35);
-  text(p1Score, 65, 35);
-  text("P2:", 920, 35);
-  text(p2Score, 975, 35);
+  text("P1:", 15, 35);
+  text(p1Score, 70, 35);
+  text("P2:", 890, 35);
+  text(p2Score, 955, 35);
 
   //winner text
-  textSize(75);
+  textSize(65);
+  text("Player 1 Wins", 250, 150);
   if (p1.win == true) {
     p2ani.death();
-    text("Player 1 Wins", 250, 150);
+    
   }
   if (p2.win == true) {
     p1ani.death();
