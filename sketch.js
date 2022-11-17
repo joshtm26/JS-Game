@@ -135,14 +135,16 @@ function setup() {
   p2ani = new P2Animations();
   p1IdleAni.frameDelay = 6;
   p2IdleAni.frameDelay = 9;
+  p1DeathAni.frameDelay = 6;
+  p2DeathAni.frameDelay = 8;
 }
 
 function draw() {
-  //background(bg);
-  background(120);
-  noStroke();
-  fill(40);
-  rect(0, 410, 1000, 40);
+  background(bg);
+  // background(120);
+  // noStroke();
+  // fill(40);
+  // rect(0, 410, 1000, 40);
 
   if (paused == false) {
     // p1.hitboxes();
