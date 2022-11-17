@@ -2,17 +2,17 @@
 
 CONTROLS
 
-Click to start
-Space to start next round
+Click to start game
+Press space to start next round
 
-Player 1:
+Player 1 (left):
 A: move left
 D: move right
 W: attack
 S: block
 double tap A or D to perform a dash
 
-Player 2:
+Player 2 (right):
 Left Arrow; move left
 Right Arrow: move right
 Up Arrow: attack
@@ -52,10 +52,14 @@ function preload() {
     "https://cdn.glitch.global/972c0e28-86ae-4368-9296-f573ccb7ae82/Tekken%203%20Jin%20theme%20arcade%20ver.mp3?v=1667269184277"
   );
   sword = loadSound(
-    "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p2%20sword.mp3?v=1668665177914"
+    "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/sword.mp3?v=1668666101572"
   );
-  block = loadSound
-
+  block = loadSound(
+    "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/block.mp3?v=1668666224105"
+  );
+  hit = loadSound(
+    "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/hit.mp3?v=1668666226180"
+  );
   const p1attackframes = [
     loadImage(
       "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/attack%20frame%201.png?v=1667970012328"
@@ -157,9 +161,11 @@ function draw() {
 
   //start screen
   if (isLooping() == false) {
-    fill(255)
-    textSize(60)
-    text("Click to Begin", 325, 200)
+    fill(255);
+    textSize(60);
+    text("Click to Begin", 330, 200);
+    textSize(20);
+    text("volume warning the sound effects are a little loud", 294, 245)
     push();
     scale(.25)
     image(wasd, 200, 250);
@@ -247,6 +253,7 @@ function keyPressed() {
     p1ani.dying = false;
     p1DeathAni.play(0);
     p2.x = 850;
+    p2.speed
     p2.startingX = 0;
     p2.hitbox = p2.x - 302;
     p2.lag = 100;
@@ -366,6 +373,7 @@ class Player1 {
       p1attackanim.play();
       sword.play();
       if (this.hitbox >= p2.x && p2.blocking == false) {
+        hit.play();
         p1Score += 1;
         this.win = true;
         p1ani.running = false;
@@ -377,6 +385,7 @@ class Player1 {
       }
       if (this.hitbox >= p2.x && p2.blocking == true) {
         p2.blocked = true;
+        block.play();
       }
     }
   }
@@ -490,6 +499,7 @@ class Player2 {
       p2attackanim.play();
       sword.play();
       if (this.hitbox <= p1.x && p1.blocking == false) {
+        hit.play();
         p2Score += 1;
         this.win = true;
         p1ani.running = false;
@@ -501,6 +511,7 @@ class Player2 {
       }
       if (this.hitbox <= p1.x && p1.blocking == true) {
         p1.blocked = true;
+        block.play();
       }
     }
   }
