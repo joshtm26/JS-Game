@@ -50,6 +50,12 @@ function preload() {
   bgm = createAudio(
     "https://cdn.glitch.global/972c0e28-86ae-4368-9296-f573ccb7ae82/Tekken%203%20Jin%20theme%20arcade%20ver.mp3?v=1667269184277"
   );
+  p1Sword = loadSound(
+    "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p1%20sword.mp3?v=1668665173860"
+  );
+  p2Sword = loadSound(
+    "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p2%20sword.mp3?v=1668665177914"
+  );
 
   const p1attackframes = [
     loadImage(
@@ -144,7 +150,6 @@ function setup() {
   p2IdleAni.frameDelay = 9;
   p1DeathAni.frameDelay = 6;
   p2DeathAni.frameDelay = 8;
-  p1Blocked.life = 200;
   noLoop();
 }
 
@@ -360,6 +365,7 @@ class Player1 {
     if (this.lag >= 100 && keyCode == 87) {
       this.lag = 0;
       p1attackanim.play();
+      p2Sword.play();
       if (this.hitbox >= p2.x && p2.blocking == false) {
         p1Score += 1;
         this.win = true;
@@ -483,6 +489,7 @@ class Player2 {
     if (this.lag >= 100 && keyCode == UP_ARROW) {
       this.lag = 0;
       p2attackanim.play();
+      p2Sword.play();
       if (this.hitbox <= p1.x && p1.blocking == false) {
         p2Score += 1;
         this.win = true;
