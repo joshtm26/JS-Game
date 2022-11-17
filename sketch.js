@@ -158,11 +158,13 @@ function draw() {
     p1.block();
     p2.block();
     p1ani.blocked();
+    p2ani.blocked();
   }
 
   p1ani.idle();
   p2ani.idle();
   p1ani.blockedCount++;
+  p2ani.blockedCount++;
   p1.dashCount++;
   p2.dashCount++;
   p1.lag++;
@@ -462,7 +464,6 @@ class Player2 {
       }
       if (this.hitbox <= p1.x && p1.blocking == true) {
         p1.blocked = true;
-        print("blocked");
       }
     }
   }
@@ -471,7 +472,7 @@ class Player2 {
 class P1Animations {
   running = false;
   dying = false;
-  blockedCount = 20;
+  blockedCount = 31;
 
   idle() {
     if (
@@ -508,15 +509,16 @@ class P1Animations {
       this.blockedCount = 0;
       p1.blocked = false;
     }
-    if (this.blockedCount <= 10) {
+    if (this.blockedCount <= 30 && this.running == false && p1.blocking == true && p1attackanim.animating == false) {
         animation(p1Blocked, p1.x - 37, 322);
-      }
+    }
   }
 }
 
 class P2Animations {
   running = false;
   dying = false;
+  blockedCount = 30;
 
   idle() {
     if (
@@ -545,6 +547,16 @@ class P2Animations {
     animation(p2DeathAni, p2.x + 30, 298);
     if (p2DeathAni.frame == 6) {
       p2DeathAni.stop();
+    }
+  }
+  
+  blocked() {
+    if (p2.blocked == true) {
+      this.blockedCount = 0;
+      p2.blocked = false;
+    }
+    if (this.blockedCount <= 30 && this.running == false && p2.blocking == true && p2attackanim.animating == false) {
+        animation(p2Blocked, p2.x + 30, 298);
     }
   }
 }
