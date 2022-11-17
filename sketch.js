@@ -145,16 +145,18 @@ function draw() {
     p2.dashing();
     p1ani.run();
     p2ani.run();
+    p1.block();
+    p2.block();
   }
   
   p1ani.idle();
   p2ani.idle();
   p1.dashCount++;
   p2.dashCount++;
-  p1.blockCount++;
-  p2.blockCount++;
-  p1.attackCount++;
-  p2.attackCount++;
+  p1.blockLag++;
+  p2.blockLag++;
+  p1.attackLag++;
+  p2.attackLag++;
 
   if (p1attackanim.animating) {
     p1attackanim.animate();
@@ -191,8 +193,6 @@ function keyPressed() {
   if (paused == false) {
     p1.dash();
     p2.dash();
-    p1.block();
-    p2.block();
     p1.attack();
     p2.attack();
   }
@@ -200,17 +200,19 @@ function keyPressed() {
   //press space to reset everything
   if (keyCode == 32 && paused == true) {
     p1.x = 180;
+    p1.startingX = 0;
     p1.hitbox = p1.x + 320;
-    p1.attackCount = 100;
+    p1.attackLag = 100;
     p1.win = false;
     p1ani.dying = false;
     p1DeathAni.play(0);
     p2.x = 850;
+    p2.startingX = 0;
     p2.hitbox = p2.x - 302;
-    p2.attackCount = 100;
+    p2.attackLag = 100;
     p2.win = false;
     p2ani.dying = false;
-    p2DeathAni.play(0);
+    p2DeathAni.play(0)
     paused = false;
   }
 }
@@ -228,8 +230,8 @@ class Player1 {
   aDash = false;
   startingX = 0;
   dashCount = 0;
-  blockCount = 0;
-  attackCount = 100;
+  blockLag = 0;
+  attackLag = 100;
   win = false;
 
   hitboxes() {
@@ -304,29 +306,29 @@ class Player1 {
 
   block() {
     if (
-      keyCode == 83 &&
+      keyIsDown == 83 &&
       keyIsDown(65) == false &&
       keyIsDown(68) == false &&
-      this.blockCount >= 100 &&
-      this.attackCount >= 100
+      this.blockLag >= 100 &&
+      this.attackLag >= 100
     ) {
-      this.blockCount = 0;
+      this.blockLag = 0;
       print("p1 blocking");
     }
   }
 
   attack() {
-    if (this.attackCount >= 100 && keyCode == 87) {
-      this.attackCount = 0;
+    if (this.attackLag >= 100 && keyCode == 87) {
+      this.attackLag = 0;
       p1attackanim.play();
-      if (this.hitbox >= p2.x && p2.blockCount > 60) {
+      if (this.hitbox >= p2.x && p2.blockLag > 60) {
         p1Score += 1;
         this.win = true;
         p1ani.running = false;
         p2ani.running = false;
         paused = true;
       }
-      if (this.hitbox >= p2.x && p2.blockCount <= 60) {
+      if (this.hitbox >= p2.x && p2.blockLag <= 60) {
         print("blocked");
       }
     }
@@ -346,8 +348,8 @@ class Player2 {
   rDash = false;
   startingX = 0;
   dashCount = 0;
-  blockCount = 0;
-  attackCount = 100;
+  blockLag = 0;
+  attackLag = 100;
   win = false;
 
   hitboxes() {
@@ -424,26 +426,26 @@ class Player2 {
       keyCode == DOWN_ARROW &&
       keyIsDown(LEFT_ARROW) == false &&
       keyIsDown(RIGHT_ARROW) == false &&
-      this.blockCount >= 100 &&
-      this.attackCount >= 100
+      this.blockLag >= 100 &&
+      this.attackLag >= 100
     ) {
-      this.blockCount = 0;
+      this.blockLag = 0;
       print("p2 blocking");
     }
   }
 
   attack() {
-    if (this.attackCount >= 100 && keyCode == UP_ARROW) {
-      this.attackCount = 0;
+    if (this.attackLag >= 100 && keyCode == UP_ARROW) {
+      this.attackLag = 0;
       p2attackanim.play();
-      if (this.hitbox <= p1.x && p1.blockCount > 60) {
+      if (this.hitbox <= p1.x && p1.blockLag > 60) {
         p2Score += 1;
         this.win = true;
         p1ani.running = false;
         p2ani.running = false;
         paused = true;
       }
-      if (this.hitbox <= p1.x && p1.blockCount <= 60) {
+      if (this.hitbox <= p1.x && p1.blockLag <= 60) {
         print("blocked");
       }
     }
