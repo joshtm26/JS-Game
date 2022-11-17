@@ -152,9 +152,11 @@ function setup() {
 function draw() {
   background(bg);
 
+  //start screen
   if (isLooping() == false) {
-    textSize()
-    text()
+    fill(255)
+    textSize(60)
+    text("Click to Begin", 340, 200)
     push();
     scale(.25)
     image(wasd, 200, 250);
@@ -162,7 +164,9 @@ function draw() {
     pop();
   }
   
+  //pauses these methods in between rounds until space bar is hit
   if (paused == false) {
+    //uncomment to see hitboxes
     // p1.hitboxes();
     // p2.hitboxes();
     p1.move();
@@ -208,11 +212,11 @@ function draw() {
   textSize(75);
   if (p1.win == true) {
     p2ani.death();
-    text("Player 1 Wins", 270, 150);
+    text("Player 1 Wins", 250, 150);
   }
   if (p2.win == true) {
     p1ani.death();
-    text("Player 2 Wins", 270, 150);
+    text("Player 2 Wins", 250, 150);
   }
 }
 
