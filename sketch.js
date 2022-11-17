@@ -89,7 +89,7 @@ function preload() {
   p1Block = loadImage(
     "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p1%20block.png?v=1668650892631"
   );
-  p1Blocked = loadImage(
+  p1Blocked = loadAni(
     "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p1%20blocked.png?v=1668651941540"
   );
   
@@ -119,7 +119,7 @@ function preload() {
   p2Block = loadImage(
     "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p2%20block.png?v=1668653396658"
   );
-  p2Blocked = loadImage(
+  p2Blocked = loadAni(
     "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p2%20blocked.png?v=1668653401233"
   );
 }
@@ -137,6 +137,7 @@ function setup() {
   p2IdleAni.frameDelay = 9;
   p1DeathAni.frameDelay = 6;
   p2DeathAni.frameDelay = 8;
+  p1Blocked.life = 60;
 }
 
 function draw() {
@@ -157,6 +158,7 @@ function draw() {
     p2ani.run();
     p1.block();
     p2.block();
+    p1ani.blocked();
   }
   
   p1ani.idle();
@@ -194,6 +196,8 @@ function draw() {
     p1ani.death();
     text("Player 2 Wins", 270, 150);
   }
+  
+  print(p1.blocked)
 }
 
 function keyPressed() {
@@ -238,6 +242,7 @@ class Player1 {
   startingX = 0;
   dashCount = 0;
   blocking = false;
+  blocked = false;
   lag = 100;
   win = false;
 
@@ -338,7 +343,7 @@ class Player1 {
         paused = true;
       }
       if (this.hitbox >= p2.x && p2.blocking == true) {
-        print("blocked");
+        p2.blocked = true;
       }
     }
   }
@@ -358,6 +363,7 @@ class Player2 {
   startingX = 0;
   dashCount = 0;
   blocking = false;
+  blocked = false;
   lag = 100;
   win = false;
 
@@ -457,6 +463,7 @@ class Player2 {
         paused = true;
       }
       if (this.hitbox <= p1.x && p1.blocking == true) {
+        p1.blocked = true;
         print("blocked");
       }
     }
@@ -489,6 +496,13 @@ class P1Animations {
     animation(p1DeathAni, p1.x - 37, 322);
     if (p1DeathAni.frame == 5) {
       p1DeathAni.stop();
+    }
+  }
+  
+  blocked() {
+    if (p1.blocked == true) {
+      animation(p1Blocked, p1.x -37, 322);
+      p1.blocked = false;
     }
   }
 }
