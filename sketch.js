@@ -38,6 +38,12 @@ let p2Score = 0;
 let paused = false;
 
 function preload() {
+  wasd = loadImage(
+    "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/wasd.png?v=1668661321884"
+  );
+  arrows = loadImage(
+    "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/arrow%20keys.png?v=1668661319006"
+  );
   bg = loadImage(
     "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/alley%20stage.gif?v=1668651530562"
   );
@@ -147,7 +153,13 @@ function draw() {
   background(bg);
 
   if (isLooping() == false) {
-    rect(100, 100, 100, 100)
+    textSize()
+    text()
+    push();
+    scale(.25)
+    image(wasd, 200, 250);
+    image(arrows, 3150, 230);
+    pop();
   }
   
   if (paused == false) {
@@ -189,8 +201,8 @@ function draw() {
   textSize(30);
   text("P1:", 10, 35);
   text(p1Score, 65, 35);
-  text("P2:", 900, 35);
-  text(p2Score, 955, 35);
+  text("P2:", 920, 35);
+  text(p2Score, 975, 35);
 
   //winner text
   textSize(75);
