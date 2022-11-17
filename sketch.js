@@ -89,6 +89,9 @@ function preload() {
   p1Block = loadImage(
     "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p1%20block.png?v=1668650892631"
   );
+  p1Blocked = loadImage(
+    "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p1%20blocked.png?v=1668651941540"
+  );
   
   p2IdleAni = loadAni(
     "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p2%20idle%20sprite%20sheet.png?v=1668644255411",
@@ -116,7 +119,9 @@ function preload() {
   p2Block = loadImage(
     "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p2%20block.png?v=1668653396658"
   );
-  
+  p2Blocked = loadImage(
+    "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p2%20blocked.png?v=1668653401233"
+  );
 }
 
 function setup() {
@@ -156,8 +161,8 @@ function draw() {
   p2ani.idle();
   p1.dashCount++;
   p2.dashCount++;
-  p1.attackLag++;
-  p2.attackLag++;
+  p1.lag++;
+  p2.lag++;
 
   if (p1attackanim.animating) {
     p1attackanim.animate();
@@ -202,14 +207,14 @@ function keyPressed() {
     p1.x = 180;
     p1.startingX = 0;
     p1.hitbox = p1.x + 320;
-    p1.attackLag = 100;
+    p1.lag = 100;
     p1.win = false;
     p1ani.dying = false;
     p1DeathAni.play(0);
     p2.x = 850;
     p2.startingX = 0;
     p2.hitbox = p2.x - 302;
-    p2.attackLag = 100;
+    p2.lag = 100;
     p2.win = false;
     p2ani.dying = false;
     p2DeathAni.play(0)
@@ -231,7 +236,7 @@ class Player1 {
   startingX = 0;
   dashCount = 0;
   blocking = false;
-  attackLag = 100;
+  lag = 100;
   win = false;
 
   hitboxes() {
@@ -310,18 +315,18 @@ class Player1 {
       keyIsDown(65) == false &&
       keyIsDown(68) == false &&
       this.speed == 0 &&
-      this.attackLag >= 50
+      this.lag >= 50
     ) {
       this.blocking = true;
-      image(p1Block, this.x -500, this.y -300)
+      image(p1Block, this.x -458, -102)
     } else {
       this.blocking = false;
     }
   }
 
   attack() {
-    if (this.attackLag >= 100 && keyCode == 87) {
-      this.attackLag = 0;
+    if (this.lag >= 100 && keyCode == 87) {
+      this.lag = 0;
       p1attackanim.play();
       if (this.hitbox >= p2.x && p2.blocking == false) {
         p1Score += 1;
@@ -351,7 +356,7 @@ class Player2 {
   startingX = 0;
   dashCount = 0;
   blocking = false;
-  attackLag = 100;
+  lag = 100;
   win = false;
 
   hitboxes() {
@@ -429,18 +434,18 @@ class Player2 {
       keyIsDown(LEFT_ARROW) == false &&
       keyIsDown(RIGHT_ARROW) == false &&
       this.speed == 0 &&
-      this.attackLag >= 50
+      this.lag >= 50
     ) {
       this.blocking = true;
-      image(p2Block, this.x -500, -300)
+      image(p2Block, this.x -370, -102)
     } else {
       this.blocking = false;
     }
   }
 
   attack() {
-    if (this.attackLag >= 100 && keyCode == UP_ARROW) {
-      this.attackLag = 0;
+    if (this.lag >= 100 && keyCode == UP_ARROW) {
+      this.lag = 0;
       p2attackanim.play();
       if (this.hitbox <= p1.x && p1.blocking == false) {
         p2Score += 1;
@@ -452,6 +457,66 @@ class Player2 {
       if (this.hitbox <= p1.x && p1.blocking == true) {
         print("blocked");
       }
+    }
+  }
+}
+
+class P1Animations {
+  running = false;
+  dying = false;
+
+  idle() {
+    if (this.running == false && p1.blocking == false && this.dying == false && p1attackanim.animating == false) {
+      animation(p1IdleAni, p1.x - 37, 322);
+    }
+  }
+  
+  run() {
+    if (keyIsDown(68) == true || keyIsDown(65) == true) {
+      this.running = true;
+    } else {
+      this.running = false;
+    }
+    if (this.running == true && p1attackanim.animating == false) {
+      animation(p1RunAni, p1.x - 37, 322);
+    }
+  }
+  
+  death() {
+    this.dying = true;
+    animation(p1DeathAni, p1.x - 37, 322);
+    if (p1DeathAni.frame == 5) {
+      p1DeathAni.stop();
+    }
+  }
+}
+
+class P2Animations {
+  running = false;
+  dying = false;
+
+  idle() {
+    if (this.running == false && this.dying == false && p2attackanim.animating == false) {
+      animation(p2IdleAni, p2.x + 30, 298);
+    }
+  }
+  
+  run() {
+    if (keyIsDown(LEFT_ARROW) == true || keyIsDown(RIGHT_ARROW) == true) {
+      this.running = true;
+    } else {
+      this.running = false;
+    }
+    if (this.running == true && p2attackanim.animating == false) {
+      animation(p2RunAni, p2.x + 30, 298);
+    }
+  }
+  
+  death() {
+    this.dying = true;
+    animation(p2DeathAni, p2.x + 30, 298);
+    if (p2DeathAni.frame == 6) {
+      p2DeathAni.stop();
     }
   }
 }
@@ -513,65 +578,5 @@ class P2AttackAnimation {
   play() {
     this.animating = true;
     this.frame = 0;
-  }
-}
-
-class P1Animations {
-  running = false;
-  dying = false;
-
-  idle() {
-    if (this.running == false && p1.blocking == false && this.dying == false && p1attackanim.animating == false) {
-      animation(p1IdleAni, p1.x - 37, 322);
-    }
-  }
-  
-  run() {
-    if (keyIsDown(68) == true || keyIsDown(65) == true) {
-      this.running = true;
-    } else {
-      this.running = false;
-    }
-    if (this.running == true && p1attackanim.animating == false) {
-      animation(p1RunAni, p1.x - 37, 322);
-    }
-  }
-  
-  death() {
-    this.dying = true;
-    animation(p1DeathAni, p1.x - 37, 322);
-    if (p1DeathAni.frame == 5) {
-      p1DeathAni.stop();
-    }
-  }
-}
-
-class P2Animations {
-  running = false;
-  dying = false;
-
-  idle() {
-    if (this.running == false && p2.blocking == false && this.dying == false && p2attackanim.animating == false) {
-      animation(p2IdleAni, p2.x + 30, 298);
-    }
-  }
-  
-  run() {
-    if (keyIsDown(LEFT_ARROW) == true || keyIsDown(RIGHT_ARROW) == true) {
-      this.running = true;
-    } else {
-      this.running = false;
-    }
-    if (this.running == true && p2attackanim.animating == false) {
-      animation(p2RunAni, p2.x + 30, 298);
-    }
-  }
-  
-  death() {
-    this.dying = true;
-    animation(p2DeathAni, p2.x + 30, 298);
-    if (p2DeathAni.frame == 6) {
-      p2DeathAni.stop();
-    }
   }
 }
