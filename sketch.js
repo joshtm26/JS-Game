@@ -113,6 +113,10 @@ function preload() {
     "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p2%20death%20frame%206.png?v=1668642754869",
     "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p2%20death%20frame%207.png?v=1668642759618"
 	);
+  p2Block = loadImage(
+    "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p2%20block.png?v=1668653396658"
+  );
+  
 }
 
 function setup() {
@@ -152,8 +156,6 @@ function draw() {
   p2ani.idle();
   p1.dashCount++;
   p2.dashCount++;
-  p1.blockLag++;
-  p2.blockLag++;
   p1.attackLag++;
   p2.attackLag++;
 
@@ -321,14 +323,14 @@ class Player1 {
     if (this.attackLag >= 100 && keyCode == 87) {
       this.attackLag = 0;
       p1attackanim.play();
-      if (this.hitbox >= p2.x && p2.blockLag > 60) {
+      if (this.hitbox >= p2.x && p2.blocking == false) {
         p1Score += 1;
         this.win = true;
         p1ani.running = false;
         p2ani.running = false;
         paused = true;
       }
-      if (this.hitbox >= p2.x && p2.blockLag <= 60) {
+      if (this.hitbox >= p2.x && p2.blocking == true) {
         print("blocked");
       }
     }
@@ -348,7 +350,7 @@ class Player2 {
   rDash = false;
   startingX = 0;
   dashCount = 0;
-  blockLag = 0;
+  blocking = false;
   attackLag = 100;
   win = false;
 
@@ -423,14 +425,16 @@ class Player2 {
 
   block() {
     if (
-      keyCode == DOWN_ARROW &&
+      keyIsDown(DOWN_ARROW) &&
       keyIsDown(LEFT_ARROW) == false &&
       keyIsDown(RIGHT_ARROW) == false &&
-      this.blockLag >= 100 &&
-      this.attackLag >= 100
+      this.speed == 0 &&
+      this.attackLag >= 50
     ) {
-      this.blockLag = 0;
-      print("p2 blocking");
+      this.blocking = true;
+      image(p2Block, this.x -500, -300)
+    } else {
+      this.blocking = false;
     }
   }
 
@@ -517,7 +521,7 @@ class P1Animations {
   dying = false;
 
   idle() {
-    if (this.running == false && this.dying == false && p1attackanim.animating == false) {
+    if (this.running == false && p1.blocking == false && this.dying == false && p1attackanim.animating == false) {
       animation(p1IdleAni, p1.x - 37, 322);
     }
   }
@@ -547,7 +551,7 @@ class P2Animations {
   dying = false;
 
   idle() {
-    if (this.running == false && this.dying == false && p2attackanim.animating == false) {
+    if (this.running == false && p2.blocking == false && this.dying == false && p2attackanim.animating == false) {
       animation(p2IdleAni, p2.x + 30, 298);
     }
   }
