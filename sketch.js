@@ -20,11 +20,11 @@ Down Arrow: block
 double tap left or right to perform a dash
 
 TO DO
-add sounds effects to dash, attack, and successful block
+add sounds effects to attack, dash, and successful block
 change fonts to pixel font
 make attack not instant (would have to rewrite the attack animation in p5 play and then add p1/p2AttackAni.frame == 3 to the attack if statement)
 make a start screen and 3, 2, 1 countdown
-make it raining
+make it raining with a for loop or smthn
 
 */
 
