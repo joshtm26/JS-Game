@@ -44,6 +44,7 @@ let p1Score = 0;
 let p2Score = 0;
 let paused = false;
 
+//loading all the assets for animation, sound, and background
 function preload() {
   bg = loadImage(
     "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/alley%20stage.gif?v=1668651530562"
@@ -162,6 +163,7 @@ function setup() {
   p2IdleAni.frameDelay = 9;
   p1DeathAni.frameDelay = 6;
   p2DeathAni.frameDelay = 8;
+  //initializing rain arrays
   for (var i = 0; i < 300; i++) {
     frontRain[i] = new FrontRain();
   }
@@ -247,7 +249,7 @@ function draw() {
     }
   }
 
-  //scores
+  //score text
   noStroke();
   fill(255);
   textSize(30);
@@ -350,12 +352,12 @@ class Player1 {
   }
 
   move() {
-    //a
+    //if A key is down move left 3 pixels per frame
     if (keyIsDown(65) && this.x >= 90) {
       this.x -= 3;
       this.hitbox -= 3;
     }
-    //d
+    //if D key is down move right 3 pixels per frame
     if (keyIsDown(68) && this.x <= p2.x) {
       this.x += 3;
       this.hitbox += 3;
@@ -363,7 +365,7 @@ class Player1 {
   }
 
   dash() {
-    //d dash
+    //if D key is pressed twice within 12 frames and A key is not down then perform a dash
     if (keyIsDown(65) == false && keyCode == 68) {
       this.dPress += 1;
       if (this.dashCount >= 12) {
@@ -375,7 +377,7 @@ class Player1 {
         this.dDash = true;
       }
     }
-    //a dash
+    //if A key is pressed twice within 12 frames and D key is not down then perform a dash
     if (keyIsDown(68) == false && keyCode == 65) {
       this.aPress += 1;
       if (this.dashCount >= 12) {
@@ -388,7 +390,8 @@ class Player1 {
       }
     }
   }
-
+  
+  //if dash is inputted then increase speed until player has moved 70 pixels, run into other player, or run into edge of canvas
   dashing() {
     if (this.dDash == true) {
       this.speed = this.speed + dashSpeed;
@@ -412,12 +415,13 @@ class Player1 {
   }
 
   block() {
+    //if S key is down, you are not in end-lag, and player is not moving then block
     if (
       keyIsDown(83) &&
       keyIsDown(65) == false &&
       keyIsDown(68) == false &&
       this.speed == 0 &&
-      this.lag >= 50
+      this.lag >= 80
     ) {
       this.blocking = true;
       image(p1Block, this.x - 458, -102);
@@ -427,7 +431,8 @@ class Player1 {
   }
 
   attack() {
-    if (this.lag >= 100 && keyCode == 87) {
+    //if lag
+    if (this.lag >= 80 && keyCode == 87) {
       this.lag = 0;
       p1attackanim.play();
       sword.play();
@@ -543,7 +548,7 @@ class Player2 {
       keyIsDown(LEFT_ARROW) == false &&
       keyIsDown(RIGHT_ARROW) == false &&
       this.speed == 0 &&
-      this.lag >= 50
+      this.lag >= 80
     ) {
       this.blocking = true;
       image(p2Block, this.x - 369, -102);
@@ -553,7 +558,7 @@ class Player2 {
   }
 
   attack() {
-    if (this.lag >= 100 && keyCode == UP_ARROW) {
+    if (this.lag >= 80 && keyCode == UP_ARROW) {
       this.lag = 0;
       p2attackanim.play();
       sword.play();
