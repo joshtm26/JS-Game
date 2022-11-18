@@ -5,6 +5,7 @@ CONTROLS
 Click to start game
 Press space to start next round
 
+
 Player 1 (left):
 A: move left
 D: move right
@@ -153,8 +154,10 @@ function setup() {
   p2IdleAni.frameDelay = 9;
   p1DeathAni.frameDelay = 6;
   p2DeathAni.frameDelay = 8;
-  for (var i = 0; i < 500; i++) {
+  for (var i = 0; i < 300; i++) {
     frontRain[i] = new FrontRain();
+  }
+  for (var i = 0; i < 200; i++) {
     backRain[i] = new BackRain();
   }
   noLoop();
@@ -164,12 +167,6 @@ function draw() {
   background(bg);
   textFont(pixelFont);
 
-  
-  for (var i = 0; i < 250; i++) {
-    frontRain[i].fall();
-    frontRain[i].display();
-  }
-  
   //start screen
   if (isLooping() == false) {
     textSize(50);
@@ -188,7 +185,13 @@ function draw() {
     image(arrows, 3150, 230);
     pop();
   }
-
+  
+  //rain in front of characters
+  for (var i = 0; i < 300; i++) {
+    frontRain[i].fall();
+    frontRain[i].display();
+  }
+  
   //pauses these methods in between rounds until space bar is hit
   if (paused == false) {
     //uncomment to see hitboxes
@@ -226,6 +229,12 @@ function draw() {
     p2attackanim.display();
   }
 
+  //rain behind characters to create depth
+  for (var i = 0; i < 200; i++) {
+    backRain[i].fall();
+    backRain[i].display();
+  }
+  
   //scores
   fill(255);
   textSize(30);
@@ -705,14 +714,14 @@ class P2AttackAnimation {
 
 class FrontRain {
   x = random(1000);
-  y = random(0, -1000);
+  y = random(-50, -1000);
   speed = random(4, 10);
   
   fall() {
     this.y = this.y + this.speed;
     this.speed = this.speed + 0.1;
-    if (this.y > 350) {
-      this.y = random(0, -1000);
+    if (this.y > 375) {
+      this.y = random(-50, -1000);
       this.speed = random(4, 10);
     }
   }
@@ -725,14 +734,14 @@ class FrontRain {
 
 class BackRain {
   x = random(1000);
-  y = random(0, -1000);
+  y = random(-50, -1000);
   speed = random(4, 10);
   
   fall() {
     this.y = this.y + this.speed;
     this.speed = this.speed + 0.1;
-    if (this.y > 350) {
-      this.y = random(0, -1000);
+    if (this.y > 415) {
+      this.y = random(-50, -1000);
       this.speed = random(4, 10);
     }
   }
