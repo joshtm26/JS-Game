@@ -1,4 +1,4 @@
- /*
+/*
 
 CONTROLS
 
@@ -21,9 +21,8 @@ Down Arrow: block
 double tap left or right to perform a dash
 
 TO DO
-add an array and for loop (maybe rain?)
-make a start screen and 3, 2, 1 countdown
-make attack not instant (would have to rewrite the attack animation in p5 play and then add p1/p2AttackAni.frame == 3 to the attack if statement)
+make attack not instant (rewrite the attack animation in p5 play and then add p1/p2AttackAni.frame == 3 to the attack if statement)
+add 3, 2, 1 countdown on round start
 
 */
 
@@ -156,10 +155,10 @@ function setup() {
   p2IdleAni.frameDelay = 9;
   p1DeathAni.frameDelay = 6;
   p2DeathAni.frameDelay = 8;
-  for (var i = 0; i < 350; i++) {
+  for (var i = 0; i < 300; i++) {
     frontRain[i] = new FrontRain();
   }
-  for (var i = 0; i < 150; i++) {
+  for (var i = 0; i < 200; i++) {
     backRain[i] = new BackRain();
   }
   noLoop();
@@ -187,16 +186,16 @@ function draw() {
     image(arrows, 3150, 230);
     pop();
   }
-  
-  //rain in front of characters
+
+  //rain behind characters to create depth
   if (raining == true) {
-    for (var i = 0; i < 350; i++) {
-    frontRain[i].fall();
-    frontRain[i].display();
+    for (var i = 0; i < 200; i++) {
+      backRain[i].fall();
+      backRain[i].display();
+    }
   }
-  }
-  
-  //pauses these methods in between rounds until space bar is hit
+
+  //pauses these when a player wins
   if (paused == false) {
     //uncomment to see hitboxes
     // p1.hitboxes();
@@ -213,6 +212,7 @@ function draw() {
     p2ani.blocked();
   }
 
+  //staying playing while paused
   p1ani.idle();
   p2ani.idle();
   p1ani.blockedCount++;
@@ -227,21 +227,21 @@ function draw() {
     p1attackanim.animate();
     p1attackanim.display();
   }
-
   if (p2attackanim.animating) {
     p2attackanim.animate();
     p2attackanim.display();
   }
 
-  //rain behind characters to create depth
+  //rain in front of characters
   if (raining == true) {
-    for (var i = 0; i < 150; i++) {
-    backRain[i].fall();
-    backRain[i].display();
+    for (var i = 0; i < 300; i++) {
+      frontRain[i].fall();
+      frontRain[i].display();
     }
   }
 
   //scores
+  noStroke();
   fill(255);
   textSize(30);
   text("P1:", 15, 35);
@@ -266,14 +266,13 @@ function draw() {
     fill(255);
     text("Player 2 Wins", 225, 150);
   }
-  
-  if (rainToggle == 0 || rainToggle/2 == ) {
+
+  //checks if rain toggle is even or odd
+  if (rainToggle % 2 == 0) {
     raining = true;
-  } else if (rainToggle == odd) {
+  } else {
     raining = false;
   }
-  
-  print(rainToggle);
 }
 
 //start the sketch and music
@@ -284,6 +283,7 @@ function mousePressed() {
 }
 
 function keyPressed() {
+  //same as paused in draw
   if (paused == false) {
     p1.dash();
     p2.dash();
@@ -309,7 +309,8 @@ function keyPressed() {
     p2DeathAni.play(0);
     paused = false;
   }
-  
+
+  //R adds 1 to rain toggle
   if (keyCode == 82) {
     rainToggle += 1;
   }
@@ -734,7 +735,7 @@ class FrontRain {
   x = random(1000);
   y = random(-50, -1000);
   speed = random(4, 10);
-  
+
   fall() {
     this.y = this.y + this.speed;
     this.speed = this.speed + 0.1;
@@ -743,7 +744,7 @@ class FrontRain {
       this.speed = random(4, 10);
     }
   }
-  
+
   display() {
     stroke(83, 120, 158);
     line(this.x, this.y, this.x, this.y + 30);
@@ -754,7 +755,7 @@ class BackRain {
   x = random(1000);
   y = random(-50, -1000);
   speed = random(4, 10);
-  
+
   fall() {
     this.y = this.y + this.speed;
     this.speed = this.speed + 0.1;
@@ -763,12 +764,9 @@ class BackRain {
       this.speed = random(4, 10);
     }
   }
-  
+
   display() {
     stroke(83, 120, 158);
     line(this.x, this.y, this.x, this.y + 20);
   }
 }
- 
-  
-
