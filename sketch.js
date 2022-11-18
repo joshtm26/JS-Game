@@ -27,6 +27,8 @@ make attack not instant (would have to rewrite the attack animation in p5 play a
 */
 
 let anim = [];
+var frontRain = [];
+var backRain = [];
 const ground = 110;
 const dashSpeed = 2;
 let p1Score = 0;
@@ -151,6 +153,10 @@ function setup() {
   p2IdleAni.frameDelay = 9;
   p1DeathAni.frameDelay = 6;
   p2DeathAni.frameDelay = 8;
+  for (var i = 0; i < 500; i++) {
+    frontRain[i] = new FrontRain();
+    backRain[i] = new BackRain();
+  }
   noLoop();
 }
 
@@ -158,6 +164,12 @@ function draw() {
   background(bg);
   textFont(pixelFont);
 
+  
+  for (var i = 0; i < 250; i++) {
+    frontRain[i].fall();
+    frontRain[i].display();
+  }
+  
   //start screen
   if (isLooping() == false) {
     textSize(50);
@@ -690,4 +702,46 @@ class P2AttackAnimation {
     this.frame = 0;
   }
 }
+
+class FrontRain {
+  x = random(1000);
+  y = random(0, -1000);
+  speed = random(4, 10);
+  
+  fall() {
+    this.y = this.y + this.speed;
+    this.speed = this.speed + 0.1;
+    if (this.y > 350) {
+      this.y = random(0, -1000);
+      this.speed = random(4, 10);
+    }
+  }
+  
+  display() {
+    stroke(83, 120, 158);
+    line(this.x, this.y, this.x, this.y + 30);
+  }
+}
+
+class BackRain {
+  x = random(1000);
+  y = random(0, -1000);
+  speed = random(4, 10);
+  
+  fall() {
+    this.y = this.y + this.speed;
+    this.speed = this.speed + 0.1;
+    if (this.y > 350) {
+      this.y = random(0, -1000);
+      this.speed = random(4, 10);
+    }
+  }
+  
+  display() {
+    stroke(83, 120, 158);
+    line(this.x, this.y, this.x, this.y + 20);
+  }
+}
+ 
+  
 
