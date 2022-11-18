@@ -343,6 +343,7 @@ class Player1 {
   lag = 100;
   win = false;
 
+  //player 1 hitboxes visualized
   hitboxes() {
     noStroke();
     fill(255, 0, 0, 100);
@@ -415,7 +416,7 @@ class Player1 {
   }
 
   block() {
-    //if S key is down, you are not in end-lag, and player is not moving then block
+    //if S key is down, player is not moving, and you havent attacked in the last 80 frames then perform a block
     if (
       keyIsDown(83) &&
       keyIsDown(65) == false &&
@@ -431,11 +432,12 @@ class Player1 {
   }
 
   attack() {
-    //if lag
+    //if W key is pressed and you havent attacked in the last 80 frames then perform an attack
     if (this.lag >= 80 && keyCode == 87) {
       this.lag = 0;
       p1attackanim.play();
       sword.play();
+      //if the attack hitbox is over player 2's hitbox when the attack is performed and they are not blocking, then player 1 wins
       if (this.hitbox >= p2.x && p2.blocking == false) {
         hit.play();
         p1Score += 1;
@@ -447,6 +449,7 @@ class Player1 {
         p1.blocking = false;
         paused = true;
       }
+      //if player 2 was blocking then the attack was blocked
       if (this.hitbox >= p2.x && p2.blocking == true) {
         p2.blocked = true;
         block.play();
@@ -473,6 +476,7 @@ class Player2 {
   lag = 100;
   win = false;
 
+  //player 2 hitboxes visualized
   hitboxes() {
     noStroke();
     fill(0, 0, 255, 100);
@@ -482,12 +486,12 @@ class Player2 {
   }
 
   move() {
-    //left
+    //if left arrow key is down move left 3 pixels per frame
     if (keyIsDown(LEFT_ARROW) && this.x >= p1.x) {
       this.x -= 3;
       this.hitbox -= 3;
     }
-    //right
+    //if right arrow key is down move right 3 pixels per frame
     if (keyIsDown(RIGHT_ARROW) && this.x <= 940) {
       this.x += 3;
       this.hitbox += 3;
@@ -495,7 +499,7 @@ class Player2 {
   }
 
   dash() {
-    //left dash
+    //if right arrow key is pressed twice within 12 frames and left arrow key is not down then perform a dash
     if (keyIsDown(RIGHT_ARROW) == false && keyCode == LEFT_ARROW) {
       this.lPress += 1;
       if (this.dashCount >= 12) {
@@ -507,7 +511,7 @@ class Player2 {
         this.lDash = true;
       }
     }
-    //right dash
+    //if left arrow key is pressed twice within 12 frames and right arrow key is not down then perform a dash
     if (keyIsDown(LEFT_ARROW) == false && keyCode == RIGHT_ARROW) {
       this.rPress += 1;
       if (this.dashCount >= 12) {
@@ -520,7 +524,8 @@ class Player2 {
       }
     }
   }
-
+  
+  //if dash is inputted then increase speed until player has moved 70 pixels, run into other player, or run into edge of canvas
   dashing() {
     if (this.rDash == true) {
       this.speed = this.speed + dashSpeed;
@@ -543,6 +548,7 @@ class Player2 {
   }
 
   block() {
+    //if down arrow key is down, player is not moving, and you havent attacked in the last 80 frames then perform a block
     if (
       keyIsDown(DOWN_ARROW) &&
       keyIsDown(LEFT_ARROW) == false &&
@@ -558,10 +564,12 @@ class Player2 {
   }
 
   attack() {
+    //if up arrow key is pressed and you havent attacked in the last 80 frames then perform an attack
     if (this.lag >= 80 && keyCode == UP_ARROW) {
       this.lag = 0;
       p2attackanim.play();
       sword.play();
+      //if the attack hitbox is over player 1's hitbox when the attack is performed and they are not blocking, then player 2 wins
       if (this.hitbox <= p1.x && p1.blocking == false) {
         hit.play();
         p2Score += 1;
@@ -573,6 +581,7 @@ class Player2 {
         p2.blocking = false;
         paused = true;
       }
+      //if player 1 was blocking then the attack was blocked
       if (this.hitbox <= p1.x && p1.blocking == true) {
         p1.blocked = true;
         block.play();
@@ -587,6 +596,7 @@ class P1Animations {
   blockedCount = 31;
 
   idle() {
+    //if no other animation is playing then play the idle animation
     if (
       this.running == false &&
       p1.blocking == false &&
@@ -598,6 +608,7 @@ class P1Animations {
   }
 
   run() {
+    //if A or D key is down and player is not attacking then play running animation
     if (keyIsDown(68) == true || keyIsDown(65) == true) {
       this.running = true;
     } else {
@@ -608,6 +619,7 @@ class P1Animations {
     }
   }
 
+  //if player 2 wins then play death animation
   death() {
     this.dying = true;
     animation(p1DeathAni, p1.x - 37, 322);
@@ -616,6 +628,7 @@ class P1Animations {
     }
   }
 
+  //if player 1 blocks an attack from player 2 then play block animation
   blocked() {
     if (p1.blocked == true) {
       this.blockedCount = 0;
