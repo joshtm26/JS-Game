@@ -28,7 +28,7 @@ HAVE FUN!!
 
 
 TO DO
-make attack not instant (rewrite the attack animation in p5 play and then add p1/p2AttackAni.frame == 3 to the attack if statement)
+make attack hitbox not instant (rewrite the attack animation in p5 play and then add p1/p2AttackAni.frame == 3 to the attack if statement)
 add 3, 2, 1 countdown on round start
 
 */
@@ -163,7 +163,7 @@ function setup() {
   p2IdleAni.frameDelay = 9;
   p1DeathAni.frameDelay = 6;
   p2DeathAni.frameDelay = 8;
-  //initializing rain arrays
+  //rain arrays
   for (var i = 0; i < 300; i++) {
     frontRain[i] = new FrontRain();
   }
@@ -286,7 +286,6 @@ function draw() {
 
 //start the sketch and music
 function mousePressed() {
-  //paused = true;
   bgm.play();
   loop();
 }
@@ -391,7 +390,7 @@ class Player1 {
       }
     }
   }
-  
+
   //if dash is inputted then increase speed until player has moved 70 pixels, run into other player, or run into edge of canvas
   dashing() {
     if (this.dDash == true) {
@@ -524,7 +523,7 @@ class Player2 {
       }
     }
   }
-  
+
   //if dash is inputted then increase speed until player has moved 70 pixels, run into other player, or run into edge of canvas
   dashing() {
     if (this.rDash == true) {
@@ -619,8 +618,8 @@ class P1Animations {
     }
   }
 
-  //if player 2 wins then play death animation
   death() {
+    //if player 2 wins then play death animation
     this.dying = true;
     animation(p1DeathAni, p1.x - 37, 322);
     if (p1DeathAni.frame == 5) {
@@ -628,12 +627,8 @@ class P1Animations {
     }
   }
 
-  //if player 1 blocks an attack from player 2 then play block animation
   blocked() {
-    if (p1.blocked == true) {
-      this.blockedCount = 0;
-      p1.blocked = false;
-    }
+    //if player 1 blocks an attack from player 2 then play block animation
     if (
       this.blockedCount <= 30 &&
       this.running == false &&
@@ -641,6 +636,10 @@ class P1Animations {
       p1attackanim.animating == false
     ) {
       animation(p1Blocked, p1.x - 58, 298);
+    }
+    if (p1.blocked == true) {
+      this.blockedCount = 0;
+      p1.blocked = false;
     }
   }
 }
@@ -651,6 +650,7 @@ class P2Animations {
   blockedCount = 30;
 
   idle() {
+    //if no other animation is playing then play the idle animation
     if (
       this.running == false &&
       p2.blocking == false &&
@@ -662,6 +662,7 @@ class P2Animations {
   }
 
   run() {
+    //if left arrow or right arrow key is down and player is not attacking then play running animation
     if (keyIsDown(LEFT_ARROW) == true || keyIsDown(RIGHT_ARROW) == true) {
       this.running = true;
     } else {
@@ -673,6 +674,7 @@ class P2Animations {
   }
 
   death() {
+    //if player 1 wins then play death animation
     this.dying = true;
     animation(p2DeathAni, p2.x + 30, 298);
     if (p2DeathAni.frame == 6) {
@@ -681,6 +683,7 @@ class P2Animations {
   }
 
   blocked() {
+    //if player 2 blocks an attack from player 1 then play block animation
     if (p2.blocked == true) {
       this.blockedCount = 0;
       p2.blocked = false;
@@ -762,8 +765,10 @@ class FrontRain {
   speed = random(4, 10);
 
   fall() {
+    //constant speed and acceleration
     this.y = this.y + this.speed;
     this.speed = this.speed + 0.1;
+    //reset rain drop when it hits the ground
     if (this.y > 375) {
       this.y = random(-50, -1000);
       this.speed = random(4, 10);
@@ -782,8 +787,10 @@ class BackRain {
   speed = random(4, 10);
 
   fall() {
+    //constant speed and acceleration
     this.y = this.y + this.speed;
     this.speed = this.speed + 0.1;
+    //reset rain drop when it hits the ground
     if (this.y > 415) {
       this.y = random(-50, -1000);
       this.speed = random(4, 10);
