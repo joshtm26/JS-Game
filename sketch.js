@@ -1,4 +1,4 @@
-/*
+ /*
 
 CONTROLS
 
@@ -690,3 +690,4 @@ class P2AttackAnimation {
     this.frame = 0;
   }
 }
+
