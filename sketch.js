@@ -4,7 +4,7 @@ CONTROLS
 
 Click to start game
 Press space to start next round
-
+Press R to toggle rain on/off
 
 Player 1 (left):
 A: move left
@@ -30,6 +30,8 @@ make attack not instant (would have to rewrite the attack animation in p5 play a
 let anim = [];
 var frontRain = [];
 var backRain = [];
+let raining = true;
+let rainToggle = 0;
 const ground = 110;
 const dashSpeed = 2;
 let p1Score = 0;
@@ -154,10 +156,10 @@ function setup() {
   p2IdleAni.frameDelay = 9;
   p1DeathAni.frameDelay = 6;
   p2DeathAni.frameDelay = 8;
-  for (var i = 0; i < 300; i++) {
+  for (var i = 0; i < 350; i++) {
     frontRain[i] = new FrontRain();
   }
-  for (var i = 0; i < 200; i++) {
+  for (var i = 0; i < 150; i++) {
     backRain[i] = new BackRain();
   }
   noLoop();
@@ -187,9 +189,11 @@ function draw() {
   }
   
   //rain in front of characters
-  for (var i = 0; i < 300; i++) {
+  if (raining == true) {
+    for (var i = 0; i < 350; i++) {
     frontRain[i].fall();
     frontRain[i].display();
+  }
   }
   
   //pauses these methods in between rounds until space bar is hit
@@ -230,11 +234,13 @@ function draw() {
   }
 
   //rain behind characters to create depth
-  for (var i = 0; i < 200; i++) {
+  if (raining == true) {
+    for (var i = 0; i < 150; i++) {
     backRain[i].fall();
     backRain[i].display();
+    }
   }
-  
+
   //scores
   fill(255);
   textSize(30);
@@ -260,6 +266,14 @@ function draw() {
     fill(255);
     text("Player 2 Wins", 225, 150);
   }
+  
+  if (rainToggle == 0 || rainToggle/2 == ) {
+    raining = true;
+  } else if (rainToggle == odd) {
+    raining = false;
+  }
+  
+  print(rainToggle);
 }
 
 //start the sketch and music
@@ -294,6 +308,10 @@ function keyPressed() {
     p2ani.dying = false;
     p2DeathAni.play(0);
     paused = false;
+  }
+  
+  if (keyCode == 82) {
+    rainToggle += 1;
   }
 }
 
