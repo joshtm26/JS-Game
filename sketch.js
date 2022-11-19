@@ -1,6 +1,9 @@
 /*
 
-2 players for optimal experience
+For my playful prototype project I have made a two player fighting game that uses wasd and arrow keys
+as the control scheme. It is inspired by an indie game called One Strike. In this game it only takes a
+single attack to kill your opponent, making it so that you have to be careful about how you place yourattack 
+becuase it could cause fatal.
 
 CONTROLS
 
@@ -25,11 +28,6 @@ double tap left or right to perform a dash
 Note: you cannot block while moving and you are vulnerable for a small period of time after attacking
 
 HAVE FUN!!
-
-
-TO DO
-make attack hitbox not instant (rewrite the attack animation in p5 play and then add p1/p2AttackAni.frame == 3 to the attack if statement)
-add 3, 2, 1 countdown on round start
 
 */
 
