@@ -1,11 +1,12 @@
 /*
 
 For my playful prototype project I have made a two player fighting game that uses wasd and arrow keys
-as the control scheme. It is inspired by an indie game called One Strike. In this game it only takes a
-single attack to kill your opponent, making it so that you have to be careful about how you place yourattack 
-becuase it could cause fatal.
-
-CONTROLS
+as the control scheme, specific controls listed below. It is inspired by an indie game called One Strike. 
+In this game it only takes a single attack to kill your opponent, making it so that you have to be careful 
+about how you place your attack becuase it could cause fatal. After attacking there is a brief period of 
+time in which you are unable to block or attack again, giving the opponent a crucial opening if they are
+able to dodge or block the attack. I do not own the assets used but all of them are under CC0 aside from 
+the Tekken background music. All of the code in this project was written by me.
 
 Click to start game
 Press space to start next round
@@ -25,9 +26,7 @@ Up Arrow: attack
 Down Arrow: block
 double tap left or right to perform a dash
 
-Note: you cannot block while moving and you are vulnerable for a small period of time after attacking
-
-HAVE FUN!!
+Have fun and thank you for being my favorite class!!
 
 */
 
