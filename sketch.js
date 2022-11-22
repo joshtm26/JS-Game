@@ -766,7 +766,7 @@ class FrontRain {
     this.y = this.y + this.speed;
     this.speed = this.speed + 0.1;
     //reset rain drop when it hits the ground
-    if (this.y > 375) {
+    if (this.y > random(415, 430)) {
       this.y = random(-50, -1000);
       this.speed = random(4, 10);
     }
@@ -788,7 +788,7 @@ class BackRain {
     this.y = this.y + this.speed;
     this.speed = this.speed + 0.1;
     //reset rain drop when it hits the ground
-    if (this.y > 415) {
+    if (this.y > random(375, 400)) {
       this.y = random(-50, -1000);
       this.speed = random(4, 10);
     }
