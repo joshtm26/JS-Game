@@ -26,7 +26,7 @@ Up Arrow: attack
 Down Arrow: block
 double tap left or right to perform a dash
 
-Have fun and thank you for being my favorite class!!
+Have fun!!
 
 */
 
@@ -67,48 +67,17 @@ function preload() {
   hit = loadSound(
     "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/hit.mp3?v=1668666226180"
   );
-  const p1attackframes = [
-    loadImage(
-      "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/attack%20frame%201.png?v=1667970012328"
-    ),
-    loadImage(
-      "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/attack%20frame%202.png?v=1667970022137"
-    ),
-    loadImage(
-      "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/attack%20frame%203.png?v=1667970027482"
-    ),
-    loadImage(
-      "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/attack%20frame%204.png?v=1667970223885"
-    ),
-  ];
-  const p2attackframes = [
-    loadImage(
-      "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p2%20attack%20frame%201.png?v=1667972603469"
-    ),
-    loadImage(
-      "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p2%20attack%20frame%202.png?v=1667972607799"
-    ),
-    loadImage(
-      "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p2%20attack%20frame%203.png?v=1667972612278"
-    ),
-    loadImage(
-      "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p2%20attack%20frame%204.png?v=1667972617590"
-    ),
-  ];
-  p1attackanim = new P1AttackAnimation(p1attackframes);
-  p2attackanim = new P2AttackAnimation(p2attackframes);
-
   p1IdleAni = loadAni(
     "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p1%20idle%20sprite%20sheet.png?v=1668547022515",
-    { size: [800, 800], frames: 8 }
-  );
-  p1RunAni = loadAni(
-    "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p1%20run%20sprite%20sheet.png?v=1668546986144",
     { size: [800, 800], frames: 8 }
   );
   p1AttackAni = loadAni(
     "https://cdn.glitch.global/e5ca06d8-cdb6-4524-b0c9-ca1ee4ec9d3e/attack%20sprite%20sheet.png?v=1668540932519",
     { size: [800, 800], frames: 4 }
+  );
+  p1RunAni = loadAni(
+    "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p1%20run%20sprite%20sheet.png?v=1668546986144",
+    { size: [800, 800], frames: 8 }
   );
   p1DeathAni = loadAni(
     "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p1%20death%20sprite%20sheet.png?v=1668548217039",
@@ -124,6 +93,12 @@ function preload() {
   p2IdleAni = loadAni(
     "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p2%20idle%20sprite%20sheet.png?v=1668644255411",
     { size: [800, 800], frames: 8 }
+  );
+  p2AttackAni = loadAni(
+    "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p2%20attack%20frame%201.png?v=1667972603469",
+    "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p2%20attack%20frame%202.png?v=1667972607799",
+    "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p2%20attack%20frame%203.png?v=1667972612278",
+    "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p2%20attack%20frame%204.png?v=1667972617590"
   );
   p2RunAni = loadAni(
     "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p2%20run%20frame%201.png?v=1668643356409",
@@ -160,12 +135,13 @@ function setup() {
   p2 = new Player2();
   p1ani = new P1Animations();
   p2ani = new P2Animations();
+  //speed that the animation plays
   p1IdleAni.frameDelay = 6;
   p2IdleAni.frameDelay = 9;
   p1DeathAni.frameDelay = 6;
   p2DeathAni.frameDelay = 8;
-  // p1AttackAni.frameDelay = 4;
-  // p2AttackAni.frameDelay = 4;
+  p1AttackAni.frameDelay = 4;
+  p2AttackAni.frameDelay = 4;
   //rain arrays
   for (var i = 0; i < 300; i++) {
     frontRain[i] = new FrontRain();
@@ -224,6 +200,13 @@ function draw() {
     p2ani.blocked();
   }
 
+  if (p1ani.attacking == true) {
+    p1ani.attack();
+  }
+  if (p2ani.attacking == true) {
+    p2ani.attack();
+  }
+
   //staying playing while paused
   p1ani.idle();
   p2ani.idle();
@@ -233,16 +216,6 @@ function draw() {
   p2.dashCount++;
   p1.lag++;
   p2.lag++;
-
-  //displaying both players attack animations
-  if (p1attackanim.animating) {
-    p1attackanim.animate();
-    p1attackanim.display();
-  }
-  if (p2attackanim.animating) {
-    p2attackanim.animate();
-    p2attackanim.display();
-  }
 
   //rain in front of characters
   if (raining == true) {
@@ -279,7 +252,7 @@ function draw() {
     text("Player 2 Wins", 225, 150);
   }
 
-  //checks if rain toggle is even or odd
+  //checking for rain toggle with an even or odd number
   if (rainToggle % 2 == 0) {
     raining = true;
   } else {
@@ -356,12 +329,12 @@ class Player1 {
 
   move() {
     //if A key is down move left 3 pixels per frame
-    if (keyIsDown(65) && this.x >= 90) {
+    if (keyIsDown(65) && this.x >= 90 && p1ani.attacking == false) {
       this.x -= 3;
       this.hitbox -= 3;
     }
     //if D key is down move right 3 pixels per frame
-    if (keyIsDown(68) && this.x <= p2.x) {
+    if (keyIsDown(68) && this.x <= p2.x && p1ani.attacking == false) {
       this.x += 3;
       this.hitbox += 3;
     }
@@ -437,7 +410,7 @@ class Player1 {
     //if W key is pressed and you havent attacked in the last 80 frames then perform an attack
     if (this.lag >= 80 && keyCode == 87) {
       this.lag = 0;
-      p1attackanim.play();
+      p1ani.attacking = true;
       sword.play();
       //if the attack hitbox is over player 2's hitbox when the attack is performed and they are not blocking, then player 1 wins
       if (this.hitbox >= p2.x && p2.blocking == false) {
@@ -446,8 +419,8 @@ class Player1 {
         this.win = true;
         p1ani.running = false;
         p2ani.running = false;
-        p1attackanim.animating == false;
-        p2attackanim.animating == false;
+        p1ani.attacking == false;
+        p2ani.attacking == false;
         p1.blocking = false;
         paused = true;
       }
@@ -489,12 +462,12 @@ class Player2 {
 
   move() {
     //if left arrow key is down move left 3 pixels per frame
-    if (keyIsDown(LEFT_ARROW) && this.x >= p1.x) {
+    if (keyIsDown(LEFT_ARROW) && this.x >= p1.x && p2ani.attacking == false) {
       this.x -= 3;
       this.hitbox -= 3;
     }
     //if right arrow key is down move right 3 pixels per frame
-    if (keyIsDown(RIGHT_ARROW) && this.x <= 940) {
+    if (keyIsDown(RIGHT_ARROW) && this.x <= 940 && p2ani.attacking == false) {
       this.x += 3;
       this.hitbox += 3;
     }
@@ -569,7 +542,7 @@ class Player2 {
     //if up arrow key is pressed and you havent attacked in the last 80 frames then perform an attack
     if (this.lag >= 80 && keyCode == UP_ARROW) {
       this.lag = 0;
-      p2attackanim.play();
+      p2ani.attacking = true;
       sword.play();
       //if the attack hitbox is over player 1's hitbox when the attack is performed and they are not blocking, then player 2 wins
       if (this.hitbox <= p1.x && p1.blocking == false) {
@@ -578,8 +551,8 @@ class Player2 {
         this.win = true;
         p1ani.running = false;
         p2ani.running = false;
-        p1attackanim.animating == false;
-        p2attackanim.animating == false;
+        p1ani.attacking == false;
+        p2ani.attacking == false;
         p2.blocking = false;
         paused = true;
       }
@@ -594,6 +567,7 @@ class Player2 {
 
 class P1Animations {
   running = false;
+  attacking = false;
   dying = false;
   blockedCount = 31;
 
@@ -603,7 +577,7 @@ class P1Animations {
       this.running == false &&
       p1.blocking == false &&
       this.dying == false &&
-      p1attackanim.animating == false
+      this.attacking == false
     ) {
       animation(p1IdleAni, p1.x - 37, 322);
     }
@@ -616,8 +590,19 @@ class P1Animations {
     } else {
       this.running = false;
     }
-    if (this.running == true && p1attackanim.animating == false) {
+    if (this.running == true && this.attacking == false) {
       animation(p1RunAni, p1.x - 37, 322);
+    }
+  }
+
+  attack() {
+    //if player 1 attacks, play the attack animation then stop it and reset it when it's done
+    this.attacking = true;
+    animation(p1AttackAni, p1.x - 37, 322);
+    if (p1AttackAni.frame == 3) {
+      p1AttackAni.stop();
+      this.attacking = false;
+      p1AttackAni.play(0);
     }
   }
 
@@ -636,7 +621,7 @@ class P1Animations {
       this.blockedCount <= 30 &&
       this.running == false &&
       p1.blocking == true &&
-      p1attackanim.animating == false
+      this.attacking == false
     ) {
       animation(p1Blocked, p1.x - 58, 298);
     }
@@ -649,6 +634,7 @@ class P1Animations {
 
 class P2Animations {
   running = false;
+  attacking = false;
   dying = false;
   blockedCount = 30;
 
@@ -658,7 +644,7 @@ class P2Animations {
       this.running == false &&
       p2.blocking == false &&
       this.dying == false &&
-      p2attackanim.animating == false
+      this.attacking == false
     ) {
       animation(p2IdleAni, p2.x + 30, 298);
     }
@@ -671,8 +657,19 @@ class P2Animations {
     } else {
       this.running = false;
     }
-    if (this.running == true && p2attackanim.animating == false) {
+    if (this.running == true && this.attacking == false) {
       animation(p2RunAni, p2.x + 30, 298);
+    }
+  }
+
+  attack() {
+    //if player 2 attacks, play the attack animation then stop it and reset it when it's done
+    this.attacking = true;
+    animation(p2AttackAni, p2.x + 30, 298);
+    if (p2AttackAni.frame == 3) {
+      p2AttackAni.stop();
+      this.attacking = false;
+      p2AttackAni.play(0);
     }
   }
 
@@ -695,70 +692,10 @@ class P2Animations {
       this.blockedCount <= 30 &&
       this.running == false &&
       p2.blocking == true &&
-      p2attackanim.animating == false
+      this.attacking == false
     ) {
       animation(p2Blocked, p2.x + 31, 298);
     }
-  }
-}
-
-class P1AttackAnimation {
-  constructor(images) {
-    this.p1attackframes = images;
-    this.frame = 0;
-    this.frameRate = 15;
-    this.frameHold = 0;
-    this.animating = false;
-  }
-
-  animate() {
-    this.frameHold++;
-    if (this.frameHold >= frameRate() / this.frameRate) {
-      this.frame++;
-      this.frameHold = 0;
-    }
-    if (this.frame == this.p1attackframes.length - 1) {
-      this.animating = false;
-    }
-  }
-
-  display() {
-    image(this.p1attackframes[this.frame], p1.x - 436, ground - 188);
-  }
-
-  play() {
-    this.animating = true;
-    this.frame = 0;
-  }
-}
-
-class P2AttackAnimation {
-  constructor(images) {
-    this.p2attackframes = images;
-    this.frame = 0;
-    this.frameRate = 15;
-    this.frameHold = 0;
-    this.animating = false;
-  }
-
-  animate() {
-    this.frameHold++;
-    if (this.frameHold >= frameRate() / this.frameRate) {
-      this.frame++;
-      this.frameHold = 0;
-    }
-    if (this.frame == this.p2attackframes.length - 1) {
-      this.animating = false;
-    }
-  }
-
-  display() {
-    image(this.p2attackframes[this.frame], p2.x - 370, ground - 212);
-  }
-
-  play() {
-    this.animating = true;
-    this.frame = 0;
   }
 }
 
