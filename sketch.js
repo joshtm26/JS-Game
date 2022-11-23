@@ -258,6 +258,9 @@ function draw() {
   } else {
     raining = false;
   }
+  
+  
+  print(p1AttackAni.frame);
 }
 
 //start the sketch and music
