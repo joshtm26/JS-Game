@@ -106,6 +106,10 @@ function preload() {
     "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p1%20run%20sprite%20sheet.png?v=1668546986144",
     { size: [800, 800], frames: 8 }
   );
+  p1AttackAni = loadAni(
+    "https://cdn.glitch.global/21ead304-df2a-4fe5-8191-4c0f0fc5760b/p1%20attack%20sprite%20sheet.png?v=1669160677023",
+    { size: [800, 800], frames: 4 }
+  );
   p1DeathAni = loadAni(
     "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p1%20death%20sprite%20sheet.png?v=1668548217039",
     { size: [800, 800], frames: 6 }
@@ -160,6 +164,8 @@ function setup() {
   p2IdleAni.frameDelay = 9;
   p1DeathAni.frameDelay = 6;
   p2DeathAni.frameDelay = 8;
+  // p1AttackAni.frameDelay = 4;
+  // p2AttackAni.frameDelay = 4;
   //rain arrays
   for (var i = 0; i < 300; i++) {
     frontRain[i] = new FrontRain();
@@ -236,6 +242,10 @@ function draw() {
   if (p2attackanim.animating) {
     p2attackanim.animate();
     p2attackanim.display();
+  }
+  
+  if (p1ani.attacking == true) {
+    p1ani.attack();
   }
 
   //rain in front of characters
@@ -431,7 +441,7 @@ class Player1 {
     //if W key is pressed and you havent attacked in the last 80 frames then perform an attack
     if (this.lag >= 80 && keyCode == 87) {
       this.lag = 0;
-      p1attackanim.play();
+      p1ani.attacking = true;
       sword.play();
       //if the attack hitbox is over player 2's hitbox when the attack is performed and they are not blocking, then player 1 wins
       if (this.hitbox >= p2.x && p2.blocking == false) {
@@ -588,6 +598,7 @@ class Player2 {
 
 class P1Animations {
   running = false;
+  attacking = false;
   dying = false;
   blockedCount = 31;
 
@@ -597,7 +608,7 @@ class P1Animations {
       this.running == false &&
       p1.blocking == false &&
       this.dying == false &&
-      p1attackanim.animating == false
+      this.attacking == false
     ) {
       animation(p1IdleAni, p1.x - 37, 322);
     }
@@ -612,6 +623,17 @@ class P1Animations {
     }
     if (this.running == true && p1attackanim.animating == false) {
       animation(p1RunAni, p1.x - 37, 322);
+    }
+  }
+  
+  attack() {
+    //if player 1 attacks then play attack animation
+    this.attacking = true;
+    animation(p1AttackAni, p1.x - 37, 322);
+    if (p1AttackAni.frame == 3) {
+      p1AttackAni.stop();
+      this.attacking = false;
+      p1AttackAni.play(0);
     }
   }
 
@@ -696,35 +718,35 @@ class P2Animations {
   }
 }
 
-class P1AttackAnimation {
-  constructor(images) {
-    this.p1attackframes = images;
-    this.frame = 0;
-    this.frameRate = 15;
-    this.frameHold = 0;
-    this.animating = false;
-  }
+// class P1AttackAnimation {
+//   constructor(images) {
+//     this.p1attackframes = images;
+//     this.frame = 0;
+//     this.frameRate = 15;
+//     this.frameHold = 0;
+//     this.animating = false;
+//   }
 
-  animate() {
-    this.frameHold++;
-    if (this.frameHold >= frameRate() / this.frameRate) {
-      this.frame++;
-      this.frameHold = 0;
-    }
-    if (this.frame == this.p1attackframes.length - 1) {
-      this.animating = false;
-    }
-  }
+//   animate() {
+//     this.frameHold++;
+//     if (this.frameHold >= frameRate() / this.frameRate) {
+//       this.frame++;
+//       this.frameHold = 0;
+//     }
+//     if (this.frame == this.p1attackframes.length - 1) {
+//       this.animating = false;
+//     }
+//   }
 
-  display() {
-    image(this.p1attackframes[this.frame], p1.x - 436, ground - 188);
-  }
+//   display() {
+//     image(this.p1attackframes[this.frame], p1.x - 436, ground - 188);
+//   }
 
-  play() {
-    this.animating = true;
-    this.frame = 0;
-  }
-}
+//   play() {
+//     this.animating = true;
+//     this.frame = 0;
+//   }
+// }
 
 class P2AttackAnimation {
   constructor(images) {
