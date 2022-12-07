@@ -237,11 +237,16 @@ function draw() {
   //play death animation and display winner text
   if (p1.win == true) {
     p2ani.death();
-    textSize(65);
+    textSize(50);
     fill(0);
-    text("Player 1 Wins", 230, 155);
+    text("Player 1 Wins", 300, 155);
     fill(255);
-    text("Player 1 Wins", 225, 150);
+    text("Player 1 Wins", 295, 150);
+    textSize(25);
+    fill(0);
+    text("space to reset", 385, 185);
+    fill(255);
+    text("space to reset", 380, 180);
   }
   if (p2.win == true) {
     p1ani.death();
@@ -631,7 +636,6 @@ class P1Animations {
     }
   }
 }
-
 
 
 class FrontRain {
