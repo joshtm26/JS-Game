@@ -8,16 +8,22 @@ class P1Animations {
   special() {
     if (special == true) {
       this.specialCount++;
-      if (this.specialCount >= 1) {
-        image(unsheathed, p2.x + 100, 322);
+      if (this.specialCount >= 1 && this.specialCount < 100) {
+        image(unsheathed, p2.x - 200, -77);
+        //stop rain somehow
       }
-      //stop rain
+      if (this.specialCount >= 100) {
+        image(sheathed, p2.x - 200, -77)
+        p1.win = true;
+        //play rain
+      }
     }
   }
   
   idle() {
     //if no other animation is playing then play the idle animation
     if (
+      special == false &&
       this.running == false &&
       p1.blocking == false &&
       this.dying == false &&
