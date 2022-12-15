@@ -85,7 +85,7 @@ function preload() {
     "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p1%20attack%20frame%202.png?v=1667972572778"
   );
   sheathed = loadImage(
-    "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p1%20attack%20frame%201.png?v=1667972568329"
+    "https://cdn.glitch.global/21ead304-df2a-4fe5-8191-4c0f0fc5760b/p1.png?v=1671148433207"
   );
   teleport = loadSound(
     "https://cdn.glitch.global/21ead304-df2a-4fe5-8191-4c0f0fc5760b/Anime%20Teleportation%20Sound%20Effect%20%20%5BSFX%5D.mp3?v=1671146143762"
