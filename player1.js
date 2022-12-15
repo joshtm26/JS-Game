@@ -16,6 +16,10 @@ class Player1 {
   lag = 100;
   win = false;
 
+  special() {
+    
+  }
+  
   //player 1 hitboxes visualized
   hitboxes() {
     noStroke();
