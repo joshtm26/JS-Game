@@ -128,6 +128,7 @@ function draw() {
   }
 
   //staying playing while paused
+  p1ani.special();
   p1ani.idle();
   p2ani.idle();
   p1ani.blockedCount++;

@@ -81,4 +81,10 @@ function preload() {
   p2Blocked = loadAni(
     "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p2%20blocked.png?v=1668653401233"
   );
+  unsheathed = loadImage(
+    "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p1%20attack%20frame%202.png?v=1667972572778"
+  );
+  sheathed = loadImage(
+    "https://cdn.glitch.global/57fcf127-26f2-43da-8f93-dbd92c19c84b/p1%20attack%20frame%201.png?v=1667972568329"
+  )
 }

@@ -3,9 +3,14 @@ class P1Animations {
   attacking = false;
   dying = false;
   blockedCount = 31;
+  specialCount = 0;
 
   special() {
-    
+    if (special == true) {
+      this.specialCount++;
+      image(unsheathed, p2.x + 100, 322)
+      //stop rain
+    }
   }
   
   idle() {
