@@ -239,22 +239,27 @@ function draw() {
     p2ani.death();
     textSize(50);
     fill(0);
-    text("Player 1 Wins", 300, 155);
+    text("Player 1 Wins", 300, 125);
     fill(255);
-    text("Player 1 Wins", 295, 150);
+    text("Player 1 Wins", 295, 120);
     textSize(25);
     fill(0);
-    text("space to reset", 385, 185);
+    text("space to reset", 380, 175);
     fill(255);
-    text("space to reset", 380, 180);
+    text("space to reset", 375, 170);
   }
   if (p2.win == true) {
     p1ani.death();
-    textSize(65);
+    textSize(50);
     fill(0);
-    text("Player 2 Wins", 230, 155);
+    text("Player 2 Wins", 300, 125);
     fill(255);
-    text("Player 2 Wins", 225, 150);
+    text("Player 2 Wins", 295, 120);
+    textSize(25);
+    fill(0);
+    text("space to reset", 380, 175);
+    fill(255);
+    text("space to reset", 375, 170);
   }
 
   //checking for rain toggle with an even or odd number
