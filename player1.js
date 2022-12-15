@@ -17,7 +17,7 @@ class Player1 {
   win = false;
 
   special() {
-    
+    if (keyCode == )
   }
   
   //player 1 hitboxes visualized

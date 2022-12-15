@@ -74,9 +74,9 @@ function draw() {
   if (isLooping() == false) {
     textSize(20);
     fill(0);
-    text("press 'R' to toggle rain", 365, 30);
+    text("press 'R' to toggle rain", 360, 30);
     fill(255);
-    text("press 'R' to toggle rain", 362, 27);
+    text("press 'R' to toggle rain", 357, 27);
     textSize(50);
     fill(0);
     text("Click to Begin", 300, 205);
