@@ -18,7 +18,9 @@ class Player1 {
 
   special() {
     if (keyCode == 70 && p2.x <= 700) {
+      paused = true;
       special = true;
+      teleport.play();
     }
   }
   

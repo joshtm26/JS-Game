@@ -224,6 +224,7 @@ function keyPressed() {
     p2ani.dying = false;
     p2DeathAni.play(0);
     special = false;
+    p1ani.specialCount = 0;
     paused = false;
   }
 
