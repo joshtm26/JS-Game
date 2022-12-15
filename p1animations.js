@@ -4,6 +4,10 @@ class P1Animations {
   dying = false;
   blockedCount = 31;
 
+  special() {
+    
+  }
+  
   idle() {
     //if no other animation is playing then play the idle animation
     if (

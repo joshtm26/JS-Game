@@ -40,6 +40,7 @@ const dashSpeed = 2;
 let p1Score = 0;
 let p2Score = 0;
 let paused = false;
+let special = false;
 
 function setup() {
   createCanvas(1000, 450);
@@ -69,7 +70,7 @@ function setup() {
 function draw() {
   background(bg);
   textFont(pixelFont);
-
+  
   //start screen
   if (isLooping() == false) {
     textSize(20);
@@ -198,6 +199,7 @@ function mousePressed() {
 function keyPressed() {
   //same as paused in draw
   if (paused == false) {
+    p1.special();
     p1.dash();
     p2.dash();
     p1.attack();
@@ -220,6 +222,7 @@ function keyPressed() {
     p2.win = false;
     p2ani.dying = false;
     p2DeathAni.play(0);
+    special = false;
     paused = false;
   }
 
