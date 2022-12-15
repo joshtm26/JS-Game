@@ -12,10 +12,13 @@ class P1Animations {
         image(unsheathed, p2.x - 200, -77);
         //stop rain somehow
       }
-      if (this.specialCount >= 100) {
+      if (this.specialCount >= 100 && this.specialCount < 110) {
         image(sheathed, p2.x - 200, -77)
         p1.win = true;
         //play rain
+      }
+      if (this.specialCount >= 110) {
+        animation(p1IdleAni, p2.x + 237, 322)
       }
     }
   }
