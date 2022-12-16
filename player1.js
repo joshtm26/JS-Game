@@ -14,7 +14,7 @@ class Player1 {
   blocking = false;
   blocked = false;
   commandInput = 0;
-  commandCount = 0;
+  commandCount = 12;
   lag = 100;
   win = false;
 
@@ -24,13 +24,21 @@ class Player1 {
     //   special = true;
     //   teleport.play();
     // }
-    if (keyCode == 65 && this.commandCount <= 10) {
-      this.commandInput += 1;
+    if (keyCode == 65 && this.commandCount > 12) {
+      this.commandInput = 1;
       this.commandCount = 0;
     }
-    if (keyCode == 68 && this.commandCount <= 10) {
+    if (keyCode == 68 && this.commandCount <= 12) {
       this.commandInput += 1;
       this.commandCount = 0;
+    } else {
+      this.commandInput = 0;
+    }
+    if (keyCode == 65 && this.commandCount <= 12) {
+      this.commandInput += 1;
+      this.commandCount = 0;
+    } else {
+      this.commandInput = 0;
     }
   }
 
