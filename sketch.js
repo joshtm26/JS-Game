@@ -1,5 +1,3 @@
-
-
 let anim = [];
 var frontRain = [];
 var backRain = [];
@@ -199,6 +197,7 @@ function keyPressed() {
     p2DeathAni.play(0);
     special = false;
     p1ani.specialCount = 0;
+    p1.commandInput = 0;
     paused = false;
   }
 
