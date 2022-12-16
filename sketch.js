@@ -189,6 +189,8 @@ function draw() {
   } else {
     raining = false;
   }
+  
+  print(p1ani.specialCount)
 }
 
 //start the sketch and music
