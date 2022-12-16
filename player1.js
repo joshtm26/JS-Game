@@ -13,15 +13,26 @@ class Player1 {
   dashCount = 0;
   blocking = false;
   blocked = false;
+  commandInput = 0;
+  commandCount = 0;
   lag = 100;
   win = false;
 
   special() {
-    if (keyCode == 70 && p2.x <= 700) {
-      paused = true;
-      special = true;
-      teleport.play();
+    // if (keyCode == 70 && p2.x <= 700) {
+    //   paused = true;
+    //   special = true;
+    //   teleport.play();
+    // }
+    if (keyCode == 65) {
+      this.commandInput += 1;
+      this.commandCount = 0;
     }
+    if (keyCode == 68 && this.commandCount <= 10) {
+      this.commandInput += 1;
+      this.commandCount = 0;
+    }
+    
   }
   
   //player 1 hitboxes visualized

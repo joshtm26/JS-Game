@@ -129,6 +129,7 @@ function draw() {
 
   //staying playing while paused
   p1ani.special();
+  p1.commandCount++;
   p1ani.idle();
   p2ani.idle();
   p1ani.blockedCount++;
@@ -190,7 +191,7 @@ function draw() {
     raining = false;
   }
   
-  print(p1ani.specialCount)
+
 }
 
 //start the sketch and music
