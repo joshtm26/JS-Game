@@ -12,8 +12,11 @@ class P1Animations {
         image(unsheathed, p2.x - 200, -77);
         //stop rain somehow
       }
+      if (this.specialCount == 80) {
+        sheath.play();
+      }
       if (this.specialCount >= 80) {
-        image(sheathed, p2.x + 100, 200)
+        image(sheathed, p2.x - 200, -77)
         p1.win = true;
         //play rain
       }
