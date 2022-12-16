@@ -191,7 +191,8 @@ function draw() {
     raining = false;
   }
   
-
+  print(p1.commandInput)
+  print(p1.commandCount)
 }
 
 //start the sketch and music

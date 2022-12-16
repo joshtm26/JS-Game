@@ -24,7 +24,7 @@ class Player1 {
     //   special = true;
     //   teleport.play();
     // }
-    if (keyCode == 65) {
+    if (keyCode == 65 && this.commandCount <= 10) {
       this.commandInput += 1;
       this.commandCount = 0;
     }
@@ -32,9 +32,8 @@ class Player1 {
       this.commandInput += 1;
       this.commandCount = 0;
     }
-    
   }
-  
+
   //player 1 hitboxes visualized
   hitboxes() {
     noStroke();
