@@ -9,19 +9,19 @@ class P1Animations {
     if (special == true) {
       this.specialCount++;
       if (this.specialCount >= 1 && this.specialCount < 100) {
-        image(unsheathed, p2.x - 200, -77);
-        //stop rain somehow
+        image(unsheathed, p2.x - 200, -78);
+        
       }
       if (this.specialCount == 100) {
         sheath.play();
       }
-      if (this.specialCount >= 100 && this.specialCout < 200) {
-        image(sheathed, p2.x - 200, -77)
+      if (this.specialCount >= 100 && this.specialCount < 200) {
+        image(sheathed, p2.x - 200, -78)
         p1.win = true;
-        //play rain
+        
       }
       if (this.specialCount >= 200) {
-        animation(p1IdleAni, p2.x + 200, 322)
+        animation(p1IdleAni, p2.x + 198, 322)
       }
     }
   }
