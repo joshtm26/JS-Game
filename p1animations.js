@@ -12,7 +12,7 @@ class P1Animations {
         image(unsheathed, p2.x - 200, -78);
         
       }
-      if (this.specialCount == 100) {
+      if (this.specialCount == 95) {
         sheath.play();
       }
       if (this.specialCount >= 100 && this.specialCount < 200) {
