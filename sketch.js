@@ -1,34 +1,4 @@
-/*
 
-For my playful prototype project I have made a two player fighting game that uses wasd and arrow keys
-as the control scheme, specific controls listed below. It is inspired by an indie game called One Strike. 
-In this game it only takes a single attack to kill your opponent, making it so that you have to be careful 
-about how you place your attack becuase it could cause fatal. After attacking there is a brief period of 
-time in which you are unable to block or attack again, giving the opponent a crucial opening if they are
-able to dodge or block the attack. I do not own the assets used but all of them are under CC0 aside from 
-the Tekken background music. All of the code in this project was written by me.
-
-Click to start game
-Press space to start next round
-Press R to toggle rain on/off
-
-Player 1 (left):
-A: move left
-D: move right
-W: attack
-S: block
-double tap A or D to perform a dash
-
-Player 2 (right):
-Left Arrow; move left
-Right Arrow: move right
-Up Arrow: attack
-Down Arrow: block
-double tap left or right to perform a dash
-
-Have fun!!
-
-*/
 
 let anim = [];
 var frontRain = [];

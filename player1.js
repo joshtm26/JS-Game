@@ -18,36 +18,6 @@ class Player1 {
   lag = 100;
   win = false;
 
-  special() {
-    // if (keyCode == 70 && p2.x <= 700) {
-    //   paused = true;
-    //   special = true;
-    //   teleport.play();
-    // }
-    if (keyCode == 65 && this.commandCount > 12) {
-      this.commandInput = 1;
-      this.commandCount = 0;
-    }
-    if (keyCode == 68 && this.commandCount <= 12 && this.commandInput == 1) {
-      this.commandInput += 1;
-      this.commandCount = 0;
-    } else if (keyCode == 68 && this.commandCount > 12) {
-      this.commandInput = 0;
-    }
-    if (keyCode == 65 && this.commandCount <= 12 && this.commandInput == 2) {
-      this.commandInput += 1;
-      this.commandCount = 0;
-    } else if (keyCode == 65 && this.commandCount > 12) {
-      this.commandInput = 0;
-    }
-    if (keyCode == 68 && this.commandCount <= 12 && this.commandInput == 3) {
-      this.commandInput += 1;
-      this.commandCount = 0;
-    } else if (keyCode == 68 && this.commandCount > 12) {
-      this.commandInput = 0;
-    }
-  }
-
   //player 1 hitboxes visualized
   hitboxes() {
     noStroke();
@@ -138,7 +108,7 @@ class Player1 {
 
   attack() {
     //if W key is pressed and you havent attacked in the last 80 frames then perform an attack
-    if (this.lag >= 80 && keyCode == 87) {
+    if (keyCode == 87 && this.lag >= 80 && this.commandInput < 4) {
       this.lag = 0;
       p1ani.attacking = true;
       sword.play();
@@ -159,6 +129,36 @@ class Player1 {
         p2.blocked = true;
         block.play();
       }
+    }
+  }
+  
+   special() {
+    if (keyCode == 65 && this.commandCount > 12) {
+      this.commandInput = 1;
+      this.commandCount = 0;
+    }
+    if (keyCode == 68 && this.commandCount <= 12 && this.commandInput == 1) {
+      this.commandInput += 1;
+      this.commandCount = 0;
+    } else if (keyCode == 68 && this.commandCount > 12) {
+      this.commandInput = 0;
+    }
+    if (keyCode == 65 && this.commandCount <= 12 && this.commandInput == 2) {
+      this.commandInput += 1;
+      this.commandCount = 0;
+    } else if (keyCode == 65 && this.commandCount > 12) {
+      this.commandInput = 0;
+    }
+    if (keyCode == 68 && this.commandCount <= 12 && this.commandInput == 3) {
+      this.commandInput += 1;
+      this.commandCount = 0;
+    } else if (keyCode == 68 && this.commandCount > 12) {
+      this.commandInput = 0;
+    }
+    if (keyCode == 87 && this.commandInput == 4) {
+      paused = true;
+      special = true;
+      teleport.play();
     }
   }
 }
