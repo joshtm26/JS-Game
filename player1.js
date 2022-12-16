@@ -28,16 +28,22 @@ class Player1 {
       this.commandInput = 1;
       this.commandCount = 0;
     }
-    if (keyCode == 68 && this.commandCount <= 12) {
+    if (keyCode == 68 && this.commandCount <= 12 && this.commandInput == 1) {
       this.commandInput += 1;
       this.commandCount = 0;
-    } else {
+    } else if (keyCode == 68 && this.commandCount > 12) {
       this.commandInput = 0;
     }
-    if (keyCode == 65 && this.commandCount <= 12) {
+    if (keyCode == 65 && this.commandCount <= 12 && this.commandInput == 2) {
       this.commandInput += 1;
       this.commandCount = 0;
-    } else {
+    } else if (keyCode == 65 && this.commandCount > 12) {
+      this.commandInput = 0;
+    }
+    if (keyCode == 68 && this.commandCount <= 12 && this.commandInput == 3) {
+      this.commandInput += 1;
+      this.commandCount = 0;
+    } else if (keyCode == 68 && this.commandCount > 12) {
       this.commandInput = 0;
     }
   }
